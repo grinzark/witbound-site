@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Witbound syncs an audiobook to its ebook, entirely on your phone</title>
+<meta name="description" content="The engineering behind Witbound: on-device word-level alignment of an audiobook to its ebook using iOS 26's SpeechAnalyzer and a patience-diff aligner — 50–80× realtime, no cloud.">
+<link rel="icon" href="img/icon.png">
+<meta property="og:title" content="How Witbound syncs an audiobook to its ebook, on-device">
+<meta property="og:description" content="Word-level audiobook↔ebook alignment that runs entirely on an iPhone: SpeechAnalyzer, a patience-diff aligner, and per-chapter checkpoints.">
+<meta property="og:image" content="https://witbound.app/img/icon-og.png">
+<meta property="og:url" content="https://witbound.app/how-it-works.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --ink: #14110E; --ink-soft: #1C1815; --parchment: #F2ECE1;
+    --muted: #B8AE9C; --gold: #A97C2E; --gold-bright: #C79B4A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ink); color: var(--parchment);
+    font: 18px/1.7 Georgia, 'Times New Roman', serif; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--gold-bright); }
+
+  header { text-align: center; padding: 56px 0 20px; }
+  header a.home { text-decoration: none; }
+  header img.icon { width: 56px; height: 56px; border-radius: 13px; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+  .kicker {
+    font-family: ui-monospace, Menlo, monospace; font-size: 11px;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 16px 0 6px;
+  }
+  h1 { font-size: 34px; line-height: 1.25; margin: 6px 0 8px; letter-spacing: -.01em; }
+
+  article { padding: 20px 0 8px; }
+  article h2 { font-size: 24px; margin: 38px 0 12px; }
+  article p { color: #D8D0C1; }
+  article strong { color: var(--parchment); }
+  article ul { color: #D8D0C1; padding-left: 22px; }
+  article li { margin: 6px 0; }
+  code {
+    font-family: ui-monospace, Menlo, monospace; font-size: 15px;
+    background: var(--ink-soft); padding: 2px 6px; border-radius: 5px; color: var(--gold-bright);
+  }
+  .lede { font-size: 20px; color: var(--parchment); }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0; }
+  .stat {
+    flex: 1 1 150px; background: var(--ink-soft);
+    border: 1px solid rgba(169,124,46,.22); border-radius: 12px; padding: 16px 18px;
+  }
+  .stat .n { font-size: 26px; color: var(--gold-bright); }
+  .stat .l { font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .cta {
+    display: inline-block; margin: 8px 0 4px;
+    background: var(--gold); color: #14110E; text-decoration: none;
+    font-family: ui-monospace, Menlo, monospace; font-size: 12px;
+    letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 999px; font-weight: 600;
+  }
+  footer {
+    text-align: center; padding: 40px 0 56px; color: var(--muted);
+    font-size: 14px; border-top: 1px solid rgba(242,236,225,.08); margin-top: 36px;
+  }
+  footer a { margin: 0 10px; }
+  @media (max-width: 620px) { h1 { font-size: 28px; } .lede { font-size: 18px; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <a class="home" href="/"><img class="icon" src="img/icon.png" alt="Witbound"></a>
+    <p class="kicker">Engineering</p>
+    <h1>How Witbound syncs an audiobook to its ebook, entirely on your phone</h1>
+  </header>
+
+  <article>
+    <p class="lede">I wanted Whispersync for files I already own — read the page while the narrator
+      reads it aloud, every word highlighted in time. Nothing did it for books that didn't come
+      from one specific store. So I built it, and set myself one rule: it has to run entirely on
+      the device, with no account and nothing uploaded. Here's how it works.</p>
+
+    <h2>The problem is alignment, not transcription</h2>
+    <p>An audiobook and its ebook are the same words in two forms — but nothing connects them. The
+      audio has no idea which word is being spoken at 1:12:04, and the text has no idea when word
+      number 41,900 gets read aloud. To highlight the page in time with the voice, you need a map:
+      for every word in the book, the moment it's spoken.</p>
+    <p>The naïve approach — force-align the whole audio against the whole text — is brittle. Real
+      pairs never match cleanly. Editions differ. The ebook has front matter, a licence page, chapter
+      titles the narrator skips. The audiobook has an intro, a "chapter one" the text doesn't mark,
+      an outro. Abridgements drop whole passages. A rigid aligner drifts a few seconds early and never
+      recovers, and the highlight ends up a sentence ahead of the voice — worse than no highlight at all.</p>
+
+    <h2>Two stages: transcribe, then diff</h2>
+    <p>Witbound splits it in two. First, <strong>iOS 26's on-device <code>SpeechAnalyzer</code></strong>
+      transcribes the audiobook with per-word timings. This is the part that used to require a server —
+      Apple's new speech model is good enough, and fast enough, to do it on the phone. The model
+      downloads once; after that everything is local.</p>
+    <p>Second, a <strong>patience-diff-style n-gram aligner</strong> matches the transcript against the
+      tokenized ebook. Instead of forcing a global fit, it finds confident anchor points — rare n-grams
+      that appear once in both — and aligns between them, the same idea <code>git diff</code> uses to line
+      up code. Where the transcript and text genuinely diverge (a skipped heading, a dropped paragraph),
+      the run between anchors simply stays unmatched, and that text renders as ordinary un-narrated prose
+      rather than dragging the whole map out of sync. Robustness comes from being <em>willing not to match</em>.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="n">50–80×</div><div class="l">realtime transcription on an iPhone 15 Pro</div></div>
+      <div class="stat"><div class="n">~0.06s</div><div class="l">median word-boundary error, 37.6-hour book</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">mismatched anchors on an 850,000-word text</div></div>
+    </div>
+
+    <h2>It's fast enough to be boring</h2>
+    <p>On an iPhone 15 Pro the transcription runs <strong>50–80× faster than realtime</strong> — a
+      90-minute chapter aligns in about 90 seconds; a 39-minute one in under 30. When I first measured
+      that on real hardware I assumed I'd made an error, because the whole architecture had been designed
+      around the assumption this would need a server. It doesn't. A full-length novel processes in a few
+      minutes, once, and never again.</p>
+    <p>Accuracy held up better than I expected too. On a 37.6-hour production audiobook the median
+      word-boundary error was about <strong>0.06 seconds</strong> — well below what the eye can catch as
+      "off." As a stress test I aligned an <strong>850,000-word</strong> book against its narration and
+      got zero mismatched anchors end to end.</p>
+
+    <h2>Checkpoints, so you can read before it finishes</h2>
+    <p>Transcription is chunked by chapter, and each chapter's transcript is written to disk the moment
+      it completes. Two things fall out of that. First, the sync map is rebuilt after every chapter, so
+      <strong>you can start reading as soon as chapter one aligns</strong> while the rest catches up
+      behind you — the unfinished part just reads as un-narrated until it's ready. Second, the work is
+      resumable: if iOS suspends the app, or you close it, nothing already transcribed is lost. An
+      overnight <code>BGProcessingTask</code> finishes long books while the phone charges, then sends a
+      notification when the book is ready.</p>
+
+    <h2>On-device on principle, not just for privacy</h2>
+    <p>Everything above runs on the phone. There's no account, no sign-up, no server — the App Store
+      privacy label reads <em>Data Not Collected</em>, because there's nothing to collect. That started
+      as a privacy stance and turned into an engineering constraint that made the product better: no
+      upload wait, no per-minute transcription bill, works on a plane.</p>
+    <p>The one thing it deliberately <strong>won't</strong> do is open DRM'd files. Audible and Kindle
+      files are copy-protected, and breaking that protection is illegal — so Witbound refuses them up
+      front with a clear message rather than failing strangely later. DRM-free epub/PDF and m4b/mp3 work:
+      Libro.fm, LibriVox, Standard Ebooks, your own rips.</p>
+
+    <h2>Try it</h2>
+    <p>Witbound is on iPhone and iPad. The first book is free, no account. If you don't have a DRM-free
+      pair to hand, there's a <a href="pairs.html">list of free public-domain ones</a> that work out of
+      the box.</p>
+    <p><a class="cta" href="https://apps.apple.com/app/id6795587495">Get Witbound on the App&nbsp;Store</a></p>
+  </article>
+
+  <footer>
+    <a href="/">Home</a> · <a href="pairs.html">Free book pairs</a> ·
+    <a href="privacy.html">Privacy</a> · <a href="support.html">Support</a>
+    <p>© 2026 Witbound</p>
+  </footer>
+
+</div>
+</body>
+</html>
