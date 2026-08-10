@@ -34,6 +34,9 @@
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --mono: ui-monospace, 'SF Mono', Menlo, monospace;
     --maxw: 1080px;
+    /* Kage-style luxury easings */
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --ease-io: cubic-bezier(.65, 0, .35, 1);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -94,6 +97,13 @@
     width: 900px; height: 620px; max-width: 130vw;
     background: radial-gradient(ellipse at center, rgba(199,155,74,.20), rgba(199,155,74,.05) 42%, transparent 68%);
     filter: blur(18px); pointer-events: none; z-index: 0;
+  }
+  /* Drifting word-field: the product metaphor as ambient motion. Sits between
+     the aurora and the content; JS paints serif words that occasionally ignite. */
+  #wordfield {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 55%, transparent 100%);
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 55%, transparent 100%);
   }
   .hero > * { position: relative; z-index: 1; }
   .hero h1 { font-size: clamp(38px, 6.6vw, 76px); line-height: 1.04; margin: 22px auto 0; }
@@ -251,10 +261,22 @@
   footer .links a:hover { color: var(--parchment); }
   footer .copy { color: var(--muted); font-size: 13px; font-family: var(--serif); }
 
-  /* ---- reveal ---- */
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  /* ---- reveal (luxury ease + staggered children, Kage-style cascade) ---- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
   .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+  .features .reveal { transition-delay: var(--stagger, 0ms); }
+  /* cursor glow — a soft gold halo in the hero, desktop only */
+  #cursorglow {
+    position: fixed; width: 340px; height: 340px; border-radius: 50%;
+    pointer-events: none; z-index: 2; opacity: 0;
+    background: radial-gradient(circle, rgba(199,155,74,.10), transparent 65%);
+    transform: translate(-50%, -50%); transition: opacity .5s var(--ease-out);
+  }
+  @media (hover: none), (max-width: 820px) { #cursorglow { display: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    #cursorglow, #wordfield { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -270,6 +292,7 @@
 </nav>
 
 <header class="hero">
+  <canvas id="wordfield" aria-hidden="true"></canvas>
   <div class="wrap">
     <span class="eyebrow">Read-along for iPhone &amp; iPad</span>
     <h1><span class="hl-line">The narrator reads.</span><br><span class="hl-line">The words <span class="lit">light up.</span></span></h1>
@@ -504,11 +527,110 @@
   var nav = document.getElementById('nav');
   addEventListener('scroll', function () { nav.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
 
-  // scroll reveal
+  // scroll reveal — with a stagger cascade inside feature grids
+  document.querySelectorAll('.features').forEach(function (grid) {
+    Array.prototype.forEach.call(grid.children, function (child, i) {
+      child.style.setProperty('--stagger', (i * 120) + 'ms');
+    });
+  });
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: .14 });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // ---- drifting word-field (the metaphor as ambient motion) ----
+  (function () {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canvas = document.getElementById('wordfield');
+    if (!canvas || reduce) return;
+    var ctx = canvas.getContext('2d');
+    var hero = document.querySelector('.hero');
+    var WORDS = ('wander drift listen read along voice page word narrator chapter story ' +
+                 'focus follow hear see hold line light golden quiet attention').split(' ');
+    var parts = [], W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2);
+    function size() {
+      W = hero.offsetWidth; H = hero.offsetHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function seed() {
+      if (parts.length || W < 200) return;   // wait for a real layout
+      var COUNT = Math.min(26, Math.floor(W / 46));
+      for (var i = 0; i < COUNT; i++) {
+        parts.push({
+          w: WORDS[i % WORDS.length],
+          x: Math.random() * 1, y: Math.random() * 1,
+          vx: (Math.random() - .5) * .012, vy: (Math.random() - .5) * .008,
+          s: 13 + Math.random() * 15,
+          base: .05 + Math.random() * .07,
+          glow: 0, next: 4000 + Math.random() * 14000
+        });
+      }
+    }
+    size(); seed();
+    addEventListener('resize', function () { size(); seed(); });
+    var last = 0, scrollLerp = 0;
+    function frame(t) {
+      var dt = Math.min(t - last, 50); last = t;
+      // lerped scroll for parallax (Kage-style smoothing)
+      scrollLerp += (Math.min(scrollY, 600) - scrollLerp) * .06;
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        p.x += p.vx * dt / 16 / 100; p.y += p.vy * dt / 16 / 100;
+        if (p.x < -.08) p.x = 1.08; if (p.x > 1.08) p.x = -.08;
+        if (p.y < -.08) p.y = 1.08; if (p.y > 1.08) p.y = -.08;
+        p.next -= dt;
+        if (p.next < 0 && p.glow <= 0) { p.glow = 1; p.next = 6000 + Math.random() * 16000; }
+        if (p.glow > 0) p.glow = Math.max(0, p.glow - dt / 2200);
+        var ease = p.glow > .5 ? 1 - (p.glow - .5) * 2 : p.glow * 2;   // rise & fall
+        var a = p.base + ease * .5;
+        var y = p.y * H - scrollLerp * (p.s / 28) * .35;               // depth parallax
+        ctx.font = '400 ' + p.s + 'px Fraunces, Georgia, serif';
+        if (ease > .02) {
+          ctx.fillStyle = 'rgba(199,155,74,' + a + ')';
+          ctx.shadowColor = 'rgba(199,155,74,' + (ease * .8) + ')';
+          ctx.shadowBlur = 16 * ease;
+        } else {
+          ctx.fillStyle = 'rgba(220,212,198,' + a + ')';
+          ctx.shadowBlur = 0;
+        }
+        ctx.fillText(p.w, p.x * W, y);
+      }
+      ctx.shadowBlur = 0;
+      if (scrollY < H + 200) requestAnimationFrame(frame);
+      else { pending = false; }
+    }
+    var pending = true;
+    requestAnimationFrame(frame);
+    addEventListener('scroll', function () {
+      if (!pending && scrollY < H + 200) { pending = true; last = performance.now(); requestAnimationFrame(frame); }
+    }, { passive: true });
+  })();
+
+  // ---- cursor glow (hero only, desktop) ----
+  (function () {
+    if (matchMedia('(hover: none)').matches) return;
+    var glow = document.createElement('div');
+    glow.id = 'cursorglow';
+    document.body.appendChild(glow);
+    var hero = document.querySelector('.hero');
+    var gx = 0, gy = 0, tx = 0, ty = 0, on = false, raf = null;
+    function loop() {
+      gx += (tx - gx) * .12; gy += (ty - gy) * .12;
+      glow.style.left = gx + 'px'; glow.style.top = gy + 'px';
+      if (on || Math.abs(tx - gx) > .5) requestAnimationFrame(loop);
+      else raf = null;
+    }
+    addEventListener('mousemove', function (e) {
+      tx = e.clientX; ty = e.clientY;
+      var r = hero.getBoundingClientRect();
+      var inside = e.clientY < r.bottom;
+      if (inside !== on) { on = inside; glow.style.opacity = inside ? 1 : 0; }
+      if (!raf && inside) { raf = 1; loop(); }
+    }, { passive: true });
+  })();
 
   // ---- live karaoke demo ----
   // Public-domain passage (A Princess of Mars). Each word carries a duration
