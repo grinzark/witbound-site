@@ -632,51 +632,89 @@
     }, { passive: true });
   })();
 
-  // ---- live karaoke demo ----
-  // Public-domain passage (A Princess of Mars). Each word carries a duration
-  // roughly matching a narrator's cadence, so the highlight reads like speech.
-  var words = ("My name is John Carter; I am better known as Captain Jack Carter of Virginia. " +
-    "At the close of the Civil War I found myself possessed of several hundred thousand dollars — " +
-    "and a captain's commission in an army which no longer existed.").split(' ');
+  // ---- live karaoke demo: REAL narration, REAL sync map ----
+  // Tokens are [gap, word, startSec] straight from Witbound's sync map for
+  // this passage (LibriVox, public domain). Before the first click the
+  // highlight drifts silently at reading pace; pressing play starts the
+  // actual narrator, and the highlight follows the audio clock exactly.
+  var TOK = [["", "My", 0.14], [" ", "name", 1.4], [" ", "is", 1.58], [" ", "John", 1.88], [" ", "Carter", 2.18], ["; ", "I", 3.08], [" ", "am", 3.8], [" ", "better", 3.92], [" ", "known", 4.04], [" ", "as", 4.28], [" ", "Captain", 4.64], [" ", "Jack", 4.82], [" ", "Carter", 5.18], [" ", "of", 5.9], [" ", "Virginia", 5.96], [". ", "At", 6.68], [" ", "the", 7.94], [" ", "close", 8.06], [" ", "of", 8.18], [" ", "the", 8.36], [" ", "Civil", 8.54], [" ", "War", 8.78], [" ", "I", 9.26], [" ", "found", 9.74], [" ", "myself", 9.92], [" ", "possessed", 10.28], [" ", "of", 11.12], [" ", "several", 11.3], [" ", "hundred", 11.54], [" ", "thousand", 11.96], [" ", "dollars", 12.56], [" (", "Confederate", 12.98], [") ", "and", 14.0], [" ", "a", 14.36], [" ", "captain’s", 14.54], [" ", "commission", 15.08], [" ", "in", 16.16], [" ", "the", 16.22], [" ", "cavalry", 16.28], [" ", "arm", 16.88], [" ", "of", 17.06], [" ", "an", 17.24], [" ", "army", 17.36], [" ", "which", 17.84], [" ", "no", 18.02], [" ", "longer", 18.26], [" ", "existed", 18.44], [".", "", 0]];
+  var AUDIO_DUR = 19.6;
   var el = document.getElementById('karaoke');
   var progress = document.getElementById('progress');
   var clock = document.getElementById('clock');
   var playBtn = document.getElementById('play');
   var playIcon = document.getElementById('playicon');
-  var spans = words.map(function (w) {
-    var s = document.createElement('span');
-    s.className = 'w'; s.textContent = w;
-    el.appendChild(s); el.appendChild(document.createTextNode(' '));
-    return s;
+  var tagline = document.querySelector('.demo .controls span[style]') || null;
+  var spans = [];
+  TOK.forEach(function (t) {
+    if (t[0]) el.appendChild(document.createTextNode(t[0]));
+    if (t[1]) {
+      var s = document.createElement('span');
+      s.className = 'w'; s.textContent = t[1];
+      el.appendChild(s);
+      spans.push({ el: s, t: t[2] });
+    }
   });
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var i = 0, playing = false, timer = null, t0 = 0, elapsed = 0;
-  var per = 300; // ms per word baseline
-  function dur(w) { return per + Math.min(w.length, 9) * 34 + (/[.,;—]$/.test(w) ? 260 : 0); }
-  var total = words.reduce(function (a, w) { return a + dur(w); }, 0);
-  function paint() {
-    spans.forEach(function (s, k) { s.className = 'w' + (k < i ? ' read' : k === i ? ' on' : ''); });
-    progress.style.width = Math.min(100, elapsed / total * 100) + '%';
-    var sec = Math.floor(elapsed / 1000); clock.textContent = '0:' + (sec < 10 ? '0' : '') + sec;
+  var audio = new Audio('audio/demo.mp3');
+  audio.preload = 'none';
+  var mode = 'silent';          // silent drift until the user asks for sound
+  var playing = false, timer = null, si = 0, raf = null;
+
+  function paint(idx, frac, secs) {
+    for (var k = 0; k < spans.length; k++) {
+      spans[k].el.className = 'w' + (k < idx ? ' read' : k === idx ? ' on' : '');
+    }
+    progress.style.width = Math.min(100, frac * 100) + '%';
+    var s = Math.floor(secs);
+    clock.textContent = '0:' + (s < 10 ? '0' : '') + s;
   }
-  function step() {
-    if (i >= words.length) { i = 0; elapsed = 0; }
-    paint();
-    var d = dur(words[i]); elapsed += d; i++;
-    timer = setTimeout(step, d);
+  function iconPlay()  { playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; }
+  function iconPause() { playIcon.innerHTML = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>'; }
+
+  // silent drift (pre-click): paced by the real gaps, just without sound
+  function silentStep() {
+    if (si >= spans.length) si = 0;
+    paint(si, spans[si].t / AUDIO_DUR, spans[si].t);
+    var next = si + 1 < spans.length ? (spans[si + 1].t - spans[si].t) * 1000 : 1600;
+    si++;
+    timer = setTimeout(silentStep, Math.max(next, 90));
   }
-  function play() { playing = true; playIcon.innerHTML = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>'; step(); }
-  function pause() { playing = false; clearTimeout(timer); playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; }
-  playBtn.addEventListener('click', function () { playing ? pause() : play(); });
-  // start when scrolled into view
+
+  // audio-driven (post-click): the highlight follows the narrator's clock
+  function audioFrame() {
+    var t = audio.currentTime;
+    var idx = 0;
+    while (idx < spans.length - 1 && spans[idx + 1].t <= t) idx++;
+    if (t < spans[0].t) idx = -1;
+    paint(idx, t / AUDIO_DUR, t);
+    if (!audio.paused && !audio.ended) raf = requestAnimationFrame(audioFrame);
+  }
+  audio.addEventListener('ended', function () {
+    playing = false; iconPlay(); paint(spans.length - 1, 1, AUDIO_DUR);
+  });
+
+  function stopAll() { clearTimeout(timer); if (raf) cancelAnimationFrame(raf); }
+  playBtn.addEventListener('click', function () {
+    if (playing && mode === 'audio') { audio.pause(); playing = false; iconPlay(); stopAll(); return; }
+    stopAll();
+    mode = 'audio'; playing = true; iconPause();
+    if (audio.ended) audio.currentTime = 0;
+    audio.play().then(function () { raf = requestAnimationFrame(audioFrame); })
+      .catch(function () {   // audio blocked/missing: fall back to silent drift
+        mode = 'silent'; silentStep();
+      });
+    if (tagline) tagline.textContent = 'that\u2019s the real narrator \u2014 the highlight follows his voice';
+  });
+
+  // start the silent drift when scrolled into view
   var started = false;
   var demoIO = new IntersectionObserver(function (es) {
     es.forEach(function (e) {
-      if (e.isIntersecting && !started && !reduce) { started = true; play(); }
+      if (e.isIntersecting && !started && !reduce) { started = true; playing = true; iconPause(); silentStep(); }
     });
   }, { threshold: .4 });
   demoIO.observe(document.getElementById('demo'));
-  if (reduce) { spans.forEach(function (s) { s.classList.add('read'); }); progress.style.width = '100%'; }
 </script>
 </body>
 </html>
