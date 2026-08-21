@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="canonical" href="https://witbound.app/immersion-reading.html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Immersion reading without Audible · Witbound</title>
+<meta name="description" content="What immersion reading is, why readers love it, and how to Read &amp; Listen with books you already own. No Audible, no double purchase, no account. DRM-free sources included.">
+<link rel="icon" href="img/icon.png">
+<meta property="og:title" content="Immersion reading without Audible">
+<meta property="og:description" content="Read &amp; Listen with books you already own. Every word highlighted as your audiobook narrates, with no double purchase and no account.">
+<meta property="og:image" content="https://witbound.app/img/icon-og.png">
+<meta property="og:url" content="https://witbound.app/immersion-reading.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14110E;
+    --ink-2: #1A1612;
+    --card: #1C1815;
+    --line: rgba(242,236,225,.10);
+    --line-strong: rgba(242,236,225,.16);
+    --parchment: #F4EEE3;
+    --text: #DCD4C6;
+    --muted: #9B917F;
+    --gold: #C79B4A;
+    --gold-deep: #A97C2E;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --maxw: 1080px;
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body {
+    margin: 0; background: var(--ink); color: var(--text);
+    font-family: var(--sans); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--parchment); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.015em; color: var(--parchment); margin: 0; }
+  .eyebrow {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--sans); font-weight: 600; font-size: 15px;
+    padding: 14px 26px; border-radius: 999px; cursor: pointer;
+    border: 1px solid transparent; transition: transform .15s ease, background .2s ease;
+  }
+  .btn-gold { background: linear-gradient(180deg, #D8AC57, var(--gold-deep)); color: #14110E; box-shadow: 0 10px 30px rgba(169,124,46,.34); }
+  .btn-gold:hover { color: #14110E; transform: translateY(-2px); }
+  .btn svg { width: 18px; height: 18px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(140%) blur(14px);
+    background: rgba(20,17,14,.72); border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  nav .row { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  .brand span { font-family: var(--serif); font-weight: 600; font-size: 21px; color: var(--parchment); }
+  nav .btn { padding: 10px 20px; font-size: 14px; }
+  @media (max-width: 560px) { nav .brand span { display: none; } }
+
+  header.page { text-align: center; padding: 72px 0 12px; }
+  header.page h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.08; margin: 18px auto 0; max-width: 18ch; }
+  header.page .lede { font-family: var(--serif); font-size: clamp(18px, 2.4vw, 22px); color: var(--text); max-width: 46ch; margin: 20px auto 0; line-height: 1.5; }
+
+  article { padding: 40px 0 20px; }
+  .prose { max-width: 660px; margin: 0 auto; }
+  .prose p { color: var(--text); font-size: 17.5px; margin: 0 0 20px; }
+  .prose h2 { font-size: clamp(23px, 3.2vw, 30px); margin: 44px 0 14px; }
+  .prose ul { margin: 0 0 20px; padding-left: 22px; color: var(--text); }
+  .prose li { margin-bottom: 8px; font-size: 17px; }
+  .callout {
+    background: rgba(199,155,74,.08); border: 1px solid rgba(199,155,74,.28);
+    border-radius: 14px; padding: 18px 22px; margin: 26px 0;
+    font-family: var(--serif); font-size: 17.5px; color: var(--text);
+  }
+
+  .cta-band { text-align: center; padding: 56px 0 88px; }
+  .cta-band h2 { font-size: clamp(26px, 4vw, 40px); max-width: 20ch; margin: 0 auto; line-height: 1.1; }
+  .cta-band p { color: var(--muted); font-family: var(--serif); font-size: 19px; margin: 14px auto 26px; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0; }
+  footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer .links a { color: var(--muted); margin-right: 22px; font-size: 14px; }
+  footer .links a:hover { color: var(--parchment); }
+  footer .copy { color: var(--muted); font-size: 13px; font-family: var(--serif); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap row">
+    <a class="brand" href="./">
+      <img src="img/icon.png" alt="">
+      <span>Witbound</span>
+    </a>
+    <a class="btn btn-gold" href="https://apps.apple.com/app/id6795587495">Download</a>
+  </div>
+</nav>
+
+<header class="page">
+  <div class="wrap">
+    <span class="eyebrow">Read &amp; Listen, explained</span>
+    <h1>Immersion reading without Audible</h1>
+    <p class="lede">The words light up while a narrator reads them aloud. You do not need Amazon's ecosystem,
+      or a double purchase, to have it.</p>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <div class="prose">
+
+      <h2>What immersion reading actually is</h2>
+      <p>Immersion reading, also called Read &amp; Listen or read-along, is the simple idea of taking in a book
+        with your eyes and ears at once. The audiobook plays, and the text on screen is highlighted in time with
+        the narration. Your eyes always know where the voice is, and the voice never leaves the page behind.</p>
+      <p>If you have ever followed a subtitle track without meaning to, you already know the pull of it.
+        When sound and text agree, attention locks on.</p>
+
+      <h2>Why readers love it</h2>
+      <p>The most common reason is focus. Audio alone gives wandering minds an easy exit: the narrator keeps
+        going while you think about dinner, and you surface minutes later with no idea what happened. With the
+        text lit up in front of you, drifting off gets much harder, and finding your place again takes a glance
+        instead of a rewind.</p>
+      <ul>
+        <li><strong>Comprehension.</strong> Seeing and hearing the same sentence gives your brain the story twice,
+          in two forms. Names, places, and unfamiliar words stick better when you watch them go by.</li>
+        <li><strong>Pace.</strong> A narrator carries you through slow chapters you might otherwise abandon,
+          while your eyes keep the precision that listening alone loses.</li>
+        <li><strong>Reading support.</strong> Many readers with dyslexia or ADHD say the format supports their
+          focus and takes the friction out of long books. It is not a treatment for anything. It is simply a way
+          of reading that asks less of working memory and rewards attention.</li>
+      </ul>
+
+      <h2>The catch with Amazon's version</h2>
+      <p>Amazon popularised immersion reading through Kindle and Audible, and their version is polished.
+        It is also expensive by design. To use it, you must buy the Kindle edition <em>and</em> the Audible
+        edition of the same book, and the pair only works inside Amazon's apps, with an Amazon account,
+        on Amazon's terms. Two purchases per book, forever, and none of it is really yours to move elsewhere.</p>
+
+      <h2>Doing it with books you already own</h2>
+      <p>This is what <a href="./">Witbound</a> is for. Bring your own ebook and your own audiobook, epub or PDF
+        with m4b or mp3, and it highlights every word as your narrator speaks it. There is no account, no server,
+        and no data collected. The books stay yours, on your device.</p>
+      <p>Where do DRM-free books come from? More places than most people expect:</p>
+      <ul>
+        <li><a href="https://libro.fm">Libro.fm</a> and <a href="https://www.downpour.com">Downpour</a> sell
+          current audiobooks without DRM, so the files are truly yours.</li>
+        <li><a href="https://librivox.org">LibriVox</a> records public-domain audiobooks, read by volunteers,
+          at no cost.</li>
+        <li><a href="https://standardebooks.org">Standard Ebooks</a> and
+          <a href="https://www.gutenberg.org">Project Gutenberg</a> publish beautifully edited public-domain ebooks.</li>
+        <li>If you run an <a href="https://www.audiobookshelf.org">Audiobookshelf</a> server for your audiobook
+          collection, those files pair up too.</li>
+      </ul>
+      <div class="callout">
+        New to the format? We keep a hand-checked list of
+        <a href="pairs.html">public-domain audiobook and ebook pairs</a> where both halves cost nothing,
+        so you can try immersion reading tonight.
+      </div>
+      <p>Wondering how the alternatives stack up, including self-hosted options and Amazon itself?
+        See our honest <a href="compare.html">comparison of read-along apps</a>.</p>
+
+    </div>
+  </div>
+</article>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Your books deserve both halves.</h2>
+    <p>Read &amp; Listen with the library you already own.</p>
+    <a class="btn btn-gold" href="https://apps.apple.com/app/id6795587495">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>
+      Get Witbound on the App Store
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <div class="links">
+      <a href="./">Home</a>
+      <a href="pairs.html">Free book pairs</a>
+      <a href="compare.html">Compare apps</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="mailto:zarksided@gmail.com">Contact</a>
+    </div>
+    <div class="copy">© 2026 Witbound</div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function () { nav.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
+</script>
+</body>
+</html>
