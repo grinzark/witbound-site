@@ -16,21 +16,21 @@
 <meta name="theme-color" content="#14110E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #14110E;
-    --ink-2: #1A1612;
-    --card: #1C1815;
-    --line: rgba(242,236,225,.10);
-    --line-strong: rgba(242,236,225,.16);
-    --parchment: #F4EEE3;
-    --text: #DCD4C6;
-    --muted: #9B917F;
-    --gold: #C79B4A;
+    --ink: #F6F1E7;
+    --ink-2: #FCF9F2;
+    --card: #FCF9F2;
+    --line: #E2D8C4;
+    --line-strong: #D5C8AE;
+    --parchment: #1C1712;
+    --text: #4A4234;
+    --muted: #75695A;
+    --gold: #A97C2E;
     --gold-deep: #A97C2E;
-    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --serif: 'Literata', Georgia, 'Times New Roman', serif;
+    --sans: 'Literata', Georgia, serif;
     --maxw: 1080px;
   }
   * { box-sizing: border-box; }
@@ -54,14 +54,14 @@
     padding: 14px 26px; border-radius: 999px; cursor: pointer;
     border: 1px solid transparent; transition: transform .15s ease, background .2s ease;
   }
-  .btn-gold { background: linear-gradient(180deg, #D8AC57, var(--gold-deep)); color: #14110E; box-shadow: 0 10px 30px rgba(169,124,46,.34); }
-  .btn-gold:hover { color: #14110E; transform: translateY(-2px); }
+  .btn-gold { background: #1C1712; color: #F6F1E7; }
+  .btn-gold:hover { color: #F6F1E7; background: #2A231B; }
   .btn svg { width: 18px; height: 18px; }
 
   nav {
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: saturate(140%) blur(14px);
-    background: rgba(20,17,14,.72); border-bottom: 1px solid transparent;
+    background: rgba(246,241,231,.92); border-bottom: 1px solid transparent;
     transition: border-color .3s ease;
   }
   nav.scrolled { border-bottom-color: var(--line); }
