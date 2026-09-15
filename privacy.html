@@ -23,79 +23,123 @@
 <main>
   <div class="brand">Witbound</div>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective 21 August 2026</p>
+  <p class="updated">Effective 15 September 2026</p>
 
-  <div class="card">The short version: <strong>your books never leave your
-  device.</strong> No account, no analytics, no tracking. The only thing that
-  ever leaves your phone is anonymous timing data for community sync, and you
-  can switch that off.</div>
+  <div class="card">Witbound processes your books and audio on your device.
+  Community sync shares content fingerprints and word timings to help readers
+  sync faster. Optional server connections, sharing, purchases and Android
+  translation use the services described below.</div>
 
-  <h2>What we collect</h2>
-  <p>Witbound has no user accounts, no sign-in, no analytics or
-  crash-reporting SDKs, and no advertising. Two features talk to a server,
-  and both are described plainly below: <strong>community sync</strong>, which
-  sends anonymous timing data to Witbound's sync server, and
-  <strong>Audiobookshelf</strong>, which connects only to a server you own.
-  Nothing Witbound sends can be linked to you. The App&nbsp;Store privacy
-  label declares this as <em>Other Data, not linked to you</em>.</p>
-
-  <h2>Community sync</h2>
-  <p>When community sync is on, and after a book finishes syncing on your
-  device, Witbound shares two things with its sync server: a non-reversible
-  identifier derived from your ebook and audio files, and the anonymous
-  timing data for that pairing (which words are spoken when). That is all.
-  Never the book's text, title, or audio; never your name, email, device
-  identifier, or location; there is no account to attach it to. The
-  identifier cannot be turned back into the book and only ever matches
-  someone who owns the identical files. The server is operated by Witbound
-  on Cloudflare. If a pairing is already on the server, your copy starts
-  from it instead of syncing from scratch.</p>
-  <p>Community sync is on by default. Turn it off in
-  Settings&nbsp;&rarr;&nbsp;Community sync and nothing at all leaves your
-  device for any book.</p>
-
-  <h2>Audiobookshelf</h2>
-  <p>If you connect an Audiobookshelf server, Witbound talks only to the
-  address you enter. Your sign-in token is stored on your device and is never
-  sent anywhere else; Witbound's servers never see your credentials, your
-  library, or your server address.</p>
+  <h2>About Witbound</h2>
+  <p>You do not need a Witbound account to read or sync books. Witbound has no
+  advertising and does not sell your personal data. Your library, reading
+  statistics, settings and notes are stored locally. This policy covers
+  Witbound on Apple platforms and Android; available features depend on the
+  platform and app version.</p>
 
   <h2>Your books and audio</h2>
-  <p>Books and audiobooks you import are copied into Witbound's private
-  storage <strong>on your device</strong> and are processed there, using
-  Apple's on-device speech engine. They are never uploaded, transmitted, or
-  shared. Deleting a book from your library, or deleting the app, removes
-  them.</p>
+  <p>Imported books and audiobooks are stored on your device. Speech processing
+  and word alignment run locally. Witbound does not upload your book text or
+  audio to its community-sync service. Android may download its speech model
+  from Hugging Face before the first local sync; this downloads a model, not
+  your books. Apple platforms may download speech or language resources through
+  Apple's system services.</p>
+  <p>You can delete imported books in the app. Copies you exported, shared or
+  backed up are separate. Your operating system's backup and device-transfer
+  settings may also apply to local app data.</p>
+
+  <h2>Community sync</h2>
+  <p>Community sync is on by default. It connects to Witbound's service hosted
+  on Cloudflare to find and contribute reusable timing maps. Requests can
+  contain hashed fingerprints derived from ebook and audio files, ebook
+  content and short sequences of recognised speech. These fingerprints help
+  match the same content, including compatible editions; they are not a
+  Witbound account or device identifier.</p>
+  <p>Contributed maps contain word positions, word start and end times, counts,
+  alignment flags and information about the app version and speech engine.
+  They contain no book text, titles, authors, audio recordings, reading
+  history, name or email address. Other readers with matching content can
+  download these maps. Exact-file matches reuse validated timings directly.
+  For content-based chapter matches, Witbound checks samples of the audio
+  on the receiving device before using the shared timings.</p>
+  <p>Cloudflare necessarily handles ordinary connection information, such as
+  your IP address and request headers, to deliver and protect the service.
+  Cloudflare's own handling is described in its
+  <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a>.</p>
+  <p>Turn community sync off in Settings to stop new community lookups and
+  contributions; a request already in progress may finish. This setting does not disable purchases, model downloads,
+  optional server connections or sharing. Turning it off or deleting a local
+  book does not remove maps already contributed to the shared library.</p>
+
+  <h2>Optional library and progress services</h2>
+  <p>If you connect Audiobookshelf, Calibre, BookOrbit, Grimmory or another
+  compatible OPDS server, Witbound sends library requests and the necessary
+  authentication information to the server you select. Files and artwork are
+  downloaded from the addresses supplied by that service. Credentials are
+  kept on your device; they are not sent to Witbound's community-sync service.</p>
+  <p>Plex sign-in connects to Plex and then your selected Plex server. Plex
+  requests include a generated installation identifier used for that
+  connection. If you enable KOReader progress sync, your chosen KOReader sync
+  server receives the login information needed to authenticate you, book
+  fingerprints, reading positions, a device label and an installation
+  identifier. These services have their own privacy
+  practices. Use a trusted server and HTTPS where available.</p>
+
+  <h2>Sharing and device transfers</h2>
+  <p>Sharing is initiated by you. Progress cards, selected passages, notes or
+  audio clips go to the destination you choose, such as a Discord webhook,
+  an Obsidian folder or another app through the system share sheet. Your
+  chosen app or folder may sync those files using its own services. A local
+  device transfer sends the books or audio you select to the other device.</p>
+
+  <h2>Android translation</h2>
+  <p>Android's optional translation feature uses Google ML Kit. Language
+  recognition and translation run on the device, with language models
+  downloaded when needed. Google documents that its SDK collects installation
+  identifiers, device and app information, performance and error information,
+  feature events, input/output sizes and language settings for diagnostics
+  and usage analytics. Translation also uses Firebase services for model
+  configuration; Google documents country-level information derived from
+  connection addresses for this service. This is separate from Witbound's local reading
+  statistics and the community-sync setting. See
+  <a href="https://developers.google.com/ml-kit/android-data-disclosure">Google's ML Kit data disclosure</a>,
+  <a href="https://firebase.google.com/docs/android/play-data-disclosure#remote-config">Firebase's Remote Config disclosure</a>
+  and <a href="https://developers.google.com/ml-kit/language/translation">on-device translation documentation</a>.</p>
 
   <h2>Purchases</h2>
-  <p>Witbound Plus is a one-time purchase handled entirely by Apple through
-  the App&nbsp;Store (earlier subscriptions are handled the same way). We
-  never see your payment details, name, or address. Manage any subscription
-  in Settings&nbsp;&rarr;&nbsp;Apple&nbsp;ID&nbsp;&rarr;&nbsp;Subscriptions.</p>
+  <p>Witbound Plus is a one-time lifetime unlock sold through the App Store or
+  Google Play. Apple or Google handles payment information. Witbound receives
+  the purchase and entitlement information needed to unlock Plus, restore
+  purchases and confirm a transaction. Witbound does not receive your card
+  or bank details. The stores process purchase data under their own privacy
+  policies. Any older Apple subscription can be managed through Apple's
+  subscription settings.</p>
 
-  <h2>Network access</h2>
-  <p>Witbound connects to exactly three places: Apple, for App&nbsp;Store
-  purchases and receipt validation; Witbound's community sync server, only
-  while community sync is on; and your own Audiobookshelf server, only if you
-  connect one. Nothing else.</p>
+  <h2>Support, retention and your choices</h2>
+  <p>If you contact support, we receive your email address and whatever you
+  include in your message. We use it to respond, investigate problems and
+  keep necessary support records. Please send only information relevant to
+  the issue. Shared timing maps are retained for reuse; local app data stays
+  until you remove it or the app's storage is cleared. Third-party services
+  and backups have their own retention rules.</p>
+  <p>Where data-protection law applies, you may have rights to access, correct,
+  delete or restrict the use of your personal data, and to complain to your
+  data-protection regulator. Contact us using the address below. We may need
+  enough information to locate the relevant data; a shared content
+  fingerprint does not identify a Witbound user account.</p>
 
   <h2>Children</h2>
-  <p>Witbound does not collect personal data from anyone, including
-  children.</p>
-
-  <h2>Your rights (UK GDPR / GDPR)</h2>
-  <p>Witbound processes no personal data: community sync data is anonymous
-  and cannot be tied to a person, and Audiobookshelf credentials live only on
-  your device. So there is nothing for us to access, correct, export, or
-  erase. If you believe otherwise, contact us and we will help.</p>
+  <p>Witbound does not ask readers for their age or build advertising profiles.
+  If you believe a child has sent personal information to support, contact us
+  so we can review and remove it where appropriate.</p>
 
   <h2>Changes</h2>
-  <p>If this policy ever changes — for example, if a future feature needs
-  network access — the change will be described here before it ships, with a
-  new effective date.</p>
+  <p>We will update this page when features or data practices change, and show
+  the effective date above.</p>
 
   <h2>Contact</h2>
-  <p>Questions: <a href="mailto:zarksided@gmail.com">zarksided@gmail.com</a></p>
+  <p>Privacy questions and requests:
+  <a href="mailto:zarksided@gmail.com">zarksided@gmail.com</a></p>
 </main>
 </body>
 </html>
