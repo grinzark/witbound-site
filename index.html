@@ -4,596 +4,628 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Witbound — read along with the audiobooks you already own</title>
+<meta name="description" content="The narrator reads, the words light up. Witbound syncs your own audiobooks to your own ebooks, word by word, on your iPhone and iPad. Your books never leave your device.">
 <link rel="canonical" href="https://witbound.app/">
+<script>(function(d){d.className+=' js';var t=null;try{t=localStorage.getItem('wb-theme')}catch(e){}if(t==='light'||t==='dark'){d.setAttribute('data-theme',t)}else{t='auto'}d.setAttribute('data-theme-choice',t)})(document.documentElement)</script>
+<link rel="preload" href="assets/fonts/literata-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/literata-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#F2ECE1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Witbound — your audiobooks, word by word">
+<meta property="og:description" content="The narrator reads, the words light up. Your own files, synced on your own device. Your books never leave it.">
+<meta property="og:url" content="https://witbound.app/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://witbound.app/assets/icon/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Witbound stag icon on dark ink">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Witbound",
-  "operatingSystem": "iOS, iPadOS",
+  "operatingSystem": "iOS 26, iPadOS 26",
   "applicationCategory": "BookApplication",
   "url": "https://witbound.app/",
   "installUrl": "https://apps.apple.com/app/id6795587495",
-  "description": "Pairs your own DRM-free ebook with its audiobook and highlights each word as the narrator reads it, on the publisher's real pages. Runs on your device; no account.",
-  "author": { "@type": "Person", "name": "Moe" },
-  "offers": { "@type": "Offer", "category": "one-time purchase", "price": "14.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+  "description": "Pairs your own DRM-free ebook with its audiobook and highlights each word as the narrator reads it, on the publisher's real pages. The matching happens on your device; no account.",
+  "author": {
+    "@type": "Person",
+    "name": "Moe"
+  },
+  "offers": {
+    "@type": "Offer",
+    "category": "one-time purchase",
+    "price": "14.99",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
 }
 </script>
-<meta name="description" content="The narrator reads, the words light up. Witbound syncs your own audiobooks to your own ebooks, word by word, entirely on your iPhone and iPad. Your books never leave your device.">
-<link rel="icon" href="img/icon.png">
-<meta property="og:title" content="Witbound — your audiobooks, word by word">
-<meta property="og:description" content="The narrator reads, the words light up. Your own files, synced on your own device. Your books never leave it.">
-<meta property="og:image" content="https://witbound.app/img/icon-og.png">
-<meta property="og:url" content="https://witbound.app/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F6F1E7">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&display=swap" rel="stylesheet">
-<style>
-  /* Witbound reads like a book, so the site is set like one: paper, ink,
-     and the same warm gold the app uses for the spoken word. Nothing glows. */
-  :root {
-    --paper: #F6F1E7;        /* the site's ground */
-    --page: #FCF9F2;         /* raised "page" surfaces */
-    --sepia: #F1EADB;        /* quiet alternate band */
-    --ink: #1C1712;
-    --body: #4A4234;
-    --muted: #75695A;
-    --hairline: #E2D8C4;
-    --hairline-strong: #D5C8AE;
-    --gold: #A97C2E;         /* the app's deep gold */
-    --gold-bright: #C79B4A;
-    --hl: rgba(199,155,74,.32);   /* the reader's word highlight, exactly */
-    --serif: 'Literata', Georgia, 'Iowan Old Style', 'Times New Roman', serif;
-    --mono: ui-monospace, 'SF Mono', Menlo, monospace;
-    --maxw: 1040px;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  html, body { overflow-x: clip; }
-  body {
-    margin: 0; background: var(--paper); color: var(--body);
-    font-family: var(--serif); font-size: 17.5px; line-height: 1.65;
-    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-  }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
-  a { color: var(--gold); text-decoration: none; }
-  a:hover { color: var(--ink); }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.012em; color: var(--ink); margin: 0; }
-
-  /* Small italic lead-ins where a template would shout in uppercase. */
-  .lead-in { font-style: italic; font-weight: 500; font-size: 17px; color: var(--gold); }
-
-  /* ---- buttons: set like the app's — solid, calm, no glow ---- */
-  .btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-family: var(--serif); font-weight: 600; font-size: 16px;
-    padding: 13px 24px; border-radius: 10px; cursor: pointer;
-    border: 1px solid transparent; transition: background .18s ease, color .18s ease, border-color .18s ease;
-  }
-  .btn-ink { background: var(--ink); color: var(--paper); }
-  .btn-ink:hover { background: #2A231B; color: var(--paper); }
-  .btn-quiet { background: transparent; border-color: var(--hairline-strong); color: var(--ink); }
-  .btn-quiet:hover { border-color: var(--ink); color: var(--ink); }
-  .btn svg { width: 18px; height: 18px; }
-
-  /* ---- nav ---- */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(246,241,231,.92); backdrop-filter: blur(8px);
-    border-bottom: 1px solid transparent; transition: border-color .25s ease;
-  }
-  nav.scrolled { border-bottom-color: var(--hairline); }
-  nav .row { display: flex; align-items: center; justify-content: space-between; height: 66px; }
-  .brand { display: flex; align-items: center; gap: 11px; }
-  .brand img { width: 32px; height: 32px; border-radius: 8px; }
-  .brand span { font-weight: 700; font-size: 20px; color: var(--ink); }
-  nav .btn { padding: 9px 18px; font-size: 15px; }
-  @media (max-width: 560px) { nav .brand span { display: none; } }
-
-  /* ---- hero ---- */
-  .hero { padding: 76px 0 60px; text-align: center; }
-  .hero h1 { font-size: clamp(38px, 6.4vw, 72px); line-height: 1.05; margin: 18px auto 0; font-weight: 700; }
-  .hero h1 .hl-line { white-space: nowrap; }
-  .hero h1 .lit { background: var(--hl); border-radius: 4px; padding: 0 .08em; }
-  @media (max-width: 600px) { .hero h1 .hl-line { white-space: normal; } .hero h1 { font-size: 38px; } }
-  .hero .sub {
-    font-size: clamp(19px, 2.5vw, 23px); color: var(--body);
-    max-width: 34ch; margin: 20px auto 0; line-height: 1.45;
-  }
-  .hero .cta-row { display: flex; gap: 13px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
-  .hero .fineprint { color: var(--muted); font-size: 14px; margin-top: 16px; font-style: italic; }
-
-  /* ---- the live page: the demo set as a real book page ---- */
-  .demo {
-    max-width: 700px; margin: 56px auto 0; position: relative;
-    background: var(--page);
-    border: 1px solid var(--hairline); border-radius: 14px;
-    box-shadow: 0 1px 0 rgba(28,23,18,.03), 0 18px 44px rgba(28,23,18,.10);
-    padding: 30px 36px 24px; text-align: left;
-  }
-  .demo .tag {
-    display: flex; align-items: center; gap: 9px; margin-bottom: 16px;
-    font-size: 13.5px; font-style: italic; color: var(--muted);
-  }
-  .demo .tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: pulse 2.6s infinite; }
-  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(169,124,46,.35);} 70%{box-shadow:0 0 0 8px rgba(169,124,46,0);} 100%{box-shadow:0 0 0 0 rgba(169,124,46,0);} }
-  .demo p {
-    font-size: clamp(19px, 2.8vw, 24px); line-height: 1.66;
-    color: var(--ink); margin: 0; letter-spacing: -.005em;
-  }
-  .demo .w { transition: background .22s ease; border-radius: 3px; padding: 0 1px; }
-  .demo .w.read { color: var(--ink); }
-  .demo .w.on { background: var(--hl); }
-  .demo .bar { height: 2px; background: var(--hairline); margin-top: 24px; overflow: hidden; border-radius: 2px; }
-  .demo .bar i { display: block; height: 100%; width: 0; background: var(--gold); }
-  .demo .controls { display: flex; align-items: center; gap: 14px; margin-top: 14px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
-  .demo .play {
-    width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer; flex: none;
-    background: var(--gold); color: var(--paper);
-    display: grid; place-items: center; transition: background .18s ease;
-  }
-  .demo .play:hover { background: #8F6825; }
-  .demo .play svg { width: 16px; height: 16px; }
-
-  /* ---- section shell ---- */
-  section { padding: 76px 0; }
-  .sec-head { text-align: center; max-width: 44ch; margin: 0 auto 8px; }
-  .sec-head h2 { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.12; margin-top: 12px; }
-  .sec-head p { color: var(--muted); font-size: 18.5px; margin: 14px auto 0; max-width: 36ch; }
-  .divider { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
-
-  /* ---- feature columns: open text on paper, not boxed cards ---- */
-  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 44px; }
-  .feat { border-top: 1px solid var(--hairline-strong); padding-top: 22px; }
-  .feat .ic { width: 30px; height: 30px; color: var(--gold); margin-bottom: 14px; }
-  .feat .ic svg { width: 26px; height: 26px; }
-  .feat h3 { font-size: 20px; margin-bottom: 8px; }
-  .feat p { color: var(--body); font-size: 15.5px; margin: 0; line-height: 1.6; }
-  @media (max-width: 860px) { .features { grid-template-columns: 1fr; gap: 28px; max-width: 460px; margin-inline: auto; } }
-
-  /* ---- showcase (device + copy) ---- */
-  .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-  .showcase.flip .copy { order: 2; }
-  .showcase .copy h2 { font-size: clamp(26px, 3.8vw, 38px); line-height: 1.12; }
-  .showcase .copy p { color: var(--body); font-size: 17px; margin-top: 16px; }
-  .showcase .copy .lead-in { display: block; margin-bottom: 12px; }
-  @media (max-width: 820px) {
-    .showcase { grid-template-columns: 1fr; gap: 32px; text-align: center; }
-    .showcase.flip .copy { order: 0; }
-  }
-
-  /* ---- phone frame: a quiet dark bezel on paper ---- */
-  .phone { justify-self: center; width: 272px; max-width: 74vw; position: relative; }
-  .phone .frame {
-    border-radius: 40px; padding: 10px; background: #221C15; position: relative;
-    box-shadow: 0 24px 55px rgba(28,23,18,.22);
-  }
-  .phone .frame img { width: 100%; display: block; border-radius: 31px; }
-  .phone .island {
-    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-    width: 84px; height: 23px; background: #000; border-radius: 999px; z-index: 2;
-  }
-
-  /* ---- iPad wide ---- */
-  .ipad { margin-top: 44px; border-radius: 12px; overflow: hidden; border: 1px solid var(--hairline);
-    box-shadow: 0 20px 50px rgba(28,23,18,.14); }
-  .ipad img { width: 100%; display: block; }
-
-  /* ---- privacy: set as an epigraph, not a badge ---- */
-  .privacy { text-align: center; max-width: 620px; margin: 0 auto; padding: 8px 0; }
-  .privacy .rule { border: 0; border-top: 1px solid var(--hairline-strong); width: 90px; margin: 0 auto; }
-  .privacy .mark {
-    display: block; margin: 26px 0 14px; color: var(--gold);
-    font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-style: normal;
-  }
-  .privacy p { margin: 0 0 26px; color: var(--ink); font-size: 20px; line-height: 1.6; font-style: italic; }
-
-  /* ---- pricing: a colophon, ruled in gold ---- */
-  .pricing { max-width: 440px; margin: 44px auto 0; }
-  .plan {
-    background: var(--page); border: 1px solid var(--hairline);
-    border-top: 3px solid var(--gold);
-    border-radius: 12px; padding: 34px 32px; text-align: center;
-    box-shadow: 0 14px 36px rgba(28,23,18,.08);
-  }
-  .plan .name { font-weight: 600; letter-spacing: .13em; text-transform: uppercase; font-size: 12.5px; color: var(--gold); }
-  .plan .price { font-size: 50px; color: var(--ink); margin: 12px 0 2px; font-weight: 600; }
-  .plan .price small { font-size: 17px; color: var(--muted); font-weight: 400; }
-  .plan ul { list-style: none; padding: 0; margin: 22px 0 0; text-align: left; }
-  .plan li { display: flex; gap: 11px; align-items: flex-start; padding: 8px 0; color: var(--body); font-size: 15.5px; }
-  .plan li svg { width: 18px; height: 18px; color: var(--gold); flex: none; margin-top: 3px; }
-  .plan .foot { margin-top: 16px; color: var(--muted); font-size: 13.5px; }
-
-  /* ---- FAQ ---- */
-  .faq { max-width: 700px; margin: 36px auto 0; }
-  details { border-bottom: 1px solid var(--hairline); }
-  summary {
-    cursor: pointer; list-style: none; padding: 19px 4px;
-    font-size: 18.5px; font-weight: 500; color: var(--ink); display: flex; justify-content: space-between; gap: 16px; align-items: center;
-  }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; color: var(--gold); font-size: 23px; font-weight: 400; transition: transform .18s; }
-  details[open] summary::after { transform: rotate(45deg); }
-  details p { margin: 0 4px 20px; color: var(--body); font-size: 16px; }
-
-  /* ---- final ---- */
-  .final { text-align: center; padding: 92px 0; }
-  .final img { width: 72px; height: 72px; border-radius: 16px; box-shadow: 0 10px 26px rgba(28,23,18,.18); }
-  .final h2 { font-size: clamp(30px, 4.8vw, 50px); margin: 20px auto 0; max-width: 17ch; line-height: 1.08; font-weight: 700; }
-  .final p { color: var(--muted); font-size: 19px; margin: 14px auto 28px; }
-
-  /* ---- footer ---- */
-  footer { border-top: 1px solid var(--hairline); padding: 38px 0; background: var(--sepia); }
-  footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  footer .links a { color: var(--muted); margin-right: 20px; font-size: 14.5px; }
-  footer .links a:hover { color: var(--ink); }
-  footer .copy { color: var(--muted); font-size: 13.5px; }
-
-  /* ---- reveal: a small, quiet rise ---- */
-  .reveal { opacity: 0; transform: translateY(10px); transition: opacity .55s ease-out, transform .55s ease-out; }
-  .reveal.in { opacity: 1; transform: none; }
-  .features .reveal { transition-delay: var(--stagger, 0ms); }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; }
-    .demo .tag .dot { animation: none; }
-  }
-</style>
+<script defer src="assets/js/site.js"></script>
+<script defer src="assets/js/readalong.js"></script>
 </head>
 <body>
-
-<nav id="nav">
-  <div class="wrap row">
-    <div class="brand">
-      <img src="img/icon.png" alt="">
-      <span>Witbound</span>
-    </div>
-    <a class="btn btn-ink" href="https://apps.apple.com/app/id6795587495">Download</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="lead-in">Read-along for iPhone &amp; iPad</span>
-    <h1><span class="hl-line">The narrator reads.</span><br><span class="hl-line">The words <span class="lit">light up.</span></span></h1>
-    <p class="sub">Your own audiobooks, synced to your own ebooks — word by word, entirely on your device.</p>
-    <div class="cta-row">
-      <a class="btn btn-ink" href="https://apps.apple.com/app/id6795587495">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>
-        Get it on the App Store
-      </a>
-      <a class="btn btn-quiet" href="#how">See how it works</a>
-    </div>
-    <p class="fineprint">No account. No analytics. Your books never leave your phone.</p>
-
-    <!-- The live page: real narration, real sync map -->
-    <div class="demo" id="demo" aria-label="Live word-by-word highlight demo">
-      <div class="tag"><span class="dot"></span> Now playing · A Princess of Mars</div>
-      <p id="karaoke"></p>
-      <div class="bar"><i id="progress"></i></div>
-      <div class="controls">
-        <button class="play" id="play" aria-label="Play demo">
-          <svg id="playicon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <span id="clock">0:00</span>
-        <span style="margin-left:auto">the highlight follows the voice</span>
-      </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="stag" viewBox="0 0 525 721"><path style="fill:var(--stag-a)" d="M178 330 L2 521 L118 598 L121 596Z M318 318 L301 505 L293 720 L394 720Z M509 79 L371 130 L320 2 L288 13 L341 154 L316 204 L306 208 L308 220 L261 316 L292 331 L337 239 L378 228 L380 229 L346 265 L404 305 L425 219 L467 209 L461 176 L436 180 L434 175 L424 183 L359 195 L375 166 L520 112Z"/><path style="fill:var(--stag-b)" d="M320 312 L395 718 L523 720 L447 429Z M317 308 L303 310 L292 332 L259 316 L180 325 L122 597 L301 504Z"/></symbol></svg>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="./" aria-current="page">
+      <picture><source type="image/avif" srcset="assets/icon/icon-rounded-64.avif"><img src="assets/icon/icon-rounded-64.webp" width="36" height="36" alt=""></picture>
+      <span class="brand-name">Witbound</span>
+    </a>
+    <nav class="sitenav" aria-label="Site"><a href="#how">How it works</a><a href="mac.html">Mac</a><a href="compare.html">Compare</a><a href="pairs.html">Free pairs</a><a href="support.html">Support</a></nav>
+    <div class="masthead-tools">
+      <button class="theme-toggle" type="button" aria-label="Change colours">
+        <svg class="ic-auto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.8a8.2 8.2 0 0 1 0 16.4z" fill="currentColor"/></svg>
+        <svg class="ic-light" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.3M12 19.2v2.3M2.5 12h2.3M19.2 12h2.3M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        <svg class="ic-dark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19.6 14.6A8 8 0 0 1 9.4 4.4a8 8 0 1 0 10.2 10.2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="btn btn-primary btn-small" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>App Store</a>
+      <details class="menu">
+        <summary>Menu</summary>
+        <nav class="menu-panel" aria-label="Site menu"><a href="#how">How it works</a><a href="mac.html">Mac</a><a href="compare.html">Compare</a><a href="pairs.html">Free pairs</a><a href="support.html">Support</a><a class="btn btn-primary" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Get it on the App Store</a></nav>
+      </details>
     </div>
   </div>
 </header>
+<main id="main">
 
-<hr class="divider">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-head">
+      <p class="eyebrow">Read-along for books you own</p>
+      <h1 id="hero-title"><span class="line">The narrator reads.</span> <span class="line">The words <span class="lit">light up.</span></span></h1>
+    </div>
+    <div class="hero-lede">
+      <p class="lede">Your ebook and its audiobook, matched word by word on your iPhone or iPad. No account, no server, and your books never leave the device.</p>
+    </div>
+    <figure class="leaf" id="readalong" data-duration="24.1" aria-labelledby="leaf-title">
+      <div class="leaf-book">
+        <span class="leaf-ribbon" aria-hidden="true"></span>
+        <div class="leaf-page">
+          <p class="leaf-running" id="leaf-title">The Adventure of the Speckled Band</p>
+          <div class="leaf-text" tabindex="0" role="group" aria-label="Passage from The Adventure of the Speckled Band" aria-describedby="leaf-keys">
+        <p>“<span class="w" data-s="0.47" data-a="-0.39">It</span> <span class="w" data-s="0.87">is</span> <span class="w" data-s="1.05">not</span> <span class="w" data-s="1.11">cold</span> <span class="w" data-s="1.47">which</span> <span class="w" data-s="1.65">makes</span> <span class="w" data-s="1.83">me</span> <span class="w" data-s="1.95">shiver</span>,” <span class="w" data-s="3.01" data-a="2.61">said</span> <span class="w" data-s="3.21">the</span> <span class="w" data-s="3.33">woman</span>, <span class="w" data-s="3.45">in</span> <span class="w" data-s="3.69">a</span> <span class="w" data-s="3.81">low</span> <span class="w" data-s="3.87">voice</span>, <span class="w" data-s="4.82" data-a="4.35">changing</span> <span class="w" data-s="5.19">her</span> <span class="w" data-s="5.31">seat</span> <span class="w" data-s="5.49">as</span> <span class="w" data-s="5.79">requested</span>.</p>
+        <p>“<span class="w" data-s="7.32" data-a="6.57">What</span>, <span class="w" data-s="7.65">then</span>?”</p>
+        <p>“<span class="w" data-s="8.76" data-a="7.95">It</span> <span class="w" data-s="9.21">is</span> <span class="w" data-s="9.27">fear</span>, <span class="w" data-s="9.51">Mr</span>. <span class="w" data-s="9.75">Holmes</span>. <span class="w" data-s="10.41">It</span> <span class="w" data-s="10.74" data-a="10.65">is</span> <span class="w" data-s="10.77">terror</span>.” <span class="w" data-s="12.17" data-a="11.25">She</span> <span class="w" data-s="12.45">raised</span> <span class="w" data-s="12.63">her</span> <span class="w" data-s="12.75">veil</span> <span class="w" data-s="12.99">as</span> <span class="w" data-s="13.23">she</span> <span class="w" data-s="13.35">spoke</span>, <span class="w" data-s="14.04" data-a="13.77">and</span> <span class="w" data-s="14.31">we</span> <span class="w" data-s="14.43">could</span> <span class="w" data-s="14.49">see</span> <span class="w" data-s="14.67">that</span> <span class="w" data-s="14.79">she</span> <span class="w" data-s="14.91">was</span> <span class="w" data-s="15.03">indeed</span> <span class="w" data-s="15.45">in</span> <span class="w" data-s="15.69">a</span> <span class="w" data-s="15.81">pitiable</span> <span class="w" data-s="16.23">state</span> <span class="w" data-s="16.47">of</span> <span class="w" data-s="16.65">agitation</span>, <span class="w" data-s="17.90" data-a="17.43">her</span> <span class="w" data-s="18.15">face</span> <span class="w" data-s="18.33">all</span> <span class="w" data-s="18.75">drawn</span> <span class="w" data-s="19.17">and</span> <span class="w" data-s="19.41">gray</span>, <span class="w" data-s="20.31" data-a="19.95">with</span> <span class="w" data-s="20.43">restless</span>, <span class="w" data-s="21.09">frightened</span> <span class="w" data-s="21.45">eyes</span>, <span class="w" data-s="22.09" data-a="21.93">like</span> <span class="w" data-s="22.17">those</span> <span class="w" data-s="22.41">of</span> <span class="w" data-s="22.59">some</span> <span class="w" data-s="22.77">hunted</span> <span class="w" data-s="23.25">animal</span>.</p>
+          </div>
+          <p class="visually-hidden" id="leaf-keys">Select any word to hear the narrator from there. With the passage focused, Space or Enter plays and pauses, and the left and right arrow keys move one word at a time.</p>
+          <div class="leaf-player">
+            <div class="leaf-track" aria-hidden="true"><span class="leaf-fill"></span><span class="leaf-knob"></span></div>
+            <div class="leaf-controls">
+              <span class="leaf-time leaf-elapsed" aria-hidden="true">0:00</span>
+              <button class="leaf-play" type="button" aria-label="Play the reading">
+                <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12.5-7.5z"/></svg>
+                <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="4.5" width="4.2" height="15" rx="1"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1"/></svg>
+              </button>
+              <span class="leaf-time leaf-remaining" aria-hidden="true">-0:24</span>
+            </div>
+          </div>
+          <audio class="leaf-native" controls preload="none">
+            <source src="assets/demo/demo.m4a" type="audio/mp4">
+            <source src="assets/demo/demo.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+      </div>
+      <figcaption class="leaf-cap">
+        <p class="leaf-hint">Press play, or tap any word to hear it from there.</p>
+        <p>From <cite>The Adventure of the Speckled Band</cite>, read by David Clarke. Recording: <a href="https://librivox.org/the-adventures-of-sherlock-holmes-version-4-by-sir-arthur-conan-doyle/">LibriVox</a> &middot; Text: <a href="https://www.gutenberg.org/ebooks/48320">Project Gutenberg</a>. Both are in the public domain.</p>
+        <p>The word timings are Witbound&rsquo;s own sync of this book. After a pause, the next word lights when the voice starts.</p>
+      </figcaption>
+    </figure>
+    <div class="hero-act">
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Download on the App Store</a>
+        <a class="btn btn-secondary" href="mac.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Witbound for Mac <span class="btn-sub">free</span></a>
+        <a class="btn btn-quiet" href="#devices">Android, on its way</a>
+      </div>
+      <ul class="facts" aria-label="In short"><li>$14.99 once</li><li>First book free</li><li>No account</li></ul>
+      <p class="devices">For iPhone and iPad on iOS 26 or later.</p>
+    </div>
+  </section>
 
-<section id="why">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="lead-in">The problem</span>
-      <h2>If your mind wanders during audiobooks, it isn't your fault.</h2>
-      <p>Listening alone gives your eyes nothing to do. You drift, and surface four minutes later with no idea what happened.</p>
-    </div>
-    <div class="features">
-      <div class="feat reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 8v8M19 8v8"/></svg></div>
-        <h3>Eyes and ears, together</h3>
-        <p>The words hold your focus while the narrator carries the pace. Two halves of the same book, finally moving as one.</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16M4 12h16M4 19h10"/><circle cx="19" cy="19" r="2.4"/></svg></div>
-        <h3>Word-perfect sync</h3>
-        <p>Every spoken word is matched to the word on the page. Tap any word to send the narration straight there.</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 9-4-.7-7-4.6-7-9V6z"/><path d="M9.5 12l2 2 3.5-4"/></svg></div>
-        <h3>Yours, and private</h3>
-        <p>Your books never leave the device and there is no account. Community sync shares only anonymous timing data so popular books start in seconds, and you can switch it off.</p>
-      </div>
-    </div>
+  <div class="epigraph">
+    <figure>
+      <blockquote><p>Works as advertised. Dev is updating plenty. Excited for more customization in the future.</p></blockquote>
+      <figcaption><span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span><span class="who">Toothcake36</span> &middot; App Store review, Canada, 25 September 2026</figcaption>
+    </figure>
   </div>
-</section>
 
-<hr class="divider">
+  <nav class="contents" aria-labelledby="contents-title">
+    <div class="contents-inner">
+      <h2 class="contents-title" id="contents-title">Contents</h2>
+      <ol>
+        <li><a href="#how"><span class="c-num">I</span><span class="c-title">How it works</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">three steps</span></a></li>
+        <li><a href="#read-along"><span class="c-num">II</span><span class="c-title">The read-along</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">every word, in time</span></a></li>
+        <li><a href="#page"><span class="c-num">III</span><span class="c-title">The page</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">fonts, width, notes</span></a></li>
+        <li><a href="#library"><span class="c-num">IV</span><span class="c-title">Your library</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">files and servers</span></a></li>
+        <li><a href="#privacy"><span class="c-num">V</span><span class="c-title">What leaves your phone</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">community sync, privacy</span></a></li>
+        <li><a href="#languages"><span class="c-num">VI</span><span class="c-title">Languages</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">what syncs today</span></a></li>
+        <li><a href="#devices"><span class="c-num">VII</span><span class="c-title">Mac, iPad and Android</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">every screen</span></a></li>
+        <li><a href="#readers"><span class="c-num">VIII</span><span class="c-title">What readers asked for</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">reviews and requests</span></a></li>
+        <li><a href="#price"><span class="c-num">IX</span><span class="c-title">The price</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">once</span></a></li>
+        <li class="back"><a href="#others"><span class="c-num" aria-hidden="true">&middot;</span><span class="c-title">Appendix: other ways to read along</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">a fair comparison</span></a></li>
+        <li class="back"><a href="#questions"><span class="c-num" aria-hidden="true">&middot;</span><span class="c-title">Questions</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">short answers</span></a></li>
+        <li class="back"><a href="#maker"><span class="c-num" aria-hidden="true">&middot;</span><span class="c-title">Afterword, from Moe</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">the maker</span></a></li>
+      </ol>
+    </div>
+  </nav>
 
-<section>
-  <div class="wrap">
-    <div class="showcase reveal">
-      <div class="phone">
-        <div class="frame"><div class="island"></div><img src="img/01-reader-dark.jpg" alt="The reader highlighting the spoken word at night" loading="lazy"></div>
-      </div>
-      <div class="copy">
-        <span class="lead-in">Read your way</span>
-        <h2>Any book. Any light. Any device.</h2>
-        <p>Read at night, in sepia, or on paper. The text holds one clean, readable column, and your place is kept the moment you look away — down to the exact word.</p>
-        <p>Save a passage and it stays saved. Come back tomorrow and the highlight is waiting where the voice left off.</p>
+  <section class="chapter" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">How it works</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>I</p>
+        <h2 id="how-title">Bring an ebook and its audiobook. Your phone does the rest.</h2>
+        <p class="intro"><span class="sc">Two files you already own</span> become one book you can hear and see. The matching happens on your iPhone or iPad, and your books are never uploaded.</p>
+      </header>
+      <div class="split wide-left">
+        <div>
+          <ol class="steps">
+            <li><span class="step-when">First</span><div><h3>Add both halves</h3><p>An epub (Kobo .kepub works too) or a PDF, and the audiobook as m4b, m4a, mp3, flac, wav or aiff. A folder of parts becomes one book, with a chapter for each part.</p></div></li>
+            <li><span class="step-when">Then</span><div><h3>Your iPhone matches them, once</h3><p>It goes through the narration and lines every spoken word up with the page. You can start reading when chapter one is done. The rest finishes in the background, overnight while it charges if you like, and a notification tells you when it&rsquo;s ready.</p></div></li>
+            <li><span class="step-when">After that</span><div><h3>Press play</h3><p>The narrator reads and each word lights up on the book&rsquo;s own pages. Tap any word and the audio jumps there. Your place is kept to the word.</p></div></li>
+          </ol>
+          <p class="margin-note"><strong>One honest catch.</strong> Audible and Kindle-store books won&rsquo;t open. They&rsquo;re copy-protected, and Witbound won&rsquo;t break that. DRM-free books work: Libro.fm, Downpour, LibriVox, Standard Ebooks, Project Gutenberg and your own CD rips. New to this? Start with the <a href="pairs.html">free public-domain pairs</a>.</p>
+        </div>
+        <figure class="plate"><div class="phone" style="--pw:290px"><picture><source type="image/avif" srcset="assets/img/iphone-book-landed-360w.avif 360w, assets/img/iphone-book-landed-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-book-landed-360w.webp" srcset="assets/img/iphone-book-landed-360w.webp 360w, assets/img/iphone-book-landed-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="A newly added book on the Witbound shelf, checking community sync before syncing on the phone" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate I.</span> A new book on the shelf. Witbound checks community sync before it syncs on the phone.</figcaption></figure>
       </div>
     </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section>
-  <div class="wrap">
-    <div class="showcase flip reveal">
-      <div class="copy">
-        <span class="lead-in">Your library</span>
-        <h2>Bring the books you already own.</h2>
-        <p>An ebook and its audiobook — epub or PDF, m4b or mp3. From Libro.fm, LibriVox, Standard Ebooks, your own rips, wherever. Drop them in and they're yours to read along with.</p>
-        <p>New to it? A public-domain classic is built in, so you can hear the difference on the very first page.</p>
+  </section>
+  <section class="chapter tint" id="read-along" aria-labelledby="read-along-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">The read-along</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>II</p>
+        <h2 id="read-along-title">Every word lights up as it&rsquo;s spoken.</h2>
+        <p class="intro"><span class="sc">The highlight follows the voice</span> a word at a time, on the publisher&rsquo;s own pages: italics, small caps, illustrations and maps all where they belong. Tap a word to send the narrator there.</p>
+      </header>
+      <div class="split">
+        <div class="phones">
+          <figure class="plate"><div class="phone"><picture><source type="image/avif" srcset="assets/img/iphone-reader-playing-360w.avif 360w, assets/img/iphone-reader-playing-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-reader-playing-360w.webp" srcset="assets/img/iphone-reader-playing-360w.webp 360w, assets/img/iphone-reader-playing-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Witbound on iPhone reading A Scandal in Bohemia: the word slow is lit as David Clarke reads it, player controls showing" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate II.</span> David Clarke reads <cite>A Scandal in Bohemia</cite>. &ldquo;Slow&rdquo; is lit as he says it.</figcaption></figure>
+          <figure class="plate"><div class="phone"><picture><source type="image/avif" srcset="assets/img/iphone-reader-plate-360w.avif 360w, assets/img/iphone-reader-plate-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-reader-plate-360w.webp" srcset="assets/img/iphone-reader-plate-360w.webp 360w, assets/img/iphone-reader-plate-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Sidney Paget&#x27;s plate A man entered on the page, with the word in lit in the line above" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate III.</span> Sidney Paget&rsquo;s plate on the page, the line above still being read.</figcaption></figure>
+        </div>
+        <div>
+          <h3 class="visually-hidden">Ways to follow along</h3>
+          <dl class="ledger">
+            <div><dt>Highlight</dt><dd>A word, a phrase, a sentence or the whole paragraph.</dd></div>
+            <div><dt>Colour</dt><dd>Indigo, warm gold, teal or rose.</dd></div>
+            <div><dt>Reading window</dt><dd>Dims everything except the lines being read.</dd></div>
+            <div><dt>Lead the narrator</dt><dd>Lights the next word a beat early, for readers who like to be ahead.</dd></div>
+            <div><dt>Bold word-starts</dt><dd>The start of each word in bold, to give the eye an anchor.</dd></div>
+            <div><dt>Scroll or pages</dt><dd>One continuous scroll, or turn page by page.</dd></div>
+            <div><dt>Silent reading</dt><dd>Pause and keep reading with your eyes. Press play and the narrator starts where you are.</dd></div>
+            <div><dt>Tap and hold</dt><dd>A word&rsquo;s meaning or a translation, without moving the audio.</dd></div>
+          </dl>
+          <p class="note" style="margin-top:14px">All of these are off until you turn them on.</p>
+        </div>
       </div>
-      <div class="phone">
-        <div class="frame"><div class="island"></div><img src="img/02-library.jpg" alt="The Witbound library" loading="lazy"></div>
+      <div class="figures">
+        <div><span class="fig-num">37<i>hours</i></span><span class="fig-label">The longest audiobook I&rsquo;ve tested. The highlight stayed on the word.</span></div>
+        <div><span class="fig-num">98.1<i>%</i></span><span class="fig-label">of narrated words matched in the median book, when I synced 32 public-domain classics on a Mac in September.<span class="note">203 hours of LibriVox narration. Lowest 92.8%, highest 99.4%.</span></span></div>
+        <div><span class="fig-num">0.05<i>&times;</i></span><span class="fig-label">steps of speed, from 0.5&times; to 2&times;, so you can listen at exactly the pace you like.</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="how">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="lead-in">How it works</span>
-      <h2>Three steps, then it just follows along.</h2>
-    </div>
-    <div class="features">
-      <div class="feat reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v10m0 0l-4-4m4 4l4-4"/><path d="M5 19h14"/></svg></div>
-        <h3>1 · Bring your files</h3>
-        <p>Add an ebook and its audiobook — the ones you already own, from wherever you got them.</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-        <h3>2 · Your device matches them</h3>
-        <p>It listens to the narration once and lines it up with the text. It happens on your device, and never again for that book.</p>
-      </div>
-      <div class="feat reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/><rect x="3" y="10" width="8" height="4" rx="1" fill="currentColor" stroke="none" opacity=".9"/></svg></div>
-        <h3>3 · Read and listen as one</h3>
-        <p>The highlight follows the voice. Your place is kept, and so is every passage you save.</p>
+      <div class="sub-head"><h3>For listening</h3><p>The parts you notice at the end of a long day.</p></div>
+      <div>
+        <dl class="ledger cols-2">
+          <div><dt>Sleep timer</dt><dd>Any length from 1 to 180 minutes, or the end of the chapter. Add 15 minutes from the countdown. It only counts while the book is playing.</dd></div>
+          <div><dt>Out of the way</dt><dd>The controls fade while you listen. Tap the page to bring them back.</dd></div>
+          <div><dt>Picking up again</dt><dd>Play starts a few seconds before where you stopped, and further back after a long break.</dd></div>
+          <div><dt>Lock screen</dt><dd>Controls with cover art on the lock screen and in Control Centre, and a chapter list with start times.</dd></div>
+        </dl>
       </div>
     </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="lead-in">Made for the big screen too</span>
-      <h2>On iPad, a bigger screen means wider margins — not longer lines.</h2>
-    </div>
-    <div class="ipad reveal"><img src="img/06-ipad.jpg" alt="Witbound reading on an iPad in landscape" loading="lazy"></div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section>
-  <div class="wrap privacy reveal">
-    <hr class="rule">
-    <span class="mark">No account · No analytics · No tracking</span>
-    <p>There is no account and no sign-up. The matching runs on the device in your hand and your books are never uploaded. The only thing that ever leaves is anonymous timing data for community sync, and that has an off switch.</p>
-    <hr class="rule">
-  </div>
-</section>
-
-<hr class="divider">
-
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="lead-in">Pricing</span>
-      <h2>Simple, and yours to keep.</h2>
-    </div>
-    <div class="pricing reveal">
-      <div class="plan">
-        <div class="name">Witbound Plus</div>
-        <div class="price">$14.99<small> once</small></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg> Pay once, keep it forever — nothing renews</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg> Unlimited books, synced word by word</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg> Every feature, on iPhone and iPad</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg> No account, and your books are never uploaded</li>
+  </section>
+  <section class="chapter" id="page" aria-labelledby="page-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">The page</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>III</p>
+        <h2 id="page-title">Set the page the way you read.</h2>
+        <p class="intro"><span class="sc">Since version 1.8.5</span> you choose the font, the size, how wide the text runs and how much room sits between the lines. Then mark it up: bookmarks, highlights and notes stay with the book.</p>
+      </header>
+      <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-landscape-reading-options-880w.avif 880w, assets/img/ipad-landscape-reading-options-1760w.avif 1760w" sizes="(min-width: 1240px) 1100px, 92vw"><img src="assets/img/ipad-landscape-reading-options-880w.webp" srcset="assets/img/ipad-landscape-reading-options-880w.webp 880w, assets/img/ipad-landscape-reading-options-1760w.webp 1760w" sizes="(min-width: 1240px) 1100px, 92vw" width="880" height="580" alt="The reading options menu on iPad: page or scroll, text size, Georgia, New York, San Francisco, Atkinson Hyperlegible, line and paragraph spacing" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate IV.</span> The reading options on iPad: page or scroll, size, four fonts, line and paragraph spacing.</figcaption></figure>
+      <div class="specimen">
+        <section aria-labelledby="sp-fonts">
+          <h3 id="sp-fonts">Four fonts</h3>
+          <ul class="fontlist">
+            <li class="f-georgia">Georgia</li>
+            <li class="f-newyork">New York</li>
+            <li class="f-sf">San Francisco</li>
+            <li class="f-atkinson">Atkinson Hyperlegible</li>
+          </ul>
+          <p class="note">Atkinson Hyperlegible was drawn for readers with low vision. Text goes up to 40 points.</p>
+        </section>
+        <section aria-labelledby="sp-width">
+          <h3 id="sp-width">Three widths</h3>
+          <div class="widths">
+            <figure><div class="mini-page" style="--w:52%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Comfortable</figcaption></figure>
+            <figure><div class="mini-page" style="--w:74%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Wide</figcaption></figure>
+            <figure><div class="mini-page" style="--w:94%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Full</figcaption></figure>
+          </div>
+          <p class="note">On iPad, Full lets the text fill the screen. Line and paragraph spacing are yours to set as well.</p>
+        </section>
+        <section aria-labelledby="sp-paper">
+          <h3 id="sp-paper">Three papers</h3>
+          <div class="themes">
+            <figure><div class="swatch sw-paper" aria-hidden="true">Aa</div><figcaption>Paper</figcaption></figure>
+            <figure><div class="swatch sw-sepia" aria-hidden="true">Aa</div><figcaption>Sepia</figcaption></figure>
+            <figure><div class="swatch sw-night" aria-hidden="true">Aa</div><figcaption>Night</figcaption></figure>
+          </div>
+          <p class="note">Night is for the last chapter in bed, with the screen turned down.</p>
+        </section>
+      </div>
+      <div class="split" style="margin-top:clamp(48px,6vw,80px)">
+        <ul class="entries">
+          <li><h3>Bookmarks</h3><p>Bookmark a page from the top bar. Contents lists them, and one tap brings back the page and the narration together.</p></li>
+          <li><h3>Highlights and notes</h3><p>Press and hold, then choose Highlight or Add Note. Highlights show on the page, and tapping one opens its note.</p></li>
+          <li><h3>Select a passage</h3><p>Tap a sentence, or drag across exactly the words you want to keep.</p></li>
+          <li><h3>Take it with you</h3><p>Export highlights and notes as text, save passages to Obsidian as linked notes, or share a quote to your Discord book club with the narrator&rsquo;s own reading attached.</p></li>
         </ul>
-        <a class="btn btn-ink" style="margin-top:24px" href="https://apps.apple.com/app/id6795587495">Get it on the App Store</a>
-        <p class="foot">One payment, in your local currency. Your first book syncs free, before you pay anything.</p>
+        <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-landscape-highlight-note-880w.avif 880w, assets/img/ipad-landscape-highlight-note-1760w.avif 1760w" sizes="(min-width: 900px) 46vw, 92vw"><img src="assets/img/ipad-landscape-highlight-note-880w.webp" srcset="assets/img/ipad-landscape-highlight-note-880w.webp 880w, assets/img/ipad-landscape-highlight-note-1760w.webp 1760w" sizes="(min-width: 900px) 46vw, 92vw" width="880" height="580" alt="A saved highlight with a note, shown on the page on iPad" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate V.</span> Highlights stay on the page. Tap one to open its note.</figcaption></figure>
       </div>
     </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="lead-in">Questions</span>
-      <h2>Good to know.</h2>
+  </section>
+  <section class="chapter tint" id="library" aria-labelledby="library-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Your library</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>IV</p>
+        <h2 id="library-title">Your books, from wherever they already live.</h2>
+        <p class="intro"><span class="sc">Plain files work</span>, and so do the servers you already run. Nothing is copied anywhere you didn&rsquo;t choose.</p>
+      </header>
+      <div class="split wide-left">
+        <div>
+          <dl class="ledger">
+            <div><dt>Files</dt><dd>An ebook and its audio from the Files app, iCloud Drive or AirDrop.</dd></div>
+            <div><dt>Audiobookshelf</dt><dd>Connect at home, over Tailscale or with an API key. Browse, search and sort with covers and narrators, whole libraries included. Your place syncs both ways, so any Audiobookshelf app picks up where you stopped.</dd></div>
+            <div><dt>Calibre and OPDS</dt><dd>Pair an audiobook with the ebook from your own catalogue, found by title and author. Grimmory and BookOrbit are tested, and Grimmory can be searched and browsed by author, series or shelf.</dd></div>
+            <div><dt>Plex</dt><dd>Sign in or type your server&rsquo;s address, then import audiobooks from your music library.</dd></div>
+            <div><dt>Your Mac</dt><dd>Witbound for Mac sends books over your own Wi-Fi, already synced.</dd></div>
+            <div><dt>Audio only</dt><dd>No ebook? Witbound offers to find it in your library first. If there isn&rsquo;t one, it writes the book from the narration, chapter by chapter.</dd></div>
+          </dl>
+          <p class="margin-note">Copy-protected files are turned away by name: Audible .aax, Kindle-store books and DRM&rsquo;d epubs. Kindle-format files on a server get a one-line explanation and the offer to write the book from the audio instead.</p>
+        </div>
+        <figure class="plate"><div class="phone" style="--pw:290px"><picture><source type="image/avif" srcset="assets/img/iphone-pair-from-library-360w.avif 360w, assets/img/iphone-pair-from-library-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-pair-from-library-360w.webp" srcset="assets/img/iphone-pair-from-library-360w.webp 360w, assets/img/iphone-pair-from-library-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Pairing an audiobook with an ebook from your own library: Witbound searches the catalogue for A Princess of Mars and labels each format" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate VI.</span> Pairing from your own catalogue. Copies Witbound can&rsquo;t read say why.</figcaption></figure>
+      </div>
     </div>
-    <div class="faq reveal">
-      <details>
-        <summary>Will it work with my Kindle or Audible books?</summary>
-        <p>No — and it never will. Those files are copy-protected, and breaking that protection is illegal. Witbound refuses them on purpose rather than failing strangely later. Anything DRM-free works: Libro.fm, Downpour, LibriVox, Standard Ebooks, Project Gutenberg, or your own CD rips. New to this? Start with our <a href="pairs.html">free public-domain audiobook + ebook pairs</a>.</p>
-      </details>
-      <details>
-        <summary>How long does the first sync take?</summary>
-        <p>You're reading within minutes. Witbound matches the first chapter first and opens the book right away, while the rest finishes quietly in the background — even overnight while charging. It happens once per book, ever; after that, playback is instant.</p>
-      </details>
-      <details>
-        <summary>Do I need an internet connection?</summary>
-        <p>Only briefly. Reading and listening work fully offline. Witbound goes online for community sync (so a popular book can start in seconds) and for your own Audiobookshelf server if you connect one, and you can turn community sync off.</p>
-      </details>
-      <details>
-        <summary>What if the ebook and audiobook don't match exactly?</summary>
-        <p>Different editions, abridgements and missing chapters are normal. Witbound matches what it can and leaves the rest as ordinary unnarrated text, rather than forcing a bad alignment.</p>
-      </details>
-      <details>
-        <summary>Is there a Mac version?</summary>
-        <p>Yes — <a href="https://github.com/grinzark/witbound-mac/releases/latest">Witbound for Mac</a> is a free companion that syncs a book on your Mac in minutes, then sends it to your phone already synced over your own Wi-Fi. It's signed and notarised by Apple and needs macOS 26 or later. Android is in closed testing now.</p>
-      </details>
+  </section>
+  <section class="chapter" id="privacy" aria-labelledby="privacy-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">What leaves your phone</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>V</p>
+        <h2 id="privacy-title">What leaves your phone, and what never does.</h2>
+        <p class="intro"><span class="sc">There&rsquo;s no account</span>, no ads and no analytics of Witbound&rsquo;s own. One feature goes online by default, community sync, and it shares timings, not books.</p>
+      </header>
+      <div class="ledger-2">
+        <section aria-labelledby="stays">
+          <h3 id="stays">Stays on your device</h3>
+          <ul>
+            <li>Your ebooks and audiobooks</li>
+            <li>Your library, your place and your reading stats</li>
+            <li>Highlights, notes and bookmarks</li>
+            <li>Your settings</li>
+          </ul>
+        </section>
+        <section aria-labelledby="leaves">
+          <h3 id="leaves">Goes online, and when</h3>
+          <ul>
+            <li>Community sync: word timings and fingerprints of the book, never its text, title or audio. There&rsquo;s an off switch in Settings.</li>
+            <li>Servers you connect yourself: Audiobookshelf, Calibre or another OPDS catalogue, Plex.</li>
+            <li>Your purchase, through Apple.</li>
+            <li>Anything you choose to share: a quote, a note, a progress card.</li>
+          </ul>
+        </section>
+      </div>
+      <div class="flow" role="group" aria-label="How community sync helps the next reader">
+        <p class="flow-node">Your book and its audio<small>Stay on your phone.</small></p>
+        <svg class="flow-arrow" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M0 6h42M37 1l5 5-5 5"/></svg>
+        <p class="flow-node">A timing map<small>Word positions and times. No text, no audio.</small></p>
+        <svg class="flow-arrow" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M0 6h42M37 1l5 5-5 5"/></svg>
+        <p class="flow-node">The next reader with the same edition<small>Their copy is ready in seconds.</small></p>
+      </div>
+      <div class="split" style="margin-top:clamp(36px,5vw,56px)">
+        <p>If someone has already synced your edition, your copy is ready in seconds. Since version 1.8.2 Witbound also recognises the same book when the files aren&rsquo;t identical: a friend&rsquo;s copy, a different epub edition, or audio that was re-encoded.</p>
+        <p class="label-quote">On the App Store, Witbound&rsquo;s privacy label reads <q>Data Not Linked to You: Other Data</q>. That&rsquo;s community sync. The <a href="privacy.html">privacy policy</a> says exactly what is sent, and where.</p>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="final">
-  <div class="wrap">
-    <img src="img/icon.png" alt="Witbound">
-    <h2>Hear every word. Miss none of them.</h2>
-    <p>Your library, on your device. Your books are never uploaded.</p>
-    <a class="btn btn-ink" href="https://apps.apple.com/app/id6795587495">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>
-      Get it on the App Store
-    </a>
-    <p class="fineprint" style="margin-top:18px;color:var(--muted);font-size:14px">Have a Mac? <a href="https://github.com/grinzark/witbound-mac/releases/latest">Download Witbound for Mac</a> — free, and it syncs books far faster, then sends them to your phone. (macOS 26+)</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap row">
-    <div class="links">
-      <a href="pairs.html">Free book pairs</a>
-      <a href="compare.html">Compare</a>
-      <a href="mac.html">Mac app</a>
-      <a href="immersion-reading.html">Immersion reading</a>
-      <a href="https://github.com/grinzark/witbound-site" rel="me">GitHub</a>
-      <a href="https://www.youtube.com/channel/UCBlfBKVE_jqMJwwCNtO7BDg" rel="me">YouTube</a>
-      <a href="https://www.reddit.com/user/zarkside" rel="me">Reddit</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="support.html">Support</a>
-      <a href="mailto:zarksided@gmail.com">Contact</a>
+  </section>
+  <section class="chapter tint" id="languages" aria-labelledby="languages-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Languages</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VI</p>
+        <h2 id="languages-title">Read along in the language of the book.</h2>
+        <p class="intro">Witbound works out the language from the book itself. These sync today:</p>
+      </header>
+      <ul class="tongues">
+        <li lang="en">English</li><li lang="fr">Fran&ccedil;ais</li><li lang="es">Espa&ntilde;ol</li><li lang="de">Deutsch</li><li lang="it">Italiano</li><li lang="pt">Portugu&ecirc;s</li><li lang="ja">日本語</li><li lang="ko">한국어</li><li lang="zh">中文</li><li class="more"><span lang="pl">Polski</span>, and more</li>
+      </ul>
+      <div class="split" style="margin-top:clamp(32px,4vw,52px)">
+        <p>Since version 1.8.0, Polish and other languages can sync too, using Apple&rsquo;s dictation. With those, the highlight can land a beat off more often.</p>
+        <p>How sure am I? English is measured across 32 books. Of the languages added in 1.8.0 I&rsquo;ve measured one, Polish, on one book. If you read in another language, try it with your free book and <a href="mailto:zarksided@gmail.com?subject=Witbound%20and%20my%20language">tell me how it went</a>.</p>
+      </div>
     </div>
-    <div class="copy">© 2026 Witbound</div>
+  </section>
+  <section class="chapter" id="devices" aria-labelledby="devices-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Mac, iPad and Android</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VII</p>
+        <h2 id="devices-title">One book, on the screens you read on.</h2>
+        <p class="intro"><span class="sc">Witbound is for iPhone and iPad</span>, with a free companion for the Mac that does the slow part, and Android on the way.</p>
+      </header>
+      <div class="trio">
+        <section aria-labelledby="dev-ipad">
+          <span class="status">Every feature</span>
+          <h3 id="dev-ipad">iPad</h3>
+          <p>The same app, with room to spread out. Let the text fill the screen, or keep a comfortable column with wide margins.</p>
+          <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-reader-520w.avif 520w, assets/img/ipad-reader-1040w.avif 1040w" sizes="(min-width: 960px) 330px, 90vw"><img src="assets/img/ipad-reader-520w.webp" srcset="assets/img/ipad-reader-520w.webp 520w, assets/img/ipad-reader-1040w.webp 1040w" sizes="(min-width: 960px) 330px, 90vw" width="520" height="754" alt="Witbound on iPad reading The Red-Headed League with the spoken word lit" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate VII.</span> <cite>The Red-Headed League</cite> on iPad, the spoken word lit.</figcaption></figure>
+        </section>
+        <section aria-labelledby="dev-mac">
+          <span class="status">Free &middot; macOS 26 or later</span>
+          <h3 id="dev-mac">Witbound for Mac</h3>
+          <p>Drop in an ebook and its audiobook, as files or folders. Your Mac syncs it in minutes, not hours, then sends it to your iPhone or iPad over your own Wi-Fi, already synced.</p>
+          <p>It browses Audiobookshelf, Calibre, Grimmory, BookOrbit and Plex, and converts DRM-free Kindle files through calibre if you have it. Signed and notarised by Apple, for Apple silicon and Intel.</p>
+          <div class="actions">
+            <a class="btn btn-secondary" href="https://github.com/grinzark/witbound-mac/releases/latest/download/Witbound-for-Mac.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Download for Mac</a>
+            <a href="mac.html">More about the Mac app</a>
+          </div>
+        </section>
+        <section aria-labelledby="dev-android">
+          <span class="status">On its way</span>
+          <h3 id="dev-android">Android</h3>
+          <p>Witbound for Android is in review at Google Play. Until it&rsquo;s out, there&rsquo;s nothing to download, and nothing here to promise beyond that.</p>
+          <p>News goes up in <a href="https://www.reddit.com/r/Witbound/">r/Witbound</a> first.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+  <section class="chapter band" id="readers" aria-labelledby="readers-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">What readers asked for</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VIII</p>
+        <h2 id="readers-title"><span class="line">Readers wrote in.</span> <span class="line"><span class="lit">The app changed.</span></span></h2>
+        <p class="intro">Some of what&rsquo;s in Witbound began as a review or a Reddit post. Here are five, with the version that answered each one. After them, every written App Store review so far, word for word.</p>
+      </header>
+      <ol class="asked">
+        <li>
+          <div><blockquote><p>&ldquo;Will buy and recommend to friends if you add download from my computer via 192.168.1.blah.&rdquo;</p></blockquote><p class="who">Please for the love of dilbert &middot; App Store review, United States &middot; 12 August</p></div>
+          <div class="answer"><span class="stamp">Mac 1.0 and iOS 1.5.3 &middot; 23 August</span><p>Witbound for Mac: sync the book on your computer, then send it to your phone over your own Wi-Fi, already synced.</p></div>
+        </li>
+        <li>
+          <div><p class="request">A reader on Reddit wanted finer speed control: <q>exactly 1.1&times; or 1.15&times;</q></p><p class="who">Reddit</p></div>
+          <div class="answer"><span class="stamp">1.5.2 &middot; 22 August</span><p>Speed in steps of 0.05, anywhere from 0.5&times; to 2&times;.</p></div>
+        </li>
+        <li>
+          <div><p class="request">A reader wanted the ebook from Calibre and the audiobook from Audiobookshelf, without copying files between them.</p><p class="who">r/Witbound</p></div>
+          <div class="answer"><span class="stamp">1.6.0 &middot; 30 August</span><p>Pair an Audiobookshelf audiobook with an ebook from your own Calibre or OPDS catalogue. It shipped the same day.</p></div>
+        </li>
+        <li>
+          <div><blockquote><p>&ldquo;currently can only highlight entire paragraph, not able to highlight a specific section or sentence&rdquo;</p></blockquote><p class="who">Mitochon &middot; App Store review, Australia &middot; 4 September</p></div>
+          <div class="answer"><span class="stamp">1.8.3 &middot; 9 September</span><p>Select a passage: tap a sentence, or drag across exactly the words you want.</p></div>
+        </li>
+        <li>
+          <div><blockquote><p>&ldquo;Mac to iPhone app syncing - still can&rsquo;t get it to work&rdquo;</p></blockquote><p class="who">Mitochon &middot; the same review</p></div>
+          <div class="answer"><span class="stamp">1.8.3 &middot; 9 September</span><p>Receive from your Mac now checks that your iPhone can be reached before it says Ready, and tells you exactly what to fix if it can&rsquo;t.</p></div>
+        </li>
+      </ol>
+      <div class="wall-head">
+        <h3>App Store reviews, as written</h3>
+        <p>Ratings on 1 October 2026: 4.8 from 6 ratings in the US store, 5.0 from 1 in the UK.</p>
+      </div>
+      <div class="wall">
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>A perfect app for WhisperSync fans</h4>
+          <blockquote><p>What a great app! I hope it will continue to improve and hold its greatness. Great work!</p></blockquote>
+          <figcaption>AgaPamarga &middot; Indonesia &middot; 27 September 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Fantastic</h4>
+          <blockquote><p>Works as advertised. Dev is updating plenty. Excited for more customization in the future.</p></blockquote>
+          <figcaption>Toothcake36 &middot; Canada &middot; 25 September 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Absolutely best app for reading</h4>
+          <blockquote><p>It truly word like magick. Just drop epub and audio book in and it synced. Super convenient</p></blockquote>
+          <figcaption>GrayWolfSix &middot; United Arab Emirates &middot; 15 September 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Excellent app</h4>
+          <blockquote><p>Excellent app. Exactly what I was looking for. Thank you.</p></blockquote>
+          <figcaption>Yassir Lek &middot; United States &middot; 11 September 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Fantastic app with great potential to get even better! I use it every day now.</h4>
+          <blockquote><p>Thank you to the developer for a generous free copy of the app</p><p>I really like Witbound. It just works. Looks beautiful, clean and simple interface.</p><p>I’m a hobbyist writer, learning my craft, and reading is one of the best ways for me to level up. So the being able to link audiobooks with ebooks, syncing them so I can listen, then highlight a particularly good passage is amazing.</p><p>Witbound does everything it says it will do on the tin, and for that, it’s wonderful.</p><p>There are improvements I’d love to see:<br>- More robust highlighting (currently can only highlight entire paragraph, not able to highlight a specific section or sentence)<br>- Mac to iPhone app syncing - still can't get it to work but able to do on device on iPhone so not such a huge issue.</p><p>Developer is very responsive to feedback. He's already fixed a few issues I've found and implemented continuous scrolling.</p><p>Looking forward to seeing the app get even better!</p></blockquote>
+          <figcaption>Mitochon &middot; Australia &middot; 4 September 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Amazing app!</h4>
+          <blockquote><p>Decent price for an app that does a great job at what it’s supposed to do.</p></blockquote>
+          <figcaption>squishycorvid &middot; United States &middot; 24 August 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="4 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="off" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Mck</h4>
+          <blockquote><p>Will buy and recommend to friends if you add download from my computer via 192.168.1.blah. I listen to audiobooks every day and would like to read along for history books and proper names, dates etc. much easier to dl from computer.</p></blockquote>
+          <figcaption>Please for the love of dilbert &middot; United States &middot; 12 August 2026</figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg><svg viewBox="0 0 24 24" class="on" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg></span>
+          <h4>Actually useful app</h4>
+          <blockquote><p>Lovely so far</p></blockquote>
+          <figcaption>decent tester &middot; United Kingdom &middot; 9 August 2026</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="price" aria-labelledby="price-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">The price</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>IX</p>
+        <h2 id="price-title">$14.99, once. Your first book is free.</h2>
+        <p class="intro"><span class="sc">No subscription</span>, and nothing that renews. Your first book syncs free, start to finish, before you pay anything. After that, one payment covers every book.</p>
+      </header>
+      <div class="prices">
+        <section class="plan" aria-labelledby="plan-free">
+          <h3 class="plan-name" id="plan-free">Free</h3>
+          <p class="plan-price">$0<small>to download</small></p>
+          <p class="plan-sub">Everything, for your first book.</p>
+          <ul>
+            <li>Your first book, synced in full, read along for as long as you like</li>
+            <li>A sync that fails doesn&rsquo;t use it up</li>
+            <li>A classic built in to try: <cite>A Princess of Mars</cite>, the first three chapters narrated</li>
+            <li>Witbound for Mac, free</li>
+          </ul>
+        </section>
+        <section class="plan" aria-labelledby="plan-plus">
+          <h3 class="plan-name" id="plan-plus">Witbound Plus</h3>
+          <p class="plan-price">$14.99<small>once</small></p>
+          <p class="plan-sub">One payment, kept for good.</p>
+          <ul>
+            <li>Every book you add, synced word by word</li>
+            <li>Every feature, on iPhone and iPad</li>
+            <li>Nothing renews, and there&rsquo;s no account to make</li>
+            <li>Restore purchases brings it back on a new iPhone or iPad</li>
+          </ul>
+          <div class="actions"><a class="btn btn-primary" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Download on the App Store</a></div>
+          <p class="local">Elsewhere it&rsquo;s &pound;14.99, &euro;17.99, C$19.99 or A$22.99, set by the App Store for your country.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter tint" id="others" aria-labelledby="others-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Appendix</p>
+      <header class="chapter-head">
+        
+        <h2 id="others-title">Other ways to read along.</h2>
+        
+      </header>
+      <div class="split wide-right">
+        <div>
+          <p class="lede">Read-along has more than one good answer now. This is who each one suits, as fairly as I can put it.</p>
+          <p style="margin-top:18px">The <a href="compare.html">full comparison</a> has the details, and the date I last checked them.</p>
+        </div>
+        <dl class="others">
+          <div><dt>Kindle with Audible</dt><dd>Polished highlighting inside Amazon&rsquo;s apps. For libraries that already live there, if buying each book twice doesn&rsquo;t bother you.</dd></div>
+          <div><dt>Storyteller</dt><dd>Free and open source. It builds read-along books on a server you run or rent, and has its own apps. For people happy with a server.</dd></div>
+          <div><dt>SoundLeaf, AudioBooth</dt><dd>Full players for an Audiobookshelf library, now with read-along. For people who already run Audiobookshelf.</dd></div>
+          <div><dt>BookPlayer, Prologue</dt><dd>Lovely players for listening alone, with no text on screen.</dd></div>
+          <div><dt>Witbound</dt><dd>Your own files, with or without a server, lit a word at a time, for one payment.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="questions" aria-labelledby="questions-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Questions</p>
+      <header class="chapter-head">
+        
+        <h2 id="questions-title">The questions people ask first.</h2>
+        
+      </header>
+      <div class="faq">
+        <details><summary>Will my Audible or Kindle books work?</summary><div class="answer-text"><p>No, and they never will. They&rsquo;re copy-protected, and Witbound won&rsquo;t break that. DRM-free books work: Libro.fm, Downpour, LibriVox, Standard Ebooks, Project Gutenberg and your own CD rips. New to this? Start with the <a href="pairs.html">free pairs</a>.</p></div></details>
+        <details><summary>What do I need?</summary><div class="answer-text"><p>An iPhone or iPad on iOS 26 or later, an ebook (epub or PDF) and its audiobook (m4b, m4a, mp3, flac, wav or aiff). Or connect Audiobookshelf, Calibre or another OPDS catalogue, or Plex.</p></div></details>
+        <details><summary>How long does the first sync take?</summary><div class="answer-text"><p>You can start reading once chapter one is done, and the rest finishes in the background, overnight if you like. Popular editions are ready in seconds through community sync. The free Mac app syncs a long book in minutes.</p></div></details>
+        <details><summary>What if my ebook and audiobook are different editions?</summary><div class="answer-text"><p>Witbound matches what it can and leaves the rest as ordinary text. It won&rsquo;t force a bad match.</p></div></details>
+        <details><summary>Do I need the internet?</summary><div class="answer-text"><p>Not to read or listen. Witbound goes online for community sync, which you can switch off, for servers you connect, and for purchases.</p></div></details>
+        <details><summary>Can I reach my Audiobookshelf server away from home?</summary><div class="answer-text"><p>Yes. Use Tailscale or any address you can reach, with an API key if you like. Self-signed certificates work: Witbound asks you to trust the server the first time.</p></div></details>
+        <details><summary>Which languages?</summary><div class="answer-text"><p>English, French, Spanish, German, Italian, Portuguese, Japanese, Korean and Chinese, worked out from the book. Polish and more through Apple&rsquo;s dictation, where the highlight can land a beat off more often.</p></div></details>
+        <details><summary>What does it cost?</summary><div class="answer-text"><p>$14.99 once for every book. Your first book is free, and the Mac app is free.</p></div></details>
+        <details><summary>Is there a Mac or Android version?</summary><div class="answer-text"><p>Mac: yes, free, for macOS 26 or later. <a href="mac.html">Witbound for Mac</a> syncs on the computer and sends the book to your phone. Android: on its way.</p></div></details>
+        <details><summary>Where are my books stored?</summary><div class="answer-text"><p>On your device. They&rsquo;re never uploaded. The <a href="privacy.html">privacy policy</a> has the details.</p></div></details>
+      </div>
+      <p class="note" style="margin-top:22px">Something else? <a href="support.html">Support</a> has more, or <a href="mailto:zarksided@gmail.com">email me</a>.</p>
+    </div>
+  </section>
+  <section class="chapter tint" id="maker" aria-labelledby="maker-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Afterword</p>
+      <header class="chapter-head">
+        
+        <h2 id="maker-title">A note from Moe.</h2>
+        
+      </header>
+      <div class="letter">
+        <p>I read the same books twice: ears on the commute, eyes at night. Every switch meant scanning pages for my place. Witbound is the app I wanted for that, and it&rsquo;s just me making it, in the UK.</p>
+        <p>My longest test was a 37 hour audiobook, and the highlight stayed on the word. I won&rsquo;t break DRM. There&rsquo;s no account because I don&rsquo;t need to know who you are or what you read.</p>
+        <p>Since August there have been 24 iPhone releases and 7 for the Mac, and several began as a message from a reader. If something doesn&rsquo;t work with your books, email me. I read every message and I reply myself.</p>
+        <p class="signature"><svg class="stag" viewBox="0 0 525 721" aria-hidden="true" focusable="false"><use href="#stag"/></svg><span>Moe</span></p>
+        <p class="letter-links"><a href="mailto:zarksided@gmail.com">zarksided@gmail.com</a><a href="https://www.reddit.com/r/Witbound/">r/Witbound</a><a href="https://www.reddit.com/user/zarkside" rel="me">u/zarkside</a><a href="https://github.com/grinzark/witbound-mac">Witbound for Mac on GitHub</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="colophon" aria-labelledby="close-title">
+    <picture><source type="image/avif" srcset="assets/icon/icon-rounded-256.avif"><img class="mark" src="assets/icon/icon-rounded-256.webp" width="88" height="88" alt="" loading="lazy" decoding="async"></picture>
+    <h2 id="close-title"><span class="line">Hear every word.</span> <span class="line">Miss none of them.</span></h2>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Download on the App Store</a>
+      <a class="btn btn-secondary" href="mac.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Witbound for Mac</a>
+    </div>
+    <ul class="facts" aria-label="In short"><li>$14.99 once</li><li>First book free</li><li>No account</li></ul>
+  </section>
+</main>
+<footer class="site-foot">
+  <div class="foot-rule"><svg class="stag" viewBox="0 0 525 721" aria-hidden="true" focusable="false"><use href="#stag"/></svg></div>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="./"><span class="brand-name">Witbound</span></a>
+      <p>Read-along for the ebooks and audiobooks you own. Made by one person in the UK.</p>
+    </div>
+    <nav class="foot-col" aria-labelledby="foot-app">
+      <h2 id="foot-app">The app</h2>
+      <ul>
+        <li><a href="https://apps.apple.com/app/id6795587495">App Store</a></li>
+        <li><a href="mac.html">Witbound for Mac</a></li>
+        <li><a href="pairs.html">Free book pairs</a></li>
+        <li><a href="immersion-reading.html">Immersion reading</a></li>
+        <li><a href="compare.html">Compare apps</a></li>
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-labelledby="foot-help">
+      <h2 id="foot-help">Help</h2>
+      <ul>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="mailto:zarksided@gmail.com">Email Moe</a></li>
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-labelledby="foot-else">
+      <h2 id="foot-else">Elsewhere</h2>
+      <ul>
+        <li><a href="https://www.reddit.com/r/Witbound/">r/Witbound</a></li>
+        <li><a href="https://www.reddit.com/user/zarkside" rel="me">Reddit</a></li>
+        <li><a href="https://www.youtube.com/channel/UCBlfBKVE_jqMJwwCNtO7BDg" rel="me">YouTube</a></li>
+        <li><a href="https://github.com/grinzark/witbound-site" rel="me">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-small">
+    <p>&copy; 2026 Witbound. Set in Literata and Atkinson Hyperlegible.</p>
+    <p>No cookies, no analytics, and nothing on this site loads from anyone else&rsquo;s server.</p>
   </div>
 </footer>
-
-<script>
-  // sticky nav rule
-  var nav = document.getElementById('nav');
-  addEventListener('scroll', function () { nav.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
-
-  // scroll reveal, with a small stagger inside the feature columns
-  document.querySelectorAll('.features').forEach(function (grid) {
-    Array.prototype.forEach.call(grid.children, function (child, i) {
-      child.style.setProperty('--stagger', (i * 90) + 'ms');
-    });
-  });
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: .14 });
-  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  // Belt and braces: if the observer never fires (odd browsers, readers,
-  // print), nothing may stay invisible. After a beat, show everything.
-  setTimeout(function () {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
-  }, 2500);
-
-  // ---- live karaoke demo: REAL narration, REAL sync map ----
-  // Tokens are [gap, word, startSec] straight from Witbound's sync map for
-  // this passage (LibriVox, public domain). Before the first click the
-  // highlight drifts silently at reading pace; pressing play starts the
-  // actual narrator, and the highlight follows the audio clock exactly.
-  var TOK = [["", "My", 0.14], [" ", "name", 1.4], [" ", "is", 1.58], [" ", "John", 1.88], [" ", "Carter", 2.18], ["; ", "I", 3.08], [" ", "am", 3.8], [" ", "better", 3.92], [" ", "known", 4.04], [" ", "as", 4.28], [" ", "Captain", 4.64], [" ", "Jack", 4.82], [" ", "Carter", 5.18], [" ", "of", 5.9], [" ", "Virginia", 5.96], [". ", "At", 6.68], [" ", "the", 7.94], [" ", "close", 8.06], [" ", "of", 8.18], [" ", "the", 8.36], [" ", "Civil", 8.54], [" ", "War", 8.78], [" ", "I", 9.26], [" ", "found", 9.74], [" ", "myself", 9.92], [" ", "possessed", 10.28], [" ", "of", 11.12], [" ", "several", 11.3], [" ", "hundred", 11.54], [" ", "thousand", 11.96], [" ", "dollars", 12.56], [" (", "Confederate", 12.98], [") ", "and", 14.0], [" ", "a", 14.36], [" ", "captain’s", 14.54], [" ", "commission", 15.08], [" ", "in", 16.16], [" ", "the", 16.22], [" ", "cavalry", 16.28], [" ", "arm", 16.88], [" ", "of", 17.06], [" ", "an", 17.24], [" ", "army", 17.36], [" ", "which", 17.84], [" ", "no", 18.02], [" ", "longer", 18.26], [" ", "existed", 18.44], [".", "", 0]];
-  var AUDIO_DUR = 19.6;
-  var el = document.getElementById('karaoke');
-  var progress = document.getElementById('progress');
-  var clock = document.getElementById('clock');
-  var playBtn = document.getElementById('play');
-  var playIcon = document.getElementById('playicon');
-  var tagline = document.querySelector('.demo .controls span[style]') || null;
-  var spans = [];
-  TOK.forEach(function (t) {
-    if (t[0]) el.appendChild(document.createTextNode(t[0]));
-    if (t[1]) {
-      var s = document.createElement('span');
-      s.className = 'w'; s.textContent = t[1];
-      el.appendChild(s);
-      spans.push({ el: s, t: t[2] });
-    }
-  });
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var audio = new Audio('audio/demo.mp3');
-  audio.preload = 'none';
-  var mode = 'silent';          // silent drift until the user asks for sound
-  var playing = false, timer = null, si = 0, raf = null;
-
-  function paint(idx, frac, secs) {
-    for (var k = 0; k < spans.length; k++) {
-      spans[k].el.className = 'w' + (k < idx ? ' read' : k === idx ? ' on' : '');
-    }
-    progress.style.width = Math.min(100, frac * 100) + '%';
-    var s = Math.floor(secs);
-    clock.textContent = '0:' + (s < 10 ? '0' : '') + s;
-  }
-  function iconPlay()  { playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; }
-  function iconPause() { playIcon.innerHTML = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>'; }
-
-  // silent drift (pre-click): paced by the real gaps, just without sound
-  function silentStep() {
-    if (si >= spans.length) si = 0;
-    paint(si, spans[si].t / AUDIO_DUR, spans[si].t);
-    var next = si + 1 < spans.length ? (spans[si + 1].t - spans[si].t) * 1000 : 1600;
-    si++;
-    timer = setTimeout(silentStep, Math.max(next, 90));
-  }
-
-  // audio-driven (post-click): the highlight follows the narrator's clock
-  function audioFrame() {
-    var t = audio.currentTime;
-    var idx = 0;
-    while (idx < spans.length - 1 && spans[idx + 1].t <= t) idx++;
-    if (t < spans[0].t) idx = -1;
-    paint(idx, t / AUDIO_DUR, t);
-    if (!audio.paused && !audio.ended) raf = requestAnimationFrame(audioFrame);
-  }
-  audio.addEventListener('ended', function () {
-    playing = false; iconPlay(); paint(spans.length - 1, 1, AUDIO_DUR);
-  });
-
-  function stopAll() { clearTimeout(timer); if (raf) cancelAnimationFrame(raf); }
-  playBtn.addEventListener('click', function () {
-    if (playing && mode === 'audio') { audio.pause(); playing = false; iconPlay(); stopAll(); return; }
-    stopAll();
-    mode = 'audio'; playing = true; iconPause();
-    if (audio.ended) audio.currentTime = 0;
-    audio.play().then(function () { raf = requestAnimationFrame(audioFrame); })
-      .catch(function () {   // audio blocked/missing: fall back to silent drift
-        mode = 'silent'; silentStep();
-      });
-    if (tagline) tagline.textContent = 'that’s the real narrator — the highlight follows his voice';
-  });
-
-  // start the silent drift when scrolled into view
-  var started = false;
-  var demoIO = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (e.isIntersecting && !started && !reduce) { started = true; playing = true; iconPause(); silentStep(); }
-    });
-  }, { threshold: .4 });
-  demoIO.observe(document.getElementById('demo'));
-</script>
 </body>
 </html>
