@@ -60,7 +60,7 @@
   }
 
   function tick() {
-    paint(audio.currentTime);
+    paint(pendingSeek !== null ? pendingSeek : audio.currentTime);
     if (!audio.paused && !audio.ended) { frame = requestAnimationFrame(tick); }
   }
 
@@ -69,30 +69,82 @@
     btn.setAttribute('aria-label', on ? 'Pause the reading' : 'Play the reading');
   }
 
+  // A server that cannot send byte ranges cannot seek inside the audio. When
+  // that happens, load the whole clip (about 200 KB) into memory once and seek
+  // there. witbound.app sends ranges, so this only helps simple local servers.
+  var swapping = false;
+  var swapped = false;
+  var wantPlay = false;
+
+  function canSeek(t) {
+    var r = audio.seekable;
+    for (var i = 0; i < r.length; i++) {
+      if (t >= r.start(i) && t <= r.end(i) + 0.01) { return true; }
+    }
+    return false;
+  }
+
+  function swapToMemory() {
+    if (swapping || swapped || !window.fetch || !window.URL) { return; }
+    swapping = true;
+    var src = audio.currentSrc;
+    fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+      swapped = true;
+      audio.src = URL.createObjectURL(b);
+      audio.load();
+    }).catch(function () { swapping = false; });
+  }
+
   function play() {
+    if (swapping) { wantPlay = true; return; }
     var p = audio.play();
     if (p && p.catch) { p.catch(function () { setPlaying(false); }); }
   }
 
   function seek(t) {
     t = Math.max(0, Math.min(t, duration() - 0.05));
-    if (audio.readyState >= 1) { audio.currentTime = t; }
-    else { pendingSeek = t; }
+    if (audio.readyState >= 1 && !swapping) {
+      if (t < 0.05 || canSeek(t) || swapped) { audio.currentTime = t; }
+      else {
+        pendingSeek = t;
+        wantPlay = wantPlay || !audio.paused;
+        swapToMemory();
+        audio.pause();
+      }
+    } else {
+      pendingSeek = t;
+    }
     paint(t);
   }
 
   audio.addEventListener('loadedmetadata', function () {
-    if (pendingSeek !== null) { audio.currentTime = pendingSeek; pendingSeek = null; }
+    if (pendingSeek !== null) {
+      if (pendingSeek < 0.05 || canSeek(pendingSeek) || swapped) {
+        audio.currentTime = pendingSeek;
+        pendingSeek = null;
+      } else {
+        wantPlay = wantPlay || !audio.paused;
+        swapToMemory();
+        audio.pause();
+        return;
+      }
+    }
+    if (swapped && swapping) {
+      swapping = false;
+      if (wantPlay) { wantPlay = false; play(); }
+    }
   });
   audio.addEventListener('play', function () {
+    if (swapping) { audio.pause(); wantPlay = true; return; }
     setPlaying(true);
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(tick);
   });
   audio.addEventListener('pause', function () {
+    if (swapping) { return; }
     setPlaying(false);
     cancelAnimationFrame(frame);
-    paint(audio.currentTime);
+    paint(pendingSeek !== null ? pendingSeek : audio.currentTime);
   });
   audio.addEventListener('seeked', function () { paint(audio.currentTime); });
   audio.addEventListener('ended', function () {
