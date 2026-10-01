@@ -5,302 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free public-domain audiobook + ebook pairs (read-along ready) — Witbound</title>
 <meta name="description" content="A hand-checked list of free, public-domain classics where both the ebook and the audiobook exist legally — ready to read along with, word by word. Dracula, Frankenstein, Sherlock Holmes and more.">
-<link rel="icon" href="img/icon.png">
+<link rel="canonical" href="https://witbound.app/pairs.html">
+<script>(function(d){d.className+=' js';var t=null;try{t=localStorage.getItem('wb-theme')}catch(e){}if(t==='light'||t==='dark'){d.setAttribute('data-theme',t)}else{t='auto'}d.setAttribute('data-theme-choice',t)})(document.documentElement)</script>
+<link rel="preload" href="assets/fonts/literata-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/literata-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#F2ECE1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Free public-domain audiobook + ebook pairs">
 <meta property="og:description" content="Classics where the ebook and the audiobook are both free and legal — ready to read along with, word by word.">
-<meta property="og:image" content="https://witbound.app/img/icon-og.png">
 <meta property="og:url" content="https://witbound.app/pairs.html">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://witbound.app/assets/icon/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Witbound stag icon on dark ink">
 <meta name="twitter:card" content="summary_large_image">
-<style>
-  :root {
-    --ink: #F6F1E7;
-    --ink-soft: #1C1815;
-    --parchment: #F2ECE1;
-    --muted: #B8AE9C;
-    --gold: #A97C2E;
-    --gold-bright: #C79B4A;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--ink);
-    color: var(--parchment);
-    font: 18px/1.65 Georgia, 'Times New Roman', serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-  a { color: var(--gold-bright); }
-
-  header { text-align: center; padding: 60px 0 34px; }
-  header a.home { text-decoration: none; }
-  header img.icon {
-    width: 64px; height: 64px; border-radius: 15px;
-    box-shadow: 0 8px 26px rgba(28,23,18,.12);
-  }
-  .kicker {
-    font-family: ui-monospace, Menlo, monospace;
-    font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--gold); margin: 16px 0 4px;
-  }
-  h1 { font-size: 38px; margin: 6px 0 14px; letter-spacing: -.01em; }
-  .lede { color: #D8D0C1; font-size: 19px; max-width: 640px; margin: 0 auto; }
-
-  section { padding: 30px 0; }
-  h2 { font-size: 24px; margin: 0 0 14px; }
-  p { color: #D8D0C1; }
-
-  .pairs { display: grid; gap: 16px; margin-top: 8px; }
-  .pair {
-    background: var(--ink-soft);
-    border: 1px solid rgba(169,124,46,.22);
-    border-radius: 14px;
-    padding: 20px 22px;
-  }
-  .pair h3 { margin: 0; font-size: 21px; }
-  .pair .by { color: var(--muted); font-size: 15px; margin: 2px 0 4px; }
-  .pair .note { color: #CDC4B4; font-size: 15px; margin: 8px 0 14px; }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; }
-  .links a {
-    text-decoration: none;
-    font-family: ui-monospace, Menlo, monospace;
-    font-size: 12px; letter-spacing: .04em;
-    padding: 9px 15px; border-radius: 999px;
-  }
-  .links a.book { background: rgba(169,124,46,.16); color: var(--gold-bright); }
-  .links a.audio { border: 1px solid rgba(169,124,46,.4); color: var(--gold-bright); }
-
-  .steps { counter-reset: s; list-style: none; padding: 0; margin: 14px 0 0; }
-  .steps li {
-    counter-increment: s; position: relative;
-    padding-left: 46px; margin-bottom: 16px; color: #D8D0C1;
-  }
-  .steps li::before {
-    content: counter(s);
-    position: absolute; left: 0; top: -2px;
-    width: 30px; height: 30px; border-radius: 50%;
-    background: rgba(169,124,46,.16); color: var(--gold-bright);
-    font-family: ui-monospace, Menlo, monospace; font-size: 14px;
-    display: grid; place-items: center;
-  }
-  .callout {
-    background: rgba(169,124,46,.08);
-    border-left: 3px solid var(--gold);
-    border-radius: 6px;
-    padding: 14px 18px; margin-top: 10px;
-    font-size: 16px; color: #CDC4B4;
-  }
-  .cta {
-    display: inline-block; margin-top: 8px;
-    background: var(--gold); color: #14110E; text-decoration: none;
-    font-family: ui-monospace, Menlo, monospace; font-size: 12px;
-    letter-spacing: .1em; text-transform: uppercase;
-    padding: 14px 26px; border-radius: 999px; font-weight: 600;
-  }
-
-  footer {
-    text-align: center; padding: 40px 0 56px; color: var(--muted);
-    font-size: 14px; border-top: 1px solid rgba(242,236,225,.08); margin-top: 24px;
-  }
-  footer a { margin: 0 10px; }
-
-  @media (max-width: 620px) {
-    h1 { font-size: 30px; }
-    .lede { font-size: 17px; }
-  }
-</style>
+<script defer src="assets/js/site.js"></script>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="stag" viewBox="0 0 525 721"><path style="fill:var(--stag-a)" d="M178 330 L2 521 L118 598 L121 596Z M318 318 L301 505 L293 720 L394 720Z M509 79 L371 130 L320 2 L288 13 L341 154 L316 204 L306 208 L308 220 L261 316 L292 331 L337 239 L378 228 L380 229 L346 265 L404 305 L425 219 L467 209 L461 176 L436 180 L434 175 L424 183 L359 195 L375 166 L520 112Z"/><path style="fill:var(--stag-b)" d="M320 312 L395 718 L523 720 L447 429Z M317 308 L303 310 L292 332 L259 316 L180 325 L122 597 L301 504Z"/></symbol></svg>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="./">
+      <picture><source type="image/avif" srcset="assets/icon/icon-rounded-64.avif"><img src="assets/icon/icon-rounded-64.webp" width="36" height="36" alt=""></picture>
+      <span class="brand-name">Witbound</span>
+    </a>
+    <nav class="sitenav" aria-label="Site"><a href="./#how">How it works</a><a href="mac.html">Mac</a><a href="compare.html">Compare</a><a href="pairs.html" aria-current="page">Free pairs</a><a href="support.html">Support</a></nav>
+    <div class="masthead-tools">
+      <button class="theme-toggle" type="button" aria-label="Change colours">
+        <svg class="ic-auto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.8a8.2 8.2 0 0 1 0 16.4z" fill="currentColor"/></svg>
+        <svg class="ic-light" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.3M12 19.2v2.3M2.5 12h2.3M19.2 12h2.3M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        <svg class="ic-dark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19.6 14.6A8 8 0 0 1 9.4 4.4a8 8 0 1 0 10.2 10.2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="btn btn-primary btn-small" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>App Store</a>
+      <details class="menu">
+        <summary>Menu</summary>
+        <nav class="menu-panel" aria-label="Site menu"><a href="./#how">How it works</a><a href="mac.html">Mac</a><a href="compare.html">Compare</a><a href="pairs.html" aria-current="page">Free pairs</a><a href="support.html">Support</a><a class="btn btn-primary" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Get it on the App Store</a></nav>
+      </details>
+    </div>
+  </div>
+</header>
+<main id="main">
 
-<div class="wrap">
-
-  <header>
-    <a class="home" href="/"><img class="icon" src="img/icon.png" alt="Witbound"></a>
-    <p class="kicker">Read-along ready</p>
-    <h1>Free public-domain audiobook&nbsp;+&nbsp;ebook pairs</h1>
-    <p class="lede">Classics where <em>both</em> halves are free and legal — a Standard Ebooks
-      text and a LibriVox recording — so you can read along with the narration, word by word.
-      Every pair below is hand-checked.</p>
+  <header class="page-head">
+    <p class="eyebrow">Read-along ready</p>
+    <h1>Free public-domain audiobook&nbsp;+ ebook pairs</h1>
+    <p class="lede">Classics where <em>both</em> halves are free and legal, a Standard Ebooks text and a LibriVox recording, so you can read along with the narration, word by word. Every pair below is hand-checked.</p>
   </header>
-
-  <section>
-    <p>Reading along keeps your attention on the page while a narrator carries the pace — but
-      it only works if you have the ebook <em>and</em> the audiobook of the same book. For books
-      still in copyright that usually means buying twice. For the classics, it's all free.</p>
-    <p>These are public-domain titles with a clean ebook from
-      <a href="https://standardebooks.org">Standard Ebooks</a> and a matching audiobook from
-      <a href="https://librivox.org">LibriVox</a>. Download both, and they're yours to keep.</p>
-  </section>
-
-  <section>
-    <h2>The pairs</h2>
-    <div class="pairs">
-
-      <div class="pair">
-        <h3>Dracula</h3>
-        <div class="by">Bram Stoker · 1897</div>
-        <div class="note">The wall-crawl in Chapter III is worth the whole book. A genuinely great LibriVox reading.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/bram-stoker/dracula">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/dracula_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>Frankenstein; or, The Modern Prometheus</h3>
-        <div class="by">Mary Shelley · 1818</div>
-        <div class="note">Shorter than its reputation, and the creature's own chapters read beautifully aloud.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/mary-shelley/frankenstein">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/frankenstein_cs_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>The Strange Case of Dr Jekyll and Mr Hyde</h3>
-        <div class="by">Robert Louis Stevenson · 1886</div>
-        <div class="note">Barely three hours — a perfect first read-along to see if the format clicks for you.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/robert-louis-stevenson/the-strange-case-of-dr-jekyll-and-mr-hyde">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/jekyll_and_hyde_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>The Time Machine</h3>
-        <div class="by">H. G. Wells · 1895</div>
-        <div class="note">The Eloi and Morlocks land harder when you're watching the words and hearing them at once.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/h-g-wells/the-time-machine">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/time_machine_v6_2008_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>The War of the Worlds</h3>
-        <div class="by">H. G. Wells · 1898</div>
-        <div class="note">The original alien-invasion novel. Reads like reportage — tense and quick.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/h-g-wells/the-war-of-the-worlds">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/waroftheworlds_ver3_1710_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>Treasure Island</h3>
-        <div class="by">Robert Louis Stevenson · 1883</div>
-        <div class="note">Pure adventure, written to be read aloud. Long John Silver rewards a good narrator.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/robert-louis-stevenson/treasure-island">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/treasureisland_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>The Memoirs of Sherlock Holmes</h3>
-        <div class="by">Arthur Conan Doyle · 1894</div>
-        <div class="note">Short cases — read one along per sitting. Includes "The Final Problem."</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/arthur-conan-doyle/the-memoirs-of-sherlock-holmes">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/memoirsofsherlockholmesv3_1502_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>The Wonderful Wizard of Oz</h3>
-        <div class="by">L. Frank Baum · 1900</div>
-        <div class="note">Gentle and short — and a lovely one to read along with a child following the page.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/l-frank-baum/the-wonderful-wizard-of-oz">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/wonderful_wizard_of_oz_version_9_2308_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>The King of Elfland's Daughter</h3>
-        <div class="by">Lord Dunsany · 1924</div>
-        <div class="note">The prose fantasy Tolkien and Gaiman both revered. Slower, dreamlike — read-along suits it.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/lord-dunsany/the-king-of-elflands-daughter">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/kingelflandsdaughterver2_2603_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
-      <div class="pair">
-        <h3>A Princess of Mars</h3>
-        <div class="by">Edgar Rice Burroughs · 1912</div>
-        <div class="note">The pulp sword-and-planet adventure that started it all — and the free sample inside Witbound.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/princess_of_mars_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
+  <div class="page-body">
+    <div class="rule-top prose">
+      <p>Reading along keeps your attention on the page while a narrator carries the pace, but it only works if you have the ebook <em>and</em> the audiobook of the same book. For books still in copyright that usually means buying twice. For the classics, it&rsquo;s all free.</p>
+      <p>These are public-domain titles with a clean ebook from <a href="https://standardebooks.org">Standard Ebooks</a> and a matching audiobook from <a href="https://librivox.org">LibriVox</a>. Download both, and they&rsquo;re yours to keep.</p>
     </div>
-  </section>
-
-
-  <section>
-    <h2>Poetry — synced line by line</h2>
-    <p>Poems are short, so they sync in seconds — and in verse the highlight
-      follows the narrator line by line, which suits how poetry actually reads.
-      Share a single line, with the narrator's reading attached, straight to
-      your friends.</p>
-    <div class="pairs">
-
-      <div class="pair">
-        <h3>The Poetry of Edgar Allan Poe</h3>
-        <div class="by">Edgar Allan Poe · incl. The Raven, 1845</div>
-        <div class="note">"Quoth the Raven" hits different when the line lights up as it's spoken.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/edgar-allan-poe/poetry">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/poeraven_vol4_1308_librivox">🔊 Audiobook — LibriVox</a>
+    <section style="margin-top:clamp(48px,6vw,80px)" aria-labelledby="the-pairs">
+      <h2 id="the-pairs" class="section-title" style="margin-bottom:24px">The pairs</h2>
+      <ul class="pairs">
+        <li class="pair"><div><h3>Dracula</h3><p class="by">Bram Stoker · 1897</p><p class="hook">The wall-crawl in Chapter III is worth the whole book. A genuinely great LibriVox reading.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/bram-stoker/dracula">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/dracula_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>Frankenstein; or, The Modern Prometheus</h3><p class="by">Mary Shelley · 1818</p><p class="hook">Shorter than its reputation, and the creature's own chapters read beautifully aloud.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/mary-shelley/frankenstein">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/frankenstein_cs_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>The Strange Case of Dr Jekyll and Mr Hyde</h3><p class="by">Robert Louis Stevenson · 1886</p><p class="hook">Barely three hours: a perfect first read-along to see if the format clicks for you.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/robert-louis-stevenson/the-strange-case-of-dr-jekyll-and-mr-hyde">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/jekyll_and_hyde_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>The Time Machine</h3><p class="by">H. G. Wells · 1895</p><p class="hook">The Eloi and Morlocks land harder when you're watching the words and hearing them at once.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/h-g-wells/the-time-machine">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/time_machine_v6_2008_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>The War of the Worlds</h3><p class="by">H. G. Wells · 1898</p><p class="hook">The original alien-invasion novel. Reads like reportage, tense and quick.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/h-g-wells/the-war-of-the-worlds">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/waroftheworlds_ver3_1710_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>Treasure Island</h3><p class="by">Robert Louis Stevenson · 1883</p><p class="hook">Pure adventure, written to be read aloud. Long John Silver rewards a good narrator.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/robert-louis-stevenson/treasure-island">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/treasureisland_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>The Memoirs of Sherlock Holmes</h3><p class="by">Arthur Conan Doyle · 1894</p><p class="hook">Short cases: read one along per sitting. Includes “The Final Problem.”</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/arthur-conan-doyle/the-memoirs-of-sherlock-holmes">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/memoirsofsherlockholmesv3_1502_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>The Wonderful Wizard of Oz</h3><p class="by">L. Frank Baum · 1900</p><p class="hook">Gentle and short, and a lovely one to read along with a child following the page.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/l-frank-baum/the-wonderful-wizard-of-oz">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/wonderful_wizard_of_oz_version_9_2308_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>The King of Elfland's Daughter</h3><p class="by">Lord Dunsany · 1924</p><p class="hook">The prose fantasy Tolkien and Gaiman both revered. Slower, dreamlike: read-along suits it.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/lord-dunsany/the-king-of-elflands-daughter">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/kingelflandsdaughterver2_2603_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>A Princess of Mars</h3><p class="by">Edgar Rice Burroughs · 1912</p><p class="hook">The pulp sword-and-planet adventure that started it all, and the free sample inside Witbound.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/edgar-rice-burroughs/a-princess-of-mars">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/princess_of_mars_librivox">Audiobook <span>LibriVox</span></a></li></ul></li>
+      </ul>
+    </section>
+    <section style="margin-top:clamp(56px,7vw,96px)" aria-labelledby="poetry">
+      <div class="split wide-right">
+        <div>
+          <h2 id="poetry" class="section-title">Poetry, synced line by line</h2>
+          <p style="margin-top:18px">Poems are short, so they sync in seconds, and in verse the highlight follows the narrator line by line, which suits how poetry actually reads. Share a single line, with the narrator&rsquo;s reading attached, straight to your friends.</p>
+        </div>
+        <ul class="pairs">
+          <li class="pair"><div><h3>The Poetry of Edgar Allan Poe</h3><p class="by">Edgar Allan Poe · incl. The Raven, 1845</p><p class="hook">“Quoth the Raven” hits different when the line lights up as it's spoken.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/edgar-allan-poe/poetry">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/poeraven_vol4_1308_librivox">Audiobook <span>LibriVox</span></a></li></ul></li><li class="pair"><div><h3>Leaves of Grass</h3><p class="by">Walt Whitman · 1855</p><p class="hook">“Song of Myself,” read aloud the way it was written to be.</p></div><ul class="pair-links"><li><a href="https://standardebooks.org/ebooks/walt-whitman/leaves-of-grass">Ebook <span>Standard Ebooks</span></a></li><li><a href="https://archive.org/details/leaves_of_grass_librivox">Audiobook <span>LibriVox</span></a></li></ul></li>
+        </ul>
+      </div>
+    </section>
+    <section style="margin-top:clamp(56px,7vw,96px)" aria-labelledby="howto">
+      <div class="split wide-right">
+        <h2 id="howto" class="section-title">How to read along with a pair</h2>
+        <div>
+          <ol class="howto">
+            <li><span>Download the <strong>ebook</strong> (choose the <em>.epub</em> file) and the <strong>audiobook</strong> (choose the <em>M4B</em> or the MP3s) from the links above.</span></li>
+            <li><span>Open <strong>Witbound</strong> on your iPhone or iPad and import both. The app matches every spoken word to the page, on the device, once.</span></li>
+            <li><span>Press play. The narrator reads; the words light up. Tap any word to jump the narration there.</span></li>
+          </ol>
+          <div class="actions" style="margin-top:24px"><a class="btn btn-primary" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Get Witbound on the App Store</a></div>
+          <p class="margin-note"><strong>A note on LibriVox narration.</strong> LibriVox recordings are read by volunteers, so quality varies: some are wonderful, some are rough, and group readings switch narrator by chapter. Listen to a few minutes before you commit to a long book. If a reading isn&rsquo;t for you, most classics have several versions on LibriVox to choose from.</p>
         </div>
       </div>
-
-      <div class="pair">
-        <h3>Leaves of Grass</h3>
-        <div class="by">Walt Whitman · 1855</div>
-        <div class="note">"Song of Myself," read aloud the way it was written to be.</div>
-        <div class="links">
-          <a class="book" href="https://standardebooks.org/ebooks/walt-whitman/leaves-of-grass">📖 Ebook — Standard Ebooks</a>
-          <a class="audio" href="https://archive.org/details/leaves_of_grass_librivox">🔊 Audiobook — LibriVox</a>
-        </div>
-      </div>
-
+    </section>
+    <p class="note" style="margin-top:56px">Ebooks by Standard Ebooks, audiobooks by LibriVox, both public domain.</p>
+  </div>
+</main>
+<footer class="site-foot">
+  <div class="foot-rule"><svg class="stag" viewBox="0 0 525 721" aria-hidden="true" focusable="false"><use href="#stag"/></svg></div>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="./"><span class="brand-name">Witbound</span></a>
+      <p>Read-along for the ebooks and audiobooks you own. Made by one person in the UK.</p>
     </div>
-  </section>
-
-  <section>
-    <h2>How to read along with a pair</h2>
-    <ol class="steps">
-      <li>Download the <strong>ebook</strong> (choose the <em>.epub</em> file) and the
-        <strong>audiobook</strong> (choose the <em>M4B</em> or MP3s) from the links above.</li>
-      <li>Open <strong>Witbound</strong> on your iPhone or iPad and import both — the app matches
-        every spoken word to the page, on the device, once.</li>
-      <li>Press play. The narrator reads; the words light up. Tap any word to jump the narration there.</li>
-    </ol>
-    <p style="text-align:center; margin-top:22px;">
-      <a class="cta" href="https://apps.apple.com/app/id6795587495">Get Witbound on the App&nbsp;Store</a>
-    </p>
-  </section>
-
-  <section>
-    <div class="callout">
-      <strong>A note on LibriVox narration.</strong> LibriVox recordings are read by volunteers, so
-      quality varies — some are wonderful, some are rough, and group readings switch narrator by
-      chapter. Listen to a few minutes before you commit to a long book. If a reading isn't for you,
-      most classics have several versions on LibriVox to choose from.
-    </div>
-  </section>
-
-  <footer>
-    <a href="/">Home</a> ·
-    <a href="privacy.html">Privacy</a> ·
-    <a href="support.html">Support</a>
-    <p>© 2026 Witbound · Ebooks by Standard Ebooks, audiobooks by LibriVox — both public domain.</p>
-  </footer>
-
-</div>
+    <nav class="foot-col" aria-labelledby="foot-app">
+      <h2 id="foot-app">The app</h2>
+      <ul>
+        <li><a href="https://apps.apple.com/app/id6795587495">App Store</a></li>
+        <li><a href="mac.html">Witbound for Mac</a></li>
+        <li><a href="pairs.html">Free book pairs</a></li>
+        <li><a href="immersion-reading.html">Immersion reading</a></li>
+        <li><a href="compare.html">Compare apps</a></li>
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-labelledby="foot-help">
+      <h2 id="foot-help">Help</h2>
+      <ul>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="mailto:zarksided@gmail.com">Email Moe</a></li>
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-labelledby="foot-else">
+      <h2 id="foot-else">Elsewhere</h2>
+      <ul>
+        <li><a href="https://www.reddit.com/r/Witbound/">r/Witbound</a></li>
+        <li><a href="https://www.reddit.com/user/zarkside" rel="me">Reddit</a></li>
+        <li><a href="https://www.youtube.com/channel/UCBlfBKVE_jqMJwwCNtO7BDg" rel="me">YouTube</a></li>
+        <li><a href="https://github.com/grinzark/witbound-site" rel="me">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-small">
+    <p>&copy; 2026 Witbound. Set in Literata and Atkinson Hyperlegible.</p>
+    <p>No cookies, no analytics, and nothing on this site loads from anyone else&rsquo;s server.</p>
+  </div>
+</footer>
 </body>
 </html>
