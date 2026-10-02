@@ -22,8 +22,10 @@
   var frame = 0;
   var pendingSeek = null;
 
-  // JS is running: hand over from the browser's own player to the page's.
-  audio.removeAttribute('controls');
+  // JS is running: the page's own player is in charge. (The browser's player
+  // with controls is only in <noscript>: an <audio controls> in the markup makes
+  // Safari style the page before the stylesheet arrives, so every link and button
+  // would fade in from the default blue on first load.)
   fig.classList.add('is-ready');
 
   function duration() {
