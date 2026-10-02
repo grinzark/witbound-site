@@ -247,10 +247,11 @@ h1 .lit, h2 .lit { display: inline-block; line-height: .98; padding: .03em .12em
 /* ---------- The hero iPhone ----------
    A real screen recording of the app on a phone drawn in CSS (no device artwork). Sizes come
    from --phone-w, so the bezel, the corners and the island scale together. On wide screens
-   the phone also shrinks to fit a short window, so its foot is not cut off on a laptop. */
+   the phone also shrinks to fit a short window, so on a laptop its foot and the "Play with
+   sound" button under it both stay in the first view (1366x657 up to 1512x860 windows). */
 .hero-phone {
   grid-area: phone; margin: 0; justify-self: end; align-self: start;
-  --phone-w: max(220px, min(clamp(248px, 14vw + 110px, 316px), calc((100vh - 150px) * .45)));
+  --phone-w: max(210px, min(clamp(248px, 14vw + 110px, 316px), calc((100vh - 190px) * .45)));
   width: calc(var(--phone-w) + 64px);
 }
 @media (max-width: 799px) {
