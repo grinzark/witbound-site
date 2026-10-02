@@ -6,7 +6,9 @@
 <title>Witbound — read along with the audiobooks you already own</title>
 <meta name="description" content="The narrator reads, the words light up. Witbound syncs your own audiobooks to your own ebooks, word by word, on your iPhone, iPad or Android phone. Your books never leave your device.">
 <link rel="canonical" href="https://witbound.co.uk/">
-<script>(function(d){d.className+=' js';var t=null;try{t=localStorage.getItem('wb-theme')}catch(e){}if(t==='light'||t==='dark'){d.setAttribute('data-theme',t)}else{t='auto'}d.setAttribute('data-theme-choice',t)})(document.documentElement)</script>
+<meta name="theme-color" content="#F2ECE1">
+<meta name="color-scheme" content="light">
+<script>(function(d){d.className+=' js';var t=null;try{t=localStorage.getItem('wb-theme')}catch(e){}if(t==='dark'){d.setAttribute('data-theme','dark');[['theme-color','#14110E'],['color-scheme','dark']].forEach(function(p){var m=document.querySelector('meta[name="'+p[0]+'"]');if(m){m.setAttribute('content',p[1])}})}})(document.documentElement)</script>
 <link rel="preload" href="assets/fonts/literata-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/literata-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -15,9 +17,6 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/icon/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
-<meta name="theme-color" content="#F2ECE1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)">
-<meta name="color-scheme" content="light dark">
 <meta property="og:title" content="Witbound — your audiobooks, word by word">
 <meta property="og:description" content="The narrator reads, the words light up. Your own files, synced on your own device. Your books never leave it.">
 <meta property="og:url" content="https://witbound.co.uk/">
@@ -65,8 +64,7 @@
     </a>
     <nav class="sitenav" aria-label="Site"><a href="#how">How it works</a><a href="mac.html">Mac</a><a href="pairs.html">Free pairs</a><a href="support.html">Support</a></nav>
     <div class="masthead-tools">
-      <button class="theme-toggle" type="button" aria-label="Change colours">
-        <svg class="ic-auto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.8a8.2 8.2 0 0 1 0 16.4z" fill="currentColor"/></svg>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark colours" title="Switch to dark colours">
         <svg class="ic-light" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.3M12 19.2v2.3M2.5 12h2.3M19.2 12h2.3M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
         <svg class="ic-dark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19.6 14.6A8 8 0 0 1 9.4 4.4a8 8 0 1 0 10.2 10.2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
       </button>
@@ -135,13 +133,13 @@
       <h2 class="contents-title" id="contents-title">Contents</h2>
       <ol>
         <li><a href="#how"><span class="c-num">I</span><span class="c-title">How it works</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">three steps</span></a></li>
-        <li><a href="#read-along"><span class="c-num">II</span><span class="c-title">The read-along</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">every word, in time</span></a></li>
-        <li><a href="#page"><span class="c-num">III</span><span class="c-title">The page</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">fonts, width, notes</span></a></li>
-        <li><a href="#library"><span class="c-num">IV</span><span class="c-title">Your library</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">files and servers</span></a></li>
-        <li><a href="#privacy"><span class="c-num">V</span><span class="c-title">What leaves your phone</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">community sync, privacy</span></a></li>
-        <li><a href="#languages"><span class="c-num">VI</span><span class="c-title">Languages</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">what syncs today</span></a></li>
-        <li><a href="#devices"><span class="c-num">VII</span><span class="c-title">Mac, iPad and Android</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">every screen</span></a></li>
-        <li><a href="#readers"><span class="c-num">VIII</span><span class="c-title">What readers asked for</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">reviews and requests</span></a></li>
+        <li><a href="#readers"><span class="c-num">II</span><span class="c-title">What readers asked for</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">reviews and requests</span></a></li>
+        <li><a href="#read-along"><span class="c-num">III</span><span class="c-title">The read-along</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">every word, in time</span></a></li>
+        <li><a href="#page"><span class="c-num">IV</span><span class="c-title">The page</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">fonts, width, notes</span></a></li>
+        <li><a href="#library"><span class="c-num">V</span><span class="c-title">Your library</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">files and servers</span></a></li>
+        <li><a href="#privacy"><span class="c-num">VI</span><span class="c-title">What leaves your phone</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">community sync, privacy</span></a></li>
+        <li><a href="#languages"><span class="c-num">VII</span><span class="c-title">Languages</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">what syncs today</span></a></li>
+        <li><a href="#devices"><span class="c-num">VIII</span><span class="c-title">Mac, iPad and Android</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">every screen</span></a></li>
         <li><a href="#price"><span class="c-num">IX</span><span class="c-title">The price</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">once</span></a></li>
         <li class="back"><a href="#questions"><span class="c-num" aria-hidden="true">&middot;</span><span class="c-title">Questions</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">short answers</span></a></li>
         <li class="back"><a href="#maker"><span class="c-num" aria-hidden="true">&middot;</span><span class="c-title">Afterword, from Moe</span><span class="c-dots" aria-hidden="true"></span><span class="c-gloss">the maker</span></a></li>
@@ -170,224 +168,11 @@
       </div>
     </div>
   </section>
-  <section class="chapter tint" id="read-along" aria-labelledby="read-along-title">
-    <div class="wrap">
-      <p class="running" aria-hidden="true">The read-along</p>
-      <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>II</p>
-        <h2 id="read-along-title">Every word lights up as it&rsquo;s spoken.</h2>
-        <p class="intro"><span class="sc">The highlight follows the voice</span> a word at a time, on the publisher&rsquo;s own pages: italics, small caps, illustrations and maps all where they belong. Tap a word to send the narrator there.</p>
-      </header>
-      <div class="split">
-        <div class="phones">
-          <figure class="plate"><div class="phone"><picture><source type="image/avif" srcset="assets/img/iphone-reader-playing-360w.avif 360w, assets/img/iphone-reader-playing-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-reader-playing-360w.webp" srcset="assets/img/iphone-reader-playing-360w.webp 360w, assets/img/iphone-reader-playing-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Witbound on iPhone reading A Scandal in Bohemia: the word slow is lit as David Clarke reads it, player controls showing" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate II.</span> David Clarke reads <cite>A Scandal in Bohemia</cite>. &ldquo;Slow&rdquo; is lit as he says it.</figcaption></figure>
-          <figure class="plate"><div class="phone"><picture><source type="image/avif" srcset="assets/img/iphone-reader-plate-360w.avif 360w, assets/img/iphone-reader-plate-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-reader-plate-360w.webp" srcset="assets/img/iphone-reader-plate-360w.webp 360w, assets/img/iphone-reader-plate-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Sidney Paget&#x27;s plate A man entered on the page, with the word in lit in the line above" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate III.</span> Sidney Paget&rsquo;s plate on the page, the line above still being read.</figcaption></figure>
-        </div>
-        <div>
-          <h3 class="visually-hidden">Ways to follow along</h3>
-          <dl class="ledger">
-            <div><dt>Highlight</dt><dd>A word, a phrase, a sentence or the whole paragraph.</dd></div>
-            <div><dt>Colour</dt><dd>Indigo, warm gold, teal or rose.</dd></div>
-            <div><dt>Reading window</dt><dd>Dims everything except the lines being read.</dd></div>
-            <div><dt>Lead the narrator</dt><dd>Lights the next word a beat early, for readers who like to be ahead.</dd></div>
-            <div><dt>Bold word-starts</dt><dd>The start of each word in bold, to give the eye an anchor.</dd></div>
-            <div><dt>Scroll or pages</dt><dd>One continuous scroll, or turn page by page.</dd></div>
-            <div><dt>Silent reading</dt><dd>Pause and keep reading with your eyes. Press play and the narrator starts where you are.</dd></div>
-            <div><dt>Tap and hold</dt><dd>A word&rsquo;s meaning or a translation, without moving the audio.</dd></div>
-          </dl>
-          <p class="note" style="margin-top:14px">All of these are off until you turn them on.</p>
-        </div>
-      </div>
-      <div class="figures">
-        <div><span class="fig-num">37<i>hours</i></span><span class="fig-label">The longest audiobook I&rsquo;ve tested. The highlight stayed on the word.</span></div>
-        <div><span class="fig-num">98.1<i>%</i></span><span class="fig-label">of narrated words matched in the median book, when I synced 32 public-domain classics on a Mac in September.<span class="note">203 hours of LibriVox narration. Lowest 92.8%, highest 99.4%.</span></span></div>
-        <div><span class="fig-num">0.05<i>&times;</i></span><span class="fig-label">steps of speed, from 0.5&times; to 2&times;, so you can listen at exactly the pace you like.</span></div>
-      </div>
-      <div class="sub-head"><h3>For listening</h3><p>The parts you notice at the end of a long day.</p></div>
-      <div>
-        <dl class="ledger cols-2">
-          <div><dt>Sleep timer</dt><dd>Any length from 1 to 180 minutes, or the end of the chapter. Add 15 minutes from the countdown. It only counts while the book is playing.</dd></div>
-          <div><dt>Out of the way</dt><dd>The controls fade while you listen. Tap the page to bring them back.</dd></div>
-          <div><dt>Picking up again</dt><dd>Play starts a few seconds before where you stopped, and further back after a long break.</dd></div>
-          <div><dt>Lock screen</dt><dd>Controls with cover art on the lock screen and in Control Centre, and a chapter list with start times.</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-  <section class="chapter" id="page" aria-labelledby="page-title">
-    <div class="wrap">
-      <p class="running" aria-hidden="true">The page</p>
-      <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>III</p>
-        <h2 id="page-title">Set the page the way you read.</h2>
-        <p class="intro"><span class="sc">Since version 1.8.5</span> you choose the font, the size, how wide the text runs and how much room sits between the lines. Then mark it up: bookmarks, highlights and notes stay with the book.</p>
-      </header>
-      <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-landscape-reading-options-880w.avif 880w, assets/img/ipad-landscape-reading-options-1760w.avif 1760w" sizes="(min-width: 1240px) 1100px, 92vw"><img src="assets/img/ipad-landscape-reading-options-880w.webp" srcset="assets/img/ipad-landscape-reading-options-880w.webp 880w, assets/img/ipad-landscape-reading-options-1760w.webp 1760w" sizes="(min-width: 1240px) 1100px, 92vw" width="880" height="580" alt="The reading options menu on iPad: page or scroll, text size, Georgia, New York, San Francisco, Atkinson Hyperlegible, line and paragraph spacing" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate IV.</span> The reading options on iPad: page or scroll, size, four fonts, line and paragraph spacing.</figcaption></figure>
-      <div class="specimen">
-        <section aria-labelledby="sp-fonts">
-          <h3 id="sp-fonts">Four fonts</h3>
-          <ul class="fontlist">
-            <li class="f-georgia">Georgia</li>
-            <li class="f-newyork">New York</li>
-            <li class="f-sf">San Francisco</li>
-            <li class="f-atkinson">Atkinson Hyperlegible</li>
-          </ul>
-          <p class="note">Atkinson Hyperlegible was drawn for readers with low vision. Text goes up to 40 points.</p>
-        </section>
-        <section aria-labelledby="sp-width">
-          <h3 id="sp-width">Three widths</h3>
-          <div class="widths">
-            <figure><div class="mini-page" style="--w:52%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Comfortable</figcaption></figure>
-            <figure><div class="mini-page" style="--w:74%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Wide</figcaption></figure>
-            <figure><div class="mini-page" style="--w:94%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Full</figcaption></figure>
-          </div>
-          <p class="note">On iPad, Full lets the text fill the screen. Line and paragraph spacing are yours to set as well.</p>
-        </section>
-        <section aria-labelledby="sp-paper">
-          <h3 id="sp-paper">Three papers</h3>
-          <div class="themes">
-            <figure><div class="swatch sw-paper" aria-hidden="true">Aa</div><figcaption>Paper</figcaption></figure>
-            <figure><div class="swatch sw-sepia" aria-hidden="true">Aa</div><figcaption>Sepia</figcaption></figure>
-            <figure><div class="swatch sw-night" aria-hidden="true">Aa</div><figcaption>Night</figcaption></figure>
-          </div>
-          <p class="note">Night is for the last chapter in bed, with the screen turned down.</p>
-        </section>
-      </div>
-      <div class="split" style="margin-top:clamp(48px,6vw,80px)">
-        <ul class="entries">
-          <li><h3>Bookmarks</h3><p>Bookmark a page from the top bar. Contents lists them, and one tap brings back the page and the narration together.</p></li>
-          <li><h3>Highlights and notes</h3><p>Press and hold, then choose Highlight or Add Note. Highlights show on the page, and tapping one opens its note.</p></li>
-          <li><h3>Select a passage</h3><p>Tap a sentence, or drag across exactly the words you want to keep.</p></li>
-          <li><h3>Take it with you</h3><p>Export highlights and notes as text, save passages to Obsidian as linked notes, or share a quote to your Discord book club with the narrator&rsquo;s own reading attached.</p></li>
-        </ul>
-        <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-landscape-highlight-note-880w.avif 880w, assets/img/ipad-landscape-highlight-note-1760w.avif 1760w" sizes="(min-width: 900px) 46vw, 92vw"><img src="assets/img/ipad-landscape-highlight-note-880w.webp" srcset="assets/img/ipad-landscape-highlight-note-880w.webp 880w, assets/img/ipad-landscape-highlight-note-1760w.webp 1760w" sizes="(min-width: 900px) 46vw, 92vw" width="880" height="580" alt="A saved highlight with a note, shown on the page on iPad" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate V.</span> Highlights stay on the page. Tap one to open its note.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-  <section class="chapter tint" id="library" aria-labelledby="library-title">
-    <div class="wrap">
-      <p class="running" aria-hidden="true">Your library</p>
-      <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>IV</p>
-        <h2 id="library-title">Your books, from wherever they already live.</h2>
-        <p class="intro"><span class="sc">Plain files work</span>, and so do the servers you already run. Nothing is copied anywhere you didn&rsquo;t choose.</p>
-      </header>
-      <div class="split wide-left">
-        <div>
-          <dl class="ledger">
-            <div><dt>Files</dt><dd>An ebook and its audio from the Files app, iCloud Drive or AirDrop.</dd></div>
-            <div><dt>Audiobookshelf</dt><dd>Connect at home, over Tailscale or with an API key. Browse, search and sort with covers and narrators, whole libraries included. Your place syncs both ways, so any Audiobookshelf app picks up where you stopped.</dd></div>
-            <div><dt>Calibre and OPDS</dt><dd>Pair an audiobook with the ebook from your own catalogue, found by title and author. Grimmory and BookOrbit are tested, and Grimmory can be searched and browsed by author, series or shelf.</dd></div>
-            <div><dt>Plex</dt><dd>Sign in or type your server&rsquo;s address, then import audiobooks from your music library.</dd></div>
-            <div><dt>Your Mac</dt><dd>Witbound for Mac sends books over your own Wi-Fi, already synced.</dd></div>
-            <div><dt>Audio only</dt><dd>No ebook? Witbound offers to find it in your library first. If there isn&rsquo;t one, it writes the book from the narration, chapter by chapter.</dd></div>
-          </dl>
-          <p class="margin-note">Copy-protected files are turned away by name: Audible .aax, Kindle-store books and DRM&rsquo;d epubs. Kindle-format files on a server get a one-line explanation and the offer to write the book from the audio instead.</p>
-        </div>
-        <figure class="plate"><div class="phone" style="--pw:290px"><picture><source type="image/avif" srcset="assets/img/iphone-pair-from-library-360w.avif 360w, assets/img/iphone-pair-from-library-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-pair-from-library-360w.webp" srcset="assets/img/iphone-pair-from-library-360w.webp 360w, assets/img/iphone-pair-from-library-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Pairing an audiobook with an ebook from your own library: Witbound searches the catalogue for A Princess of Mars and labels each format" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate VI.</span> Pairing from your own catalogue. Copies Witbound can&rsquo;t read say why.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-  <section class="chapter" id="privacy" aria-labelledby="privacy-title">
-    <div class="wrap">
-      <p class="running" aria-hidden="true">What leaves your phone</p>
-      <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>V</p>
-        <h2 id="privacy-title">What leaves your phone, and what never does.</h2>
-        <p class="intro"><span class="sc">There&rsquo;s no account</span>, no ads and no analytics of Witbound&rsquo;s own. One feature goes online by default, community sync, and it shares timings, not books.</p>
-      </header>
-      <div class="ledger-2">
-        <section aria-labelledby="stays">
-          <h3 id="stays">Stays on your device</h3>
-          <ul>
-            <li>Your ebooks and audiobooks</li>
-            <li>Your library, your place and your reading stats</li>
-            <li>Highlights, notes and bookmarks</li>
-            <li>Your settings</li>
-          </ul>
-        </section>
-        <section aria-labelledby="leaves">
-          <h3 id="leaves">Goes online, and when</h3>
-          <ul>
-            <li>Community sync: word timings and fingerprints of the book, never its text, title or audio. There&rsquo;s an off switch in Settings.</li>
-            <li>Servers you connect yourself: Audiobookshelf, Calibre or another OPDS catalogue, Plex.</li>
-            <li>Your purchase, through Apple or Google Play.</li>
-            <li>Anything you choose to share: a quote, a note, a progress card.</li>
-          </ul>
-        </section>
-      </div>
-      <div class="flow" role="group" aria-label="How community sync helps the next reader">
-        <p class="flow-node">Your book and its audio<small>Never leave the device.</small></p>
-        <svg class="flow-arrow" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M0 6h42M37 1l5 5-5 5"/></svg>
-        <p class="flow-node">A timing map<small>Word positions and times. No text, no audio.</small></p>
-        <svg class="flow-arrow" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M0 6h42M37 1l5 5-5 5"/></svg>
-        <p class="flow-node">The next reader with the same edition<small>Their copy is ready in seconds.</small></p>
-      </div>
-      <div class="split" style="margin-top:clamp(36px,5vw,56px)">
-        <p>If someone has already synced your edition, your copy is ready in seconds. Since version 1.8.2 Witbound also recognises the same book when the files aren&rsquo;t identical: a friend&rsquo;s copy, a different epub edition, or audio that was re-encoded.</p>
-        <p class="label-quote">On the App Store, Witbound&rsquo;s privacy label reads <q>Data Not Linked to You: Other Data</q>. That&rsquo;s community sync. The <a href="privacy.html">privacy policy</a> says exactly what is sent, and where.</p>
-      </div>
-    </div>
-  </section>
-  <section class="chapter tint" id="languages" aria-labelledby="languages-title">
-    <div class="wrap">
-      <p class="running" aria-hidden="true">Languages</p>
-      <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VI</p>
-        <h2 id="languages-title">Read along in the language of the book.</h2>
-        <p class="intro">Witbound works out the language from the book itself. These sync today:</p>
-      </header>
-      <ul class="tongues">
-        <li lang="en">English</li><li lang="fr">Fran&ccedil;ais</li><li lang="es">Espa&ntilde;ol</li><li lang="de">Deutsch</li><li lang="it">Italiano</li><li lang="pt">Portugu&ecirc;s</li><li lang="ja">日本語</li><li lang="ko">한국어</li><li lang="zh">中文</li><li class="more"><span lang="pl">Polski</span>, and more</li>
-      </ul>
-      <div class="split" style="margin-top:clamp(32px,4vw,52px)">
-        <p>Since version 1.8.0, Polish and other languages can sync too, using Apple&rsquo;s dictation. With those, the highlight can land a beat off more often.</p>
-        <p>How sure am I? English is measured across 32 books. Of the languages added in 1.8.0 I&rsquo;ve measured one, Polish, on one book. If you read in another language, try it with your free book and <a href="mailto:zarksided@gmail.com?subject=Witbound%20and%20my%20language">tell me how it went</a>.</p>
-      </div>
-    </div>
-  </section>
-  <section class="chapter" id="devices" aria-labelledby="devices-title">
-    <div class="wrap">
-      <p class="running" aria-hidden="true">Mac, iPad and Android</p>
-      <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VII</p>
-        <h2 id="devices-title">One book, on the screens you read on.</h2>
-        <p class="intro"><span class="sc">Witbound is for iPhone and iPad</span>, with a free companion for the Mac that does the slow part, and an app for Android on Google Play.</p>
-      </header>
-      <div class="trio">
-        <section aria-labelledby="dev-ipad">
-          <span class="status">Every feature</span>
-          <h3 id="dev-ipad">iPad</h3>
-          <p>The same app, with room to spread out. Let the text fill the screen, or keep a comfortable column with wide margins.</p>
-          <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-reader-520w.avif 520w, assets/img/ipad-reader-1040w.avif 1040w" sizes="(min-width: 960px) 330px, 90vw"><img src="assets/img/ipad-reader-520w.webp" srcset="assets/img/ipad-reader-520w.webp 520w, assets/img/ipad-reader-1040w.webp 1040w" sizes="(min-width: 960px) 330px, 90vw" width="520" height="754" alt="Witbound on iPad reading The Red-Headed League with the spoken word lit" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate VII.</span> <cite>The Red-Headed League</cite> on iPad, the spoken word lit.</figcaption></figure>
-        </section>
-        <section aria-labelledby="dev-mac">
-          <span class="status">Free &middot; macOS 26 or later</span>
-          <h3 id="dev-mac">Witbound for Mac</h3>
-          <p>Drop in an ebook and its audiobook, as files or folders. Your Mac syncs it in minutes, not hours, then sends it to your iPhone or iPad over your own Wi-Fi, already synced.</p>
-          <p>It browses Audiobookshelf, Calibre, Grimmory, BookOrbit and Plex, and converts DRM-free Kindle files through calibre if you have it. Signed and notarised by Apple, for Apple silicon and Intel.</p>
-          <div class="actions">
-            <a class="btn btn-secondary" href="https://github.com/grinzark/witbound-mac/releases/latest/download/Witbound-for-Mac.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Download for Mac</a>
-            <a href="mac.html">More about the Mac app</a>
-          </div>
-        </section>
-        <section aria-labelledby="dev-android">
-          <span class="status">Google Play &middot; Android 8 or later</span>
-          <h3 id="dev-android">Android</h3>
-          <p>Witbound for Android is on Google Play in the UK and US. Bring an epub and its audiobook (m4b, m4a or mp3) from your files or Google Drive, or from Audiobookshelf, Calibre and OPDS, or Plex. Your phone does the matching, and the words light up as they&rsquo;re spoken.</p>
-          <p>Your first book is free. Witbound Plus is a one-time purchase on Google Play, separate from the App Store. PDFs, the fonts, widths and spacing in <a href="#page">Chapter&nbsp;III</a>, bookmarks, highlights and notes, scroll mode and Receive from your Mac are on iPhone and iPad.</p>
-          <div class="actions">
-            <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=app.witbound.android">Get it on Google Play</a>
-          </div>
-        </section>
-      </div>
-    </div>
-  </section>
-  <section class="chapter band" id="readers" aria-labelledby="readers-title">
+  <section class="chapter feature" id="readers" aria-labelledby="readers-title">
     <div class="wrap">
       <p class="running" aria-hidden="true">What readers asked for</p>
       <header class="chapter-head">
-        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VIII</p>
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>II</p>
         <h2 id="readers-title"><span class="line">Readers wrote in.</span> <span class="line"><span class="lit">The app changed.</span></span></h2>
         <p class="intro">Some of what&rsquo;s in Witbound began as a review or a Reddit post. Here are five, with the version that answered each one. After them, every written App Store review so far, word for word.</p>
       </header>
@@ -469,6 +254,219 @@
       </div>
     </div>
   </section>
+  <section class="chapter" id="read-along" aria-labelledby="read-along-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">The read-along</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>III</p>
+        <h2 id="read-along-title">Every word lights up as it&rsquo;s spoken.</h2>
+        <p class="intro"><span class="sc">The highlight follows the voice</span> a word at a time, on the publisher&rsquo;s own pages: italics, small caps, illustrations and maps all where they belong. Tap a word to send the narrator there.</p>
+      </header>
+      <div class="split">
+        <div class="phones">
+          <figure class="plate"><div class="phone"><picture><source type="image/avif" srcset="assets/img/iphone-reader-playing-360w.avif 360w, assets/img/iphone-reader-playing-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-reader-playing-360w.webp" srcset="assets/img/iphone-reader-playing-360w.webp 360w, assets/img/iphone-reader-playing-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Witbound on iPhone reading A Scandal in Bohemia: the word slow is lit as David Clarke reads it, player controls showing" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate II.</span> David Clarke reads <cite>A Scandal in Bohemia</cite>. &ldquo;Slow&rdquo; is lit as he says it.</figcaption></figure>
+          <figure class="plate"><div class="phone"><picture><source type="image/avif" srcset="assets/img/iphone-reader-plate-360w.avif 360w, assets/img/iphone-reader-plate-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-reader-plate-360w.webp" srcset="assets/img/iphone-reader-plate-360w.webp 360w, assets/img/iphone-reader-plate-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Sidney Paget&#x27;s plate A man entered on the page, with the word in lit in the line above" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate III.</span> Sidney Paget&rsquo;s plate on the page, the line above still being read.</figcaption></figure>
+        </div>
+        <div>
+          <h3 class="visually-hidden">Ways to follow along</h3>
+          <dl class="ledger">
+            <div><dt>Highlight</dt><dd>A word, a phrase, a sentence or the whole paragraph.</dd></div>
+            <div><dt>Colour</dt><dd>Indigo, warm gold, teal or rose.</dd></div>
+            <div><dt>Reading window</dt><dd>Dims everything except the lines being read.</dd></div>
+            <div><dt>Lead the narrator</dt><dd>Lights the next word a beat early, for readers who like to be ahead.</dd></div>
+            <div><dt>Bold word-starts</dt><dd>The start of each word in bold, to give the eye an anchor.</dd></div>
+            <div><dt>Scroll or pages</dt><dd>One continuous scroll, or turn page by page.</dd></div>
+            <div><dt>Silent reading</dt><dd>Pause and keep reading with your eyes. Press play and the narrator starts where you are.</dd></div>
+            <div><dt>Tap and hold</dt><dd>A word&rsquo;s meaning or a translation, without moving the audio.</dd></div>
+          </dl>
+          <p class="note" style="margin-top:14px">All of these are off until you turn them on.</p>
+        </div>
+      </div>
+      <div class="figures">
+        <div><span class="fig-num">37<i>hours</i></span><span class="fig-label">The longest audiobook I&rsquo;ve tested. The highlight stayed on the word.</span></div>
+        <div><span class="fig-num">98.1<i>%</i></span><span class="fig-label">of narrated words matched in the median book, when I synced 32 public-domain classics on a Mac in September.<span class="note">203 hours of LibriVox narration. Lowest 92.8%, highest 99.4%.</span></span></div>
+        <div><span class="fig-num">0.05<i>&times;</i></span><span class="fig-label">steps of speed, from 0.5&times; to 2&times;, so you can listen at exactly the pace you like.</span></div>
+      </div>
+      <div class="sub-head"><h3>For listening</h3><p>The parts you notice at the end of a long day.</p></div>
+      <div>
+        <dl class="ledger cols-2">
+          <div><dt>Sleep timer</dt><dd>Any length from 1 to 180 minutes, or the end of the chapter. Add 15 minutes from the countdown. It only counts while the book is playing.</dd></div>
+          <div><dt>Out of the way</dt><dd>The controls fade while you listen. Tap the page to bring them back.</dd></div>
+          <div><dt>Picking up again</dt><dd>Play starts a few seconds before where you stopped, and further back after a long break.</dd></div>
+          <div><dt>Lock screen</dt><dd>Controls with cover art on the lock screen and in Control Centre, and a chapter list with start times.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="page" aria-labelledby="page-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">The page</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>IV</p>
+        <h2 id="page-title">Set the page the way you read.</h2>
+        <p class="intro"><span class="sc">Since version 1.8.5</span> you choose the font, the size, how wide the text runs and how much room sits between the lines. Then mark it up: bookmarks, highlights and notes stay with the book.</p>
+      </header>
+      <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-landscape-reading-options-880w.avif 880w, assets/img/ipad-landscape-reading-options-1760w.avif 1760w" sizes="(min-width: 1240px) 1100px, 92vw"><img src="assets/img/ipad-landscape-reading-options-880w.webp" srcset="assets/img/ipad-landscape-reading-options-880w.webp 880w, assets/img/ipad-landscape-reading-options-1760w.webp 1760w" sizes="(min-width: 1240px) 1100px, 92vw" width="880" height="580" alt="The reading options menu on iPad: page or scroll, text size, Georgia, New York, San Francisco, Atkinson Hyperlegible, line and paragraph spacing" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate IV.</span> The reading options on iPad: page or scroll, size, four fonts, line and paragraph spacing.</figcaption></figure>
+      <div class="specimen">
+        <section aria-labelledby="sp-fonts">
+          <h3 id="sp-fonts">Four fonts</h3>
+          <ul class="fontlist">
+            <li class="f-georgia">Georgia</li>
+            <li class="f-newyork">New York</li>
+            <li class="f-sf">San Francisco</li>
+            <li class="f-atkinson">Atkinson Hyperlegible</li>
+          </ul>
+          <p class="note">Atkinson Hyperlegible was drawn for readers with low vision. Text goes up to 40 points.</p>
+        </section>
+        <section aria-labelledby="sp-width">
+          <h3 id="sp-width">Three widths</h3>
+          <div class="widths">
+            <figure><div class="mini-page" style="--w:52%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Comfortable</figcaption></figure>
+            <figure><div class="mini-page" style="--w:74%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Wide</figcaption></figure>
+            <figure><div class="mini-page" style="--w:94%" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Full</figcaption></figure>
+          </div>
+          <p class="note">On iPad, Full lets the text fill the screen. Line and paragraph spacing are yours to set as well.</p>
+        </section>
+        <section aria-labelledby="sp-paper">
+          <h3 id="sp-paper">Three papers</h3>
+          <div class="themes">
+            <figure><div class="swatch sw-paper" aria-hidden="true">Aa</div><figcaption>Paper</figcaption></figure>
+            <figure><div class="swatch sw-sepia" aria-hidden="true">Aa</div><figcaption>Sepia</figcaption></figure>
+            <figure><div class="swatch sw-night" aria-hidden="true">Aa</div><figcaption>Night</figcaption></figure>
+          </div>
+          <p class="note">Night is for the last chapter in bed, with the screen turned down.</p>
+        </section>
+      </div>
+      <div class="split" style="margin-top:clamp(48px,6vw,80px)">
+        <ul class="entries">
+          <li><h3>Bookmarks</h3><p>Bookmark a page from the top bar. Contents lists them, and one tap brings back the page and the narration together.</p></li>
+          <li><h3>Highlights and notes</h3><p>Press and hold, then choose Highlight or Add Note. Highlights show on the page, and tapping one opens its note.</p></li>
+          <li><h3>Select a passage</h3><p>Tap a sentence, or drag across exactly the words you want to keep.</p></li>
+          <li><h3>Take it with you</h3><p>Export highlights and notes as text, save passages to Obsidian as linked notes, or share a quote to your Discord book club with the narrator&rsquo;s own reading attached.</p></li>
+        </ul>
+        <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-landscape-highlight-note-880w.avif 880w, assets/img/ipad-landscape-highlight-note-1760w.avif 1760w" sizes="(min-width: 900px) 46vw, 92vw"><img src="assets/img/ipad-landscape-highlight-note-880w.webp" srcset="assets/img/ipad-landscape-highlight-note-880w.webp 880w, assets/img/ipad-landscape-highlight-note-1760w.webp 1760w" sizes="(min-width: 900px) 46vw, 92vw" width="880" height="580" alt="A saved highlight with a note, shown on the page on iPad" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate V.</span> Highlights stay on the page. Tap one to open its note.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="library" aria-labelledby="library-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Your library</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>V</p>
+        <h2 id="library-title">Your books, from wherever they already live.</h2>
+        <p class="intro"><span class="sc">Plain files work</span>, and so do the servers you already run. Nothing is copied anywhere you didn&rsquo;t choose.</p>
+      </header>
+      <div class="split wide-left">
+        <div>
+          <dl class="ledger">
+            <div><dt>Files</dt><dd>An ebook and its audio from the Files app, iCloud Drive or AirDrop.</dd></div>
+            <div><dt>Audiobookshelf</dt><dd>Connect at home, over Tailscale or with an API key. Browse, search and sort with covers and narrators, whole libraries included. Your place syncs both ways, so any Audiobookshelf app picks up where you stopped.</dd></div>
+            <div><dt>Calibre and OPDS</dt><dd>Pair an audiobook with the ebook from your own catalogue, found by title and author. Grimmory and BookOrbit are tested, and Grimmory can be searched and browsed by author, series or shelf.</dd></div>
+            <div><dt>Plex</dt><dd>Sign in or type your server&rsquo;s address, then import audiobooks from your music library.</dd></div>
+            <div><dt>Your Mac</dt><dd>Witbound for Mac sends books over your own Wi-Fi, already synced.</dd></div>
+            <div><dt>Audio only</dt><dd>No ebook? Witbound offers to find it in your library first. If there isn&rsquo;t one, it writes the book from the narration, chapter by chapter.</dd></div>
+          </dl>
+          <p class="margin-note">Copy-protected files are turned away by name: Audible .aax, Kindle-store books and DRM&rsquo;d epubs. Kindle-format files on a server get a one-line explanation and the offer to write the book from the audio instead.</p>
+        </div>
+        <figure class="plate"><div class="phone" style="--pw:290px"><picture><source type="image/avif" srcset="assets/img/iphone-pair-from-library-360w.avif 360w, assets/img/iphone-pair-from-library-720w.avif 720w" sizes="(min-width: 900px) 270px, 44vw"><img src="assets/img/iphone-pair-from-library-360w.webp" srcset="assets/img/iphone-pair-from-library-360w.webp 360w, assets/img/iphone-pair-from-library-720w.webp 720w" sizes="(min-width: 900px) 270px, 44vw" width="360" height="783" alt="Pairing an audiobook with an ebook from your own library: Witbound searches the catalogue for A Princess of Mars and labels each format" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate VI.</span> Pairing from your own catalogue. Copies Witbound can&rsquo;t read say why.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="privacy" aria-labelledby="privacy-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">What leaves your phone</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VI</p>
+        <h2 id="privacy-title">What leaves your phone, and what never does.</h2>
+        <p class="intro"><span class="sc">There&rsquo;s no account</span>, no ads and no analytics of Witbound&rsquo;s own. One feature goes online by default, community sync, and it shares timings, not books.</p>
+      </header>
+      <div class="ledger-2">
+        <section aria-labelledby="stays">
+          <h3 id="stays">Stays on your device</h3>
+          <ul>
+            <li>Your ebooks and audiobooks</li>
+            <li>Your library, your place and your reading stats</li>
+            <li>Highlights, notes and bookmarks</li>
+            <li>Your settings</li>
+          </ul>
+        </section>
+        <section aria-labelledby="leaves">
+          <h3 id="leaves">Goes online, and when</h3>
+          <ul>
+            <li>Community sync: word timings and fingerprints of the book, never its text, title or audio. There&rsquo;s an off switch in Settings.</li>
+            <li>Servers you connect yourself: Audiobookshelf, Calibre or another OPDS catalogue, Plex.</li>
+            <li>Your purchase, through Apple or Google Play.</li>
+            <li>Anything you choose to share: a quote, a note, a progress card.</li>
+          </ul>
+        </section>
+      </div>
+      <div class="flow" role="group" aria-label="How community sync helps the next reader">
+        <p class="flow-node">Your book and its audio<small>Never leave the device.</small></p>
+        <svg class="flow-arrow" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M0 6h42M37 1l5 5-5 5"/></svg>
+        <p class="flow-node">A timing map<small>Word positions and times. No text, no audio.</small></p>
+        <svg class="flow-arrow" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M0 6h42M37 1l5 5-5 5"/></svg>
+        <p class="flow-node">The next reader with the same edition<small>Their copy is ready in seconds.</small></p>
+      </div>
+      <div class="split" style="margin-top:clamp(36px,5vw,56px)">
+        <p>If someone has already synced your edition, your copy is ready in seconds. Since version 1.8.2 Witbound also recognises the same book when the files aren&rsquo;t identical: a friend&rsquo;s copy, a different epub edition, or audio that was re-encoded.</p>
+        <p class="label-quote">On the App Store, Witbound&rsquo;s privacy label reads <q>Data Not Linked to You: Other Data</q>. That&rsquo;s community sync. The <a href="privacy.html">privacy policy</a> says exactly what is sent, and where.</p>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="languages" aria-labelledby="languages-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Languages</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VII</p>
+        <h2 id="languages-title">Read along in the language of the book.</h2>
+        <p class="intro">Witbound works out the language from the book itself. These sync today:</p>
+      </header>
+      <ul class="tongues">
+        <li lang="en">English</li><li lang="fr">Fran&ccedil;ais</li><li lang="es">Espa&ntilde;ol</li><li lang="de">Deutsch</li><li lang="it">Italiano</li><li lang="pt">Portugu&ecirc;s</li><li lang="ja">日本語</li><li lang="ko">한국어</li><li lang="zh">中文</li><li class="more"><span lang="pl">Polski</span>, and more</li>
+      </ul>
+      <div class="split" style="margin-top:clamp(32px,4vw,52px)">
+        <p>Since version 1.8.0, Polish and other languages can sync too, using Apple&rsquo;s dictation. With those, the highlight can land a beat off more often.</p>
+        <p>How sure am I? English is measured across 32 books. Of the languages added in 1.8.0 I&rsquo;ve measured one, Polish, on one book. If you read in another language, try it with your free book and <a href="mailto:zarksided@gmail.com?subject=Witbound%20and%20my%20language">tell me how it went</a>.</p>
+      </div>
+    </div>
+  </section>
+  <section class="chapter" id="devices" aria-labelledby="devices-title">
+    <div class="wrap">
+      <p class="running" aria-hidden="true">Mac, iPad and Android</p>
+      <header class="chapter-head">
+        <p class="chapter-mark"><span class="visually-hidden">Chapter </span>VIII</p>
+        <h2 id="devices-title">One book, on the screens you read on.</h2>
+        <p class="intro"><span class="sc">Witbound is for iPhone and iPad</span>, with a free companion for the Mac that does the slow part, and an app for Android on Google Play.</p>
+      </header>
+      <div class="trio">
+        <section aria-labelledby="dev-ipad">
+          <span class="status">Every feature</span>
+          <h3 id="dev-ipad">iPad</h3>
+          <p>The same app, with room to spread out. Let the text fill the screen, or keep a comfortable column with wide margins.</p>
+          <figure class="plate"><div class="tablet"><picture><source type="image/avif" srcset="assets/img/ipad-reader-520w.avif 520w, assets/img/ipad-reader-1040w.avif 1040w" sizes="(min-width: 960px) 330px, 90vw"><img src="assets/img/ipad-reader-520w.webp" srcset="assets/img/ipad-reader-520w.webp 520w, assets/img/ipad-reader-1040w.webp 1040w" sizes="(min-width: 960px) 330px, 90vw" width="520" height="754" alt="Witbound on iPad reading The Red-Headed League with the spoken word lit" loading="lazy" decoding="async"></picture></div><figcaption><span class="plate-no">Plate VII.</span> <cite>The Red-Headed League</cite> on iPad, the spoken word lit.</figcaption></figure>
+        </section>
+        <section aria-labelledby="dev-mac">
+          <span class="status">Free &middot; macOS 26 or later</span>
+          <h3 id="dev-mac">Witbound for Mac</h3>
+          <p>Drop in an ebook and its audiobook, as files or folders. Your Mac syncs it in minutes, not hours, then sends it to your iPhone or iPad over your own Wi-Fi, already synced.</p>
+          <p>It browses Audiobookshelf, Calibre, Grimmory, BookOrbit and Plex, and converts DRM-free Kindle files through calibre if you have it. Signed and notarised by Apple, for Apple silicon and Intel.</p>
+          <div class="actions">
+            <a class="btn btn-secondary" href="https://github.com/grinzark/witbound-mac/releases/latest/download/Witbound-for-Mac.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Download for Mac</a>
+            <a href="mac.html">More about the Mac app</a>
+          </div>
+        </section>
+        <section aria-labelledby="dev-android">
+          <span class="status">Google Play &middot; Android 8 or later</span>
+          <h3 id="dev-android">Android</h3>
+          <p>Witbound for Android is on Google Play in the UK and US. Bring an epub and its audiobook (m4b, m4a or mp3) from your files or Google Drive, or from Audiobookshelf, Calibre and OPDS, or Plex. Your phone does the matching, and the words light up as they&rsquo;re spoken.</p>
+          <p>Your first book is free. Witbound Plus is a one-time purchase on Google Play, separate from the App Store. PDFs, the fonts, widths and spacing in <a href="#page">Chapter&nbsp;IV</a>, bookmarks, highlights and notes, scroll mode and Receive from your Mac are on iPhone and iPad.</p>
+          <div class="actions">
+            <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=app.witbound.android">Get it on Google Play</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
   <section class="chapter" id="price" aria-labelledby="price-title">
     <div class="wrap">
       <p class="running" aria-hidden="true">The price</p>
@@ -506,7 +504,7 @@
     </div>
   </section>
 
-  <section class="chapter tint" id="questions" aria-labelledby="questions-title">
+  <section class="chapter" id="questions" aria-labelledby="questions-title">
     <div class="wrap">
       <p class="running" aria-hidden="true">Questions</p>
       <header class="chapter-head">
