@@ -50,6 +50,7 @@
   --shadow: 70 48 20;
   --shadow-k: 1;
   --img-dim: none;
+  --edge: rgb(70 48 20 / .2);   /* the shadow at the edge of a table that scrolls sideways */
 
   --serif: "Literata", "Literata Fallback", Georgia, "Times New Roman", serif;
   --sans: "Atkinson Hyperlegible", "Atkinson Fallback", "Helvetica Neue", Arial, sans-serif;
@@ -87,6 +88,7 @@
     --device: #050403; --screen: #1C1C1E;
     --shadow: 0 0 0; --shadow-k: 1.7;
     --img-dim: brightness(.9);
+    --edge: rgb(242 236 225 / .13);
     color-scheme: dark;
   }
 }
@@ -104,6 +106,7 @@
   --device: #050403; --screen: #1C1C1E;
   --shadow: 0 0 0; --shadow-k: 1.7;
   --img-dim: brightness(.9);
+  --edge: rgb(242 236 225 / .13);
   color-scheme: dark;
 }
 
@@ -285,6 +288,7 @@ h1 .lit, h2 .lit { display: inline-block; line-height: .98; padding: .03em .12em
 .leaf.is-playing .leaf-play .ic-play { display: none; }
 .leaf.is-playing .leaf-play .ic-pause { display: block; }
 .leaf-play .ic-play { margin-left: 3px; }
+@media (prefers-reduced-motion: reduce) { .leaf-play { transition: none; } .leaf-play:active { transform: none; } }
 .leaf-native { width: 100%; margin-top: 18px; }
 .js .leaf-native { display: none; }
 .leaf-cap { font-size: 14px; color: var(--muted); max-width: 60ch; }
@@ -318,8 +322,9 @@ h1 .lit, h2 .lit { display: inline-block; line-height: .98; padding: .03em .12em
 .contents a { display: grid; grid-template-columns: 3em auto minmax(1.5em, 1fr) auto; align-items: baseline; column-gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); }
 .contents a:hover .c-title { color: var(--accent); }
 .c-num { font-family: var(--serif); color: var(--accent); font-size: 17px; letter-spacing: .04em; }
-.c-title { font-family: var(--serif); font-size: clamp(18px, .5vw + 15px, 21px); line-height: 1.3; transition: color .2s ease; }
-.c-dots { align-self: end; margin-bottom: .45em; border-bottom: 2px dotted color-mix(in srgb, var(--muted) 45%, transparent); min-width: 1.5em; }
+.c-title { font-family: var(--serif); font-size: clamp(18px, .5vw + 15px, 21px); line-height: 1.3; text-wrap: balance; transition: color .2s ease; }
+/* Leaders sit on the baseline of the title's first line, level with the numeral and the gloss, also when a long title wraps. */
+.c-dots { align-self: baseline; border-bottom: 2px dotted color-mix(in srgb, var(--muted) 45%, transparent); min-width: 1.5em; }
 .c-gloss { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted); }
 .contents .back .c-title { font-style: italic; }
 @media (max-width: 860px) { .contents ol { columns: 1; } }
@@ -586,7 +591,13 @@ h1 .lit, h2 .lit { display: inline-block; line-height: .98; padding: .03em .12em
 @media (max-width: 899px) { .aside-grid { grid-template-columns: minmax(0, 1fr); } .aside-grid aside { position: static; } }
 
 /* Comparison table, set as a ledger */
-.table-scroll { overflow-x: auto; margin: 32px 0 8px; border-top: 2px solid var(--rule-strong); -webkit-overflow-scrolling: touch; }
+.table-scroll { overflow-x: auto; margin: 32px 0 8px; border-top: 2px solid var(--rule-strong); -webkit-overflow-scrolling: touch;
+  /* On a narrow screen the table scrolls sideways: a soft shadow shows at whichever edge has more to see. */
+  background:
+    linear-gradient(to right, var(--paper) 40%, transparent) left / 36px 100% no-repeat local,
+    linear-gradient(to left, var(--paper) 40%, transparent) right / 36px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--edge), transparent) left / 14px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--edge), transparent) right / 14px 100% no-repeat scroll; }
 .table-scroll:focus-visible { outline-offset: 2px; }
 .compare-table { border-collapse: collapse; width: 100%; min-width: 860px; font-size: 15.5px; }
 .compare-table caption { text-align: left; caption-side: bottom; padding-top: 14px; font-size: 14px; color: var(--muted); }
