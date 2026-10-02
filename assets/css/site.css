@@ -638,6 +638,27 @@ h1 .lit, h2 .lit { display: inline-block; line-height: .98; padding: .03em .12em
 .contact-card p { margin: 0; font-size: 18px; }
 .contact-card a { font-family: var(--serif); font-size: 22px; color: var(--ink); }
 
+/* Features (features.html). Every feature is listed, so the page is long on purpose: the
+   home page's Contents, reused, indexes the areas, and each area is a two-column ledger of
+   name, one line and where it works. Rules, not boxes, like the rest of the book. The
+   platform marks are words in the accent colour, never logos (no Android robot anywhere). */
+.feat-area + .feat-area { margin-top: clamp(48px, 6vw, 88px); }
+.feat-head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(14px, 2vw, 26px); align-items: baseline; margin-bottom: clamp(18px, 2.4vw, 28px); }
+.feat-mark { margin: 0; min-width: 1.5em; font-family: var(--serif); font-size: clamp(30px, 1.5vw + 21px, 44px); line-height: 1; color: var(--accent); letter-spacing: .03em; }
+.feat-head h2 { font-size: clamp(28px, 1.5vw + 19px, 42px); line-height: 1.08; letter-spacing: -.016em; }
+.feat-intro { margin: 10px 0 0; max-width: 62ch; color: var(--text); }
+.feat-count { white-space: nowrap; font-family: var(--serif); font-style: italic; color: var(--muted); }
+.feats { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(28px, 4vw, 56px); border-top: 2px solid var(--rule-strong); }
+.feats > div { padding: 14px 0 15px; border-bottom: 1px solid var(--rule); }
+.feats dt { font-family: var(--serif); font-size: 19px; line-height: 1.3; color: var(--ink); }
+.feats dd { margin: 5px 0 0; font-size: 15.5px; line-height: 1.55; }
+.feats .feat-on { margin-top: 8px; font-size: 13px; font-weight: 700; letter-spacing: .02em; line-height: 1.3; color: var(--accent); }
+.feat-on .sep { margin: 0 .5em; color: var(--gold); }
+.feat-up { margin: 14px 0 0; text-align: right; font-size: var(--fs-small); }
+.feat-up a { color: var(--muted); }
+.feat-up a:hover { color: var(--accent); }
+@media (max-width: 760px) { .feats { grid-template-columns: minmax(0, 1fr); } .feats > div { padding: 12px 0 13px; } .feats dt { font-size: 18px; } }
+
 /* Print */
 @media print {
   .masthead, .site-foot, .hero-controls, .hero-play, .hero-act .actions, .colophon .actions { display: none !important; }
