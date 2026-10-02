@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://witbound.app/sitemap.xml
+Sitemap: https://witbound.co.uk/sitemap.xml

@@ -1,4 +1,4 @@
-Fonts on witbound.app, served from this site only.
+Fonts on witbound.co.uk, served from this site only.
 
 literata-regular.woff2, literata-italic.woff2
   Literata 3.103 (Regular, Italic), subset to Latin. Licence: OFL-Literata.txt
