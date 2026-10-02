@@ -51,7 +51,8 @@
 }
 </script>
 <script defer src="assets/js/site.js"></script>
-<script defer src="assets/js/readalong.js"></script>
+<link rel="preload" href="assets/hero/reader-poster.webp" as="image" type="image/webp" fetchpriority="high">
+<script defer src="assets/js/hero.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="stag" viewBox="0 0 525 721"><path style="fill:var(--stag-a)" d="M178 330 L2 521 L118 598 L121 596Z M318 318 L301 505 L293 720 L394 720Z M509 79 L371 130 L320 2 L288 13 L341 154 L316 204 L306 208 L308 220 L261 316 L292 331 L337 239 L378 228 L380 229 L346 265 L404 305 L425 219 L467 209 L461 176 L436 180 L434 175 L424 183 L359 195 L375 166 L520 112Z"/><path style="fill:var(--stag-b)" d="M320 312 L395 718 L523 720 L447 429Z M317 308 L303 310 L292 332 L259 316 L180 325 L122 597 L301 504Z"/></symbol></svg>
@@ -87,43 +88,29 @@
     <div class="hero-lede">
       <p class="lede">Your ebook and its audiobook, matched word by word on your iPhone or iPad. No account, no server, and your books never leave the device.</p>
     </div>
-    <figure class="leaf" id="readalong" data-duration="24.1" aria-labelledby="leaf-title">
-      <div class="leaf-book">
-        <span class="leaf-ribbon" aria-hidden="true"></span>
-        <div class="leaf-page">
-          <p class="leaf-running" id="leaf-title">The Speckled Band</p>
-          <div class="leaf-text" tabindex="0" role="group" aria-label="Passage from The Adventure of the Speckled Band" aria-describedby="leaf-keys">
-        <p>“<span class="w" data-s="0.47" data-a="-0.39">It</span> <span class="w" data-s="0.87">is</span> <span class="w" data-s="1.05">not</span> <span class="w" data-s="1.11">cold</span> <span class="w" data-s="1.47">which</span> <span class="w" data-s="1.65">makes</span> <span class="w" data-s="1.83">me</span> <span class="w" data-s="1.95">shiver</span>,” <span class="w" data-s="3.01" data-a="2.61">said</span> <span class="w" data-s="3.21">the</span> <span class="w" data-s="3.33">woman</span>, <span class="w" data-s="3.45">in</span> <span class="w" data-s="3.69">a</span> <span class="w" data-s="3.81">low</span> <span class="w" data-s="3.87">voice</span>, <span class="w" data-s="4.82" data-a="4.35">changing</span> <span class="w" data-s="5.19">her</span> <span class="w" data-s="5.31">seat</span> <span class="w" data-s="5.49">as</span> <span class="w" data-s="5.79">requested</span>.</p>
-        <p>“<span class="w" data-s="7.32" data-a="6.57">What</span>, <span class="w" data-s="7.65">then</span>?”</p>
-        <p>“<span class="w" data-s="8.76" data-a="7.95">It</span> <span class="w" data-s="9.21">is</span> <span class="w" data-s="9.27">fear</span>, <span class="w" data-s="9.51">Mr</span>. <span class="w" data-s="9.75">Holmes</span>. <span class="w" data-s="10.41">It</span> <span class="w" data-s="10.74" data-a="10.65">is</span> <span class="w" data-s="10.77">terror</span>.” <span class="w" data-s="12.17" data-a="11.25">She</span> <span class="w" data-s="12.45">raised</span> <span class="w" data-s="12.63">her</span> <span class="w" data-s="12.75">veil</span> <span class="w" data-s="12.99">as</span> <span class="w" data-s="13.23">she</span> <span class="w" data-s="13.35">spoke</span>, <span class="w" data-s="14.04" data-a="13.77">and</span> <span class="w" data-s="14.31">we</span> <span class="w" data-s="14.43">could</span> <span class="w" data-s="14.49">see</span> <span class="w" data-s="14.67">that</span> <span class="w" data-s="14.79">she</span> <span class="w" data-s="14.91">was</span> <span class="w" data-s="15.03">indeed</span> <span class="w" data-s="15.45">in</span> <span class="w" data-s="15.69">a</span> <span class="w" data-s="15.81">pitiable</span> <span class="w" data-s="16.23">state</span> <span class="w" data-s="16.47">of</span> <span class="w" data-s="16.65">agitation</span>, <span class="w" data-s="17.90" data-a="17.43">her</span> <span class="w" data-s="18.15">face</span> <span class="w" data-s="18.33">all</span> <span class="w" data-s="18.75">drawn</span> <span class="w" data-s="19.17">and</span> <span class="w" data-s="19.41">gray</span>, <span class="w" data-s="20.31" data-a="19.95">with</span> <span class="w" data-s="20.43">restless</span>, <span class="w" data-s="21.09">frightened</span> <span class="w" data-s="21.45">eyes</span>, <span class="w" data-s="22.09" data-a="21.93">like</span> <span class="w" data-s="22.17">those</span> <span class="w" data-s="22.41">of</span> <span class="w" data-s="22.59">some</span> <span class="w" data-s="22.77">hunted</span> <span class="w" data-s="23.25">animal</span>.</p>
-          </div>
-          <p class="visually-hidden" id="leaf-keys">Select any word to hear the narrator from there. With the passage focused, Space or Enter plays and pauses, and the left and right arrow keys move one word at a time.</p>
-          <div class="leaf-player">
-            <div class="leaf-track" aria-hidden="true"><span class="leaf-fill"></span><span class="leaf-knob"></span></div>
-            <div class="leaf-controls">
-              <span class="leaf-time leaf-elapsed" aria-hidden="true">0:00</span>
-              <button class="leaf-play" type="button" aria-label="Play the reading">
-                <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12.5-7.5z"/></svg>
-                <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="4.5" width="4.2" height="15" rx="1"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1"/></svg>
-              </button>
-              <span class="leaf-time leaf-remaining" aria-hidden="true">-0:24</span>
-            </div>
-          </div>
-          <audio class="leaf-audio" preload="none">
-            <source src="assets/demo/demo.m4a" type="audio/mp4">
-            <source src="assets/demo/demo.mp3" type="audio/mpeg">
-          </audio>
-          <noscript><audio class="leaf-native" controls preload="none">
-            <source src="assets/demo/demo.m4a" type="audio/mp4">
-            <source src="assets/demo/demo.mp3" type="audio/mpeg">
-          </audio></noscript>
+    <figure class="hero-phone" id="hero-phone">
+      <div class="iphone">
+        <div class="iphone-screen">
+          <video class="iphone-video" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none"
+                 poster="assets/hero/reader-poster.webp" width="590" height="1282"
+                 aria-label="Witbound on iPhone: David Clarke reads A Scandal in Bohemia and each word lights up as he says it"
+                 aria-describedby="hero-said">
+            <source src="assets/hero/reader.mp4" type="video/mp4">
+          </video>
+          <span class="iphone-island" aria-hidden="true"></span>
+          <button class="hero-play" type="button" aria-label="Play the clip"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12.5-7.5z"/></svg></button>
         </div>
       </div>
-      <figcaption class="leaf-cap">
-        <p class="leaf-hint">Press play, or tap any word to hear it from there.</p>
-        <p>From <cite>The Adventure of the Speckled Band</cite>, read by David Clarke. Recording: <a href="https://librivox.org/the-adventures-of-sherlock-holmes-version-4-by-sir-arthur-conan-doyle/">LibriVox</a> &middot; Text: <a href="https://www.gutenberg.org/ebooks/48320">Project Gutenberg</a>. Both are in the public domain.</p>
-        <p>The word timings are Witbound&rsquo;s own sync of this book. After a pause, the next word lights when the voice starts.</p>
+      <div class="hero-controls">
+        <button class="hero-btn hero-pause" type="button" aria-label="Pause the clip"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><rect x="6" y="4.5" width="4.2" height="15" rx="1"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12.5-7.5z"/></svg></button>
+        <button class="hero-btn hero-sound" type="button"><svg class="ic-speaker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" stroke="none"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/></svg><span class="ic-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="hero-sound-label">Play with sound</span></button>
+      </div>
+      <p class="visually-hidden" id="hero-said">The narrator reads: A slow and heavy step, which had been heard upon the stairs and in the passage, paused immediately outside the door. Then there was a loud and authoritative tap. &ldquo;Come in!&rdquo; said Holmes.</p>
+      <figcaption class="hero-cap" id="hero-cap">
+        <p class="hero-note">Recorded from the app, with the narration it was playing.</p>
+        <p><cite>A Scandal in Bohemia</cite>, read by David Clarke. Recording: <a href="https://librivox.org/the-adventures-of-sherlock-holmes-version-4-by-sir-arthur-conan-doyle/">LibriVox</a> &middot; Text and illustration: <a href="https://www.gutenberg.org/ebooks/48320">Project Gutenberg</a>. Both are in the public domain.</p>
       </figcaption>
+      <noscript><p class="hero-cap"><a href="assets/hero/reader.mp4">Watch the clip with sound</a> (MP4, 14 seconds).</p></noscript>
     </figure>
     <div class="hero-act">
       <div class="actions">
