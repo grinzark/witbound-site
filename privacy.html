@@ -53,8 +53,9 @@
   <div class="policy-summary">Witbound processes your books and audio on your device.
   Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device unless you choose to
-  share it. Optional server connections, free classics, sharing, purchases and
-  Android translation use the services described below.</div>
+  share it. Optional server connections, Discover, free classics, sharing, purchases,
+  the Mac app&rsquo;s update check and Android translation use the services
+  described below.</div>
 
   <h2>About Witbound</h2>
   <p>You do not need a Witbound account to read or sync books. Witbound has no
@@ -76,9 +77,9 @@
 
   <h2>Community sync</h2>
   <p>Community sync is on by default. It connects to Witbound's service hosted
-  on Cloudflare to find and contribute reusable timing maps. Requests can
-  contain hashed fingerprints derived from ebook and audio files, ebook
-  content and short sequences of recognised speech. These fingerprints help
+  on Cloudflare to find and contribute reusable timing maps. Requests
+  contain hashed fingerprints derived from ebook and audio files and from
+  ebook content. These fingerprints help
   match the same content, including compatible editions; they are not a
   Witbound account or device identifier.</p>
   <p>Contributed maps contain word positions, word start and end times, counts,
@@ -94,30 +95,40 @@
   <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a>.</p>
   <p>Turn community sync off in Settings to stop new community lookups and
   contributions; a request already in progress may finish. This setting does not disable purchases, model downloads,
-  optional server connections or sharing. Turning it off or deleting a local
+  Discover, optional server connections or sharing. Turning it off or deleting a local
   book does not remove maps already contributed to the shared library.</p>
 
   <h2>Discover: your to-read list, synced books and free classics</h2>
-  <p>Your to-read list is stored on your device. While sharing is off, nothing
-  about it leaves your device. To tell you when a book on it becomes quick
-  to sync, Witbound downloads the public list of synced books and compares it
-  with your to-read list on your device.</p>
+  <p>Your to-read list is stored on your device. While sharing is off, it is
+  not sent to Witbound&rsquo;s service. To tell you when a book on it becomes quick
+  to sync, Witbound downloads the public list of synced books from time to time
+  (in the background too, if you allow its notifications) and compares it with
+  your to-read list on your device. Looking up a book you add, and showing its
+  cover, use the public catalogues described below.</p>
   <p>If you turn on &ldquo;Share my to-read list with the community&rdquo;, Witbound
-  sends the catalogue id, title and author of each book on your to-read list to
-  its service hosted on Cloudflare, together with a random installation
-  identifier created on your device. The service stores only a one-way hash
-  of that identifier, so it can count each installation once; it has no
+  sends the catalogue id, title and author of each book on your to-read list,
+  and whether you want it illustrated (yes, no or either), to its service hosted
+  on Cloudflare, together with a random installation identifier created on your
+  device. On iPhone and iPad that identifier is kept in the keychain, so it stays
+  the same if you delete and reinstall Witbound. The service stores only a
+  one-way hash of it, so it can count each installation once; it has no
   account, name or email address to attach it to. Other readers see how many
-  people want a book, never who. While sharing is on, when a book on your
-  to-read list finishes syncing on your device, Witbound also tells the service
-  which edition and narrator it synced (as named inside your files), so other
-  readers can find a matching copy. Nothing else about the book or your
-  reading is sent. Turning sharing off asks the service to
-  delete your shared to-read list. Do this before deleting the app: once the
-  app is gone, Witbound can no longer tell which entries were yours.</p>
+  people want a book, and how many of them want it illustrated, never who.
+  While sharing is on, when a book on your to-read list that came from Open
+  Library finishes syncing on your device, Witbound also tells the service
+  which edition and narrator it synced (as named inside your files) and the id
+  of its timing map, so other readers can find a matching copy. Nothing else about the book or your
+  reading is sent. Turning sharing off withdraws your shared to-read list: the service
+  removes your installation from each book on it and lowers that book&rsquo;s
+  count. The book entries themselves stay, with their titles, authors and
+  remaining counts, as do the editions and narrators already reported. Do this
+  before deleting the app: once the app is gone, Witbound can no longer tell
+  which entries were yours.</p>
   <p>When one of your own books finishes syncing and its timing map is on the
   community service, Witbound may show a card under it on your shelf offering
-  to share it. Nothing is sent unless you tap Share. Then Witbound looks up the
+  to share it. To decide, it downloads the public Synced list to see whether
+  the book is already there. Nothing about your book is sent unless you tap
+  Share. Then Witbound looks up the
   book&rsquo;s title and author in Open Library to name it, and sends the service
   the Open Library id of the book (or, if Open Library has no clear match, its
   title and author), the edition and narrator as named inside your files, and
@@ -131,29 +142,52 @@
   syncing on your Mac, with its own &ldquo;Offer to share books I sync&rdquo; switch,
   and a book synced there can also be shared later from its right-click menu, when Witbound can name its edition
   (&ldquo;Show the community it&rsquo;s synced&hellip;&rdquo;). When you click Share on the Mac,
-  it looks the title and author up in Open Library and sends the same details
+  it looks the title and author up in Open Library (and, if that finds nothing,
+  the title alone) and sends the same details
   in the same way, with a random installation identifier created on that Mac,
   of which the service keeps only a one-way hash. If that
   book&rsquo;s timing map is not on the community service yet (for example because
   community sync is off), the right-click share sends that one map first, as
-  its window says; community sync stays off.</p>
+  its window says; community sync stays off. To show which of your books are
+  already on the Synced list, Witbound for Mac also downloads that public list
+  from time to time while it is open, including when community sync is off;
+  these requests carry no installation identifier.</p>
   <p>To add a book to your to-read list, you type its title (and, if you like, its
   author). When you tap Add, Witbound looks the book up in Open Library, a
   public catalogue run by the Internet Archive, and, if Open Library has no
-  match, in Google Books. Only the title and author you typed are sent, and
-  only when you tap Add. See the
+  match or you ask to see another, in Google Books. Only the title and author
+  you typed are sent, and only when you tap Add or ask for another match. The
+  cover shown with a match is loaded from that catalogue. See the
   <a href="https://archive.org/about/terms">Internet Archive&rsquo;s terms and privacy policy</a>
   and <a href="https://policies.google.com/privacy">Google&rsquo;s privacy policy</a>.
   If neither has the book, it is added exactly as you typed it.</p>
   <p>Shared titles are checked before they appear in the public Wanted or Synced lists:
-  by a word filter and, for titles that are not in a catalogue, by an
-  automated safety check run by Cloudflare. Flagged titles wait for a person
-  to review them. Edition and narrator names you share are checked the same way. You can report or hide any book in Wanted or Synced.</p>
+  by a word filter, by the subject labels the catalogue gives the book, and by an
+  automated safety check for titles typed in by readers, titles from Google
+  Books and Open Library books without subject labels. The automated check is
+  Meta&rsquo;s Llama Guard model, run by Cloudflare Workers AI; it is given only the
+  title and author. Flagged titles wait for a person to review them. Edition
+  and narrator names you share go through the word filter and the automated
+  check.</p>
+  <p>When you search the Wanted or Synced list, the words you type are sent to
+  Witbound&rsquo;s service as you type, to filter the list. They carry no
+  installation identifier and are not stored.</p>
+  <p>You can hide any book in Wanted or Synced; hiding stays on your device. You
+  can also report one, choosing a reason (sexual content, hateful, spam or
+  something else). A report sends the service the book, the reason and your
+  random installation identifier, whether or not you share your to-read list,
+  and hides the book for you. The service keeps the one-way hash of the
+  identifier with the reason, so each installation counts once. A book that
+  several readers report is taken off the public lists until a person reviews
+  it.</p>
   <p>Book covers in Discover, and in the Community view of Witbound for Mac,
   are loaded from the public catalogues that hold
-  them: covers.openlibrary.org (served from the Internet Archive),
-  standardebooks.org, gutenberg.org and books.google.com. Like any website,
-  they receive ordinary connection information such as your IP address. A
+  them: covers.openlibrary.org (which can redirect to the Internet
+  Archive&rsquo;s archive.org servers), standardebooks.org, gutenberg.org,
+  books.google.com and books.googleusercontent.com. That includes covers for
+  books on your to-read list, requested by the catalogue&rsquo;s id for the book,
+  whether or not you share the list. Like any website, these hosts receive
+  ordinary connection information such as your IP address. A
   cover for a book on your to-read list is saved on your device after the first
   time, so it can show again without asking anyone.</p>
   <p>The Synced list is information only. It names editions and narrations
@@ -164,6 +198,17 @@
   Internet Archive (archive.org), directly from those sites. Like any website,
   they receive ordinary connection information such as your IP address.
   Witbound hosts none of these files.</p>
+  <h2>Update checks in Witbound for Mac</h2>
+  <p>Once a day, when its window opens, Witbound for Mac asks GitHub
+  (api.github.com) whether a newer version has been released. The request
+  carries no identifier. Like any website, GitHub receives ordinary connection
+  information such as your IP address; see
+  <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub&rsquo;s privacy statement</a>.
+  If there is a newer version, Witbound shows a notice. Nothing is downloaded
+  unless you click Download, which opens the release page in your browser.
+  Turn off &ldquo;Check for updates&rdquo; in Settings, or at the foot of the window,
+  to stop the check.</p>
+
   <h2>Optional library and progress services</h2>
   <p>If you connect Audiobookshelf, Calibre, BookOrbit, Grimmory or another
   compatible OPDS server, Witbound sends library requests and the necessary
@@ -212,14 +257,17 @@
   <p>If you contact support, we receive your email address and whatever you
   include in your message. We use it to respond, investigate problems and
   keep necessary support records. Please send only information relevant to
-  the issue. Shared timing maps are retained for reuse; local app data stays
-  until you remove it or the app's storage is cleared. Third-party services
+  the issue. Community data has no expiry date: shared timing maps,
+  to-read entries, Synced entries and reports are kept until they are removed.
+  When a better timing map replaces one, the earlier version is kept beside it,
+  never served, so a bad replacement can be undone. Local app data stays until
+  you remove it or the app's storage is cleared. Third-party services
   and backups have their own retention rules.</p>
   <p>Where data-protection law applies, you may have rights to access, correct,
   delete or restrict the use of your personal data, and to complain to your
   data-protection regulator. Contact us using the address below. We may need
   enough information to locate the relevant data; a shared content
-  fingerprint does not identify a Witbound user account. To remove your shared
+  fingerprint does not identify a Witbound user account. To withdraw your shared
   to-read list, turn off &ldquo;Share my to-read list with the community&rdquo; in
   Discover.</p>
 
