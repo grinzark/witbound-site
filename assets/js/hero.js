@@ -2,15 +2,17 @@
    A real screen recording of the app plays, muted and looping, while it is on screen. It never
    starts by itself under reduced motion or Save-Data: those visitors get the poster and a play
    button. "Play with sound" unmutes the same file from the top, so the voice and the highlight
-   cannot drift apart. No tracking, no storage. */
+   cannot drift apart. The playback line under the phone follows the clip. No tracking, no storage. */
 (function () {
-  var fig = document.getElementById('hero-phone');
+  var fig = document.getElementById('wb-hero-phone');
   if (!fig) { return; }
   var video = fig.querySelector('video');
-  var playBtn = fig.querySelector('.hero-play');
-  var pauseBtn = fig.querySelector('.hero-pause');
-  var soundBtn = fig.querySelector('.hero-sound');
-  var soundLabel = fig.querySelector('.hero-sound-label');
+  var playBtn = fig.querySelector('.wb-hero-play');
+  var pauseBtn = fig.querySelector('.wb-hero-pause');
+  var soundBtn = fig.querySelector('.wb-hero-sound');
+  var soundLabel = fig.querySelector('.wb-hero-sound-label');
+  var clip = fig.querySelector('.wb-clip');
+  var clipAt = fig.querySelector('.wb-clip-at');
   if (!video || !playBtn || !pauseBtn || !soundBtn) { return; }
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -21,11 +23,24 @@
   var inView = false;
   var watching = false;
 
+  function clock(s) {
+    s = Math.max(0, Math.floor(s || 0));
+    return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+  }
+
+  function tick() {
+    if (!clip) { return; }
+    var d = video.duration;
+    var p = d && isFinite(d) ? Math.min(1, video.currentTime / d) : 0;
+    clip.style.setProperty('--wb-clip', p.toFixed(4));
+    if (clipAt) { clipAt.textContent = clock(video.currentTime); }
+  }
+
   function render() {
     var playing = !video.paused;
-    fig.classList.toggle('is-playing', playing);
-    fig.classList.toggle('is-stopped', !wantPlay);
-    fig.classList.toggle('has-sound', !video.muted);
+    fig.classList.toggle('wb-is-playing', playing);
+    fig.classList.toggle('wb-is-stopped', !wantPlay);
+    fig.classList.toggle('wb-has-sound', !video.muted);
     pauseBtn.setAttribute('aria-label', wantPlay ? 'Pause the clip' : 'Play the clip');
     soundLabel.textContent = video.muted ? 'Play with sound' : 'Mute';
   }
@@ -71,6 +86,7 @@
   });
 
   ['play', 'pause', 'volumechange'].forEach(function (t) { video.addEventListener(t, render); });
+  ['timeupdate', 'seeked', 'loadedmetadata'].forEach(function (t) { video.addEventListener(t, tick); });
   video.addEventListener('error', function () { wantPlay = false; render(); }, true);
 
   // Wait for the page to finish loading before the clip starts downloading, so the first
