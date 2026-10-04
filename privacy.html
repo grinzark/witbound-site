@@ -51,7 +51,8 @@
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
   Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device unless you choose to
-  share it. Optional server connections, Discover, free classics, sharing, purchases,
+  share it. Groups, if you use it, shares your progress in a group&rsquo;s book with the
+  people in that group. Optional server connections, Discover, free classics, sharing, purchases,
   the Mac app&rsquo;s update check and Android translation use the services
   described below.</div>
 
@@ -196,6 +197,61 @@
   Internet Archive (archive.org), directly from those sites. Like any website,
   they receive ordinary connection information such as your IP address.
   Witbound hosts none of these files.</p>
+  <h2>Groups: reading with friends</h2>
+  <p>Groups lets friends read the same book on a shared schedule. It is optional, and nothing
+  is sent until you open Groups and create a group profile. Groups is part of Witbound for
+  iPhone and iPad.</p>
+  <p><strong>Your group profile.</strong> When you create one, Witbound makes a random device
+  key on your device and keeps it in the keychain. It is not synced through iCloud Keychain,
+  and it moves to a new device only inside an encrypted backup. The key is sent in a request
+  header with every Groups request, never in a web address, to Witbound&rsquo;s service hosted
+  on Cloudflare, which stores only a one-way hash of it. It is separate from the Discover
+  installation identifier described above. Your profile is the name you choose plus a random
+  4-digit tag, such as &ldquo;Sam#4821&rdquo;; there is no email address, phone number or
+  password.</p>
+  <p><strong>What you add.</strong> Group names, and the books an owner adds to a group&rsquo;s
+  roadmap or a member suggests, are stored by the service and shown to the group&rsquo;s
+  members. Books are chosen from Open Library: the words you type to find one are sent to
+  Open Library from your device, as described above for Discover, and the service reads the
+  book&rsquo;s title, author and cover reference from Open Library. Your name, group names and
+  book titles go through the same word filter and automated safety check described above (it
+  is given only the name or the title and author) before anyone else sees them.</p>
+  <p><strong>The group&rsquo;s book.</strong> When a group&rsquo;s owner starts a book, Witbound
+  sends an outline of the owner&rsquo;s copy: a content fingerprint of the book and of each
+  chapter, each chapter&rsquo;s word count and, where known, its listening time. It contains no
+  book text, titles or audio. Members&rsquo; progress is placed on that outline, so friends
+  with different editions can read together. To match a group&rsquo;s book to a book in your
+  library, Witbound compares chapter fingerprints on your device.</p>
+  <p><strong>Your progress.</strong> While you read a group&rsquo;s current book, Witbound sends
+  the service how far you have listened or read: the fingerprint of the chapter you have reached,
+  how far through it you are, your overall percentage, whether you are listening now, and your
+  time zone&rsquo;s offset from UTC (so a reading streak counts your own days). It is sent at
+  most every two minutes while you listen, and when you pause, close the book or leave the
+  app. It contains no book text and no position within your audio files. The other members of
+  the group see your name, your chapter in the owner&rsquo;s edition, your percentage, your
+  stage and status, when you last read, whether you are reading now, your streak, your badges
+  and group moments such as &ldquo;Sam cleared Stage 2&rdquo;. They never see the fingerprints,
+  your time zone, your device key or its hash, or your IP address.</p>
+  <p><strong>Reports and blocks.</strong> You can report a member or a group with a fixed
+  reason (there is no free text). A report stores the reason, what was reported and your
+  profile, so each reader counts once; a member or group that several readers report is
+  hidden until a person reviews it. Blocking a reader stores the block on the service, so
+  their content stays hidden from you and they cannot rejoin a group you run. If a profile is
+  removed for breaking the <a href="terms.html">terms</a>, the hash of its device key is kept
+  so it cannot simply return.</p>
+  <p><strong>Nudges.</strong> If you allow notifications and leave group nudges on, Witbound
+  checks your groups from time to time in the background, using your device key, and shows
+  reminders such as an upcoming stage deadline as notifications created on your device. Turn
+  off &ldquo;Group nudges&rdquo; in Settings to stop them.</p>
+  <p><strong>Keeping and deleting.</strong> Group moments are kept for 90 days. The rest of your
+  Groups data is kept until you leave a group, the group is deleted or you delete your group
+  profile. <em>Delete my group profile</em>, in Settings, deletes from the service your profile,
+  your memberships and progress, your suggestions, the moments about you, your blocks and the
+  reports you made. A group you run passes to its longest-standing member, or is deleted if
+  you are its only member. Your device then forgets the device key. The service uses IP
+  addresses only to limit how fast requests can be made, and does not store them; Cloudflare
+  handles connection information as described above.</p>
+
   <h2>Update checks in Witbound for Mac</h2>
   <p>Once a day, when its window opens, Witbound for Mac asks GitHub
   (api.github.com) whether a newer version has been released. The request
@@ -255,7 +311,8 @@
   <p>If you contact support, we receive your email address and whatever you
   include in your message. We use it to respond, investigate problems and
   keep necessary support records. Please send only information relevant to
-  the issue. Community data has no expiry date: shared timing maps,
+  the issue. Groups data is kept as described in the Groups section above. Other community
+  data has no expiry date: shared timing maps,
   to-read entries, Synced entries and reports are kept until they are removed.
   When a better timing map replaces one, the earlier version is kept beside it,
   never served, so a bad replacement can be undone. Local app data stays until
@@ -267,7 +324,7 @@
   enough information to locate the relevant data; a shared content
   fingerprint does not identify a Witbound user account. To withdraw your shared
   to-read list, turn off &ldquo;Share my to-read list with the community&rdquo; in
-  Discover.</p>
+  Discover. To delete your Groups data, use <em>Delete my group profile</em> in Settings.</p>
 
   <h2>Children</h2>
   <p>Witbound does not ask readers for their age or build advertising profiles.
@@ -305,6 +362,7 @@
       <ul>
         <li><a href="support.html">Support</a></li>
         <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="terms.html">Terms of use</a></li>
         <li><a href="mailto:zarksided@gmail.com">Email Moe</a></li>
       </ul>
     </nav>
