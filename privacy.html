@@ -52,7 +52,8 @@
   Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device unless you choose to
   share it. Groups, if you use it, shares your progress in a group&rsquo;s book with the
-  people in that group. Optional server connections, Discover, free classics, sharing, purchases,
+  people in that group; a quote you share there is a pointer to a place in the book, never
+  its words. Optional server connections, Discover, free classics, sharing, purchases,
   the Mac app&rsquo;s update check and Android translation use the services
   described below.</div>
 
@@ -235,6 +236,18 @@
   reading now, your streak, your badges
   and group moments such as &ldquo;Sam cleared Stage 2&rdquo;. They never see the fingerprints,
   your time zone, your device key or its hash, or your IP address.</p>
+  <p><strong>Quotes.</strong> You can share a passage you highlighted in a group&rsquo;s current
+  book with that group, or turn on &ldquo;Share my highlights with this group&rdquo; to share each new
+  highlight you make in that book. Witbound sends a pointer, not the passage: the content
+  fingerprint of the chapter in your copy, the chapter&rsquo;s word count, which of its words the
+  passage covers, a short fingerprint of those words and how far through your copy it is. It
+  never sends the words themselves, your note on the highlight or any audio. Each member&rsquo;s
+  app finds the passage in its own copy of the book and shows it from there, with that copy&rsquo;s
+  narration, only once that member has reached the passage&rsquo;s chapter. The other members see
+  your name and picture with the quote, when you shared it, and how many of each reaction it has,
+  not who added them. Reactions are four fixed kinds; the service stores yours with your group
+  profile. It also stores whether &ldquo;Share my highlights with this group&rdquo; is on, and a group
+  moment says when you shared quotes.</p>
   <p><strong>Reports and blocks.</strong> You can report a member or a group with a fixed
   reason (there is no free text). A report stores the reason, what was reported and your
   profile, so each reader counts once; a member or group that several readers report is
@@ -247,10 +260,13 @@
   reminders such as an upcoming stage deadline as notifications created on your device. Turn
   off &ldquo;Group nudges&rdquo; in Settings to stop them.</p>
   <p><strong>Keeping and deleting.</strong> Group moments are kept for 90 days. The rest of your
-  Groups data is kept until you leave a group, the group is deleted or you delete your group
-  profile. <em>Delete my group profile</em>, in Settings, deletes from the service your profile,
-  your memberships and progress, your suggestions, the moments about you, your blocks and the
-  reports you made. A group you run passes to its longest-standing member, or is deleted if
+  Groups data is kept until you leave a group or are removed from it, the group is deleted or
+  you delete your group profile. A quote is also deleted when you unshare it or the group&rsquo;s
+  owner removes it. Once a group finishes a book, that book&rsquo;s quotes are no longer shown, and
+  they are deleted when the book leaves the group&rsquo;s history. <em>Delete my group profile</em>,
+  in Settings, deletes from the service your profile, your memberships and progress, your
+  suggestions, the quotes you shared and the reactions on them, your own reactions, the moments
+  about you, your blocks and the reports you made. A group you run passes to its longest-standing member, or is deleted if
   you are its only member. Your device then forgets the device key. The service uses IP
   addresses only to limit how fast requests can be made, and does not store them; Cloudflare
   handles connection information as described above.</p>
