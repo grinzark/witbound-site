@@ -312,7 +312,15 @@
   connection. If you enable KOReader progress sync, your chosen KOReader sync
   server receives the login information needed to authenticate you, book
   fingerprints, reading positions, a device label and an installation
-  identifier. These services have their own privacy
+  identifier. If that server is BookOrbit, Witbound also asks it which of its
+  files a book is, sending the book&rsquo;s title, author and fingerprint, the id
+  of the BookOrbit file the book was downloaded as (if it was), the same device
+  label and identifier, and the device&rsquo;s local time. If you turn on
+  &ldquo;Send highlights to BookOrbit&rdquo;, Witbound sends that server your
+  highlights in the books it holds: the highlighted text, your note, the
+  chapter title, where the highlight is, its colour and when it was made or
+  changed. Deleting a highlight in Witbound deletes it there too. They go only
+  to the server you signed in to. These services have their own privacy
   practices. Use a trusted server and HTTPS where available.</p>
 
   <h2>Sharing and device transfers</h2>
