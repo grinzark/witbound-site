@@ -88,8 +88,9 @@
   Apple stores and syncs it with the rest of your iCloud data; Witbound has no access to it and
   never receives it. Another device&rsquo;s place is only ever offered, never moved to on its own.
   Turning off &ldquo;Sync my place across my devices&rdquo; in Settings stops saving and reading places
-  there and removes Witbound&rsquo;s places from your iCloud, including the ones your other devices
-  saved.</p>
+  there and, if the device is signed in to iCloud at the time, removes Witbound&rsquo;s places from
+  your iCloud, including the ones your other devices saved. Each device has its own switch: a device
+  where it is still on goes on saving its places there.</p>
 
   <h2>Community sync</h2>
   <p>Community sync is on by default. It connects to Witbound's service hosted
@@ -238,18 +239,21 @@
   Open Library from your device, as described above for Discover, and the service reads the
   book&rsquo;s title, author and cover reference from Open Library. A book Open Library has no
   match for can be started by the group&rsquo;s owner from their own copy instead: Witbound sends
-  the service that copy&rsquo;s title and author, with the names of websites a file came from taken
-  out first on the device and again by the service, and the group sees the book by that title,
-  with no cover. Your name, group names and
+  the service that copy&rsquo;s title and author, after taking out the names of websites a file came
+  from that it recognises; the service takes such names out again, and the group sees the book by
+  the title that is left, with no cover. Your name, group names and
   book titles go through the same word filter and automated safety check described above (it
   is given only the name or the title and author) before anyone else sees them.</p>
   <p><strong>The group&rsquo;s book.</strong> When a group&rsquo;s owner starts a book, Witbound
   sends an outline of the owner&rsquo;s copy: a content fingerprint of the book and of each
   chapter, each chapter&rsquo;s word count and, where known, its listening time, and one-way
   fingerprints of a few short passages in each chapter, from which no text can be recovered. It
-  contains no book text, titles or audio. Members&rsquo; progress is placed on that outline, so
-  friends with different editions can read together: a member&rsquo;s phone looks for those
-  fingerprints in its own copy, and sends only where its place falls on the outline. To match a group&rsquo;s book to a book in your
+  contains no book text, titles or audio. For a book a group started before Witbound sent these
+  passage fingerprints, the owner&rsquo;s phone adds them to its outline when the owner next opens
+  the group, if it still has the copy the outline was made from. Members&rsquo; progress is placed on
+  that outline, so friends with different editions can read together: a member&rsquo;s phone looks for
+  those fingerprints in its own copy and adds to its progress (below) where its place falls on the
+  outline, and whether that place was found by the text or only approximately. To match a group&rsquo;s book to a book in your
   library, Witbound compares chapter fingerprints on your device.</p>
   <p><strong>Your progress.</strong> While you read a group&rsquo;s current book, Witbound sends
   the service how far you have listened or read: the fingerprint of the chapter you have reached,
@@ -276,16 +280,22 @@
   moment says when you shared quotes.</p>
   <p><strong>Read or die.</strong> A group&rsquo;s owner can set its schedule to Read or die. Then a
   member who hasn&rsquo;t reached the end of a stage by its deadline is removed from the group. The
+  service notes which version of Witbound each member uses, so that it never removes a member whose
+  app doesn&rsquo;t show this rule. When a member leaves a group or is removed from it, the service
+  keeps when they first joined and how far they had read, for as long as the group is on the same
+  book, so that leaving and rejoining can&rsquo;t skip a deadline. The
   service keeps a record of the removal, with the group&rsquo;s name and the book&rsquo;s title as they
   were then, so that the group&rsquo;s code can&rsquo;t bring the member back until the group starts its
-  next book, and so that the member&rsquo;s app can tell them what happened. The record is deleted once
+  next book (the group&rsquo;s owner can let them back in sooner), and so that the member&rsquo;s app can
+  tell them what happened. The record is deleted once
   the group has moved on to another book and the removal is 30 days old, or sooner if the group is
   deleted or you delete your group profile.</p>
   <p><strong>Reports and blocks.</strong> You can report a member or a group with a fixed
   reason (there is no free text). A report stores the reason, what was reported and your
   profile, so each reader counts once; a member or group that several readers report is
   hidden until a person reviews it. Blocking a reader stores the block on the service, so
-  their content stays hidden from you and they cannot rejoin a group you run. If a profile is
+  their content stays hidden from you, they are removed from the groups you run and they cannot
+  join a group you run. If a profile is
   removed for breaking the <a href="terms.html">terms</a>, the hash of its device key is kept
   so it cannot simply return.</p>
   <p><strong>Nudges.</strong> If you allow notifications and leave group nudges on, Witbound
@@ -293,7 +303,8 @@
   reminders such as an upcoming stage deadline as notifications created on your device. Turn
   off &ldquo;Group nudges&rdquo; in Settings to stop them.</p>
   <p><strong>Keeping and deleting.</strong> Group moments are kept for 90 days. The rest of your
-  Groups data is kept until you leave a group or are removed from it, the group is deleted or
+  Groups data is kept until you leave a group or are removed from it (except the record of when you
+  joined and how far you had read, described under Read or die), the group is deleted or
   you delete your group profile. A quote is also deleted when you unshare it or the group&rsquo;s
   owner removes it. Once a group finishes a book, that book&rsquo;s quotes are no longer shown, and
   they are deleted when the book leaves the group&rsquo;s history. <em>Delete my group profile</em>,
@@ -329,8 +340,10 @@
   identifier. If that server is BookOrbit, Witbound also asks it which of its
   files a book is, sending the book&rsquo;s title, author and fingerprint, the id
   of the BookOrbit file the book was downloaded as (if it was), the same device
-  label and identifier, and the device&rsquo;s local time. If you turn on
-  &ldquo;Send highlights to BookOrbit&rdquo;, Witbound sends that server your
+  label and identifier, Witbound&rsquo;s version and the device&rsquo;s local time. If you turn on
+  &ldquo;Send highlights to BookOrbit&rdquo;, Witbound first asks that server whether it holds
+  each book you have highlights in, sending only the book&rsquo;s fingerprints and the same device
+  details, and then sends it your
   highlights in the books it holds: the highlighted text, your note, the
   chapter title, where the highlight is, its colour and when it was made or
   changed. Deleting a highlight in Witbound deletes it there too. They go only
