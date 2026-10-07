@@ -265,8 +265,11 @@
   moment says when you shared quotes.</p>
   <p><strong>Read or die.</strong> A group&rsquo;s owner can set its schedule to Read or die. Then a
   member who hasn&rsquo;t reached the end of a stage by its deadline is removed from the group. The
-  service keeps a record of the removal until the group starts its next book, so that the
-  group&rsquo;s code can&rsquo;t bring the member back before then.</p>
+  service keeps a record of the removal, with the group&rsquo;s name and the book&rsquo;s title as they
+  were then, so that the group&rsquo;s code can&rsquo;t bring the member back until the group starts its
+  next book, and so that the member&rsquo;s app can tell them what happened. The record is deleted once
+  the group has moved on to another book and the removal is 30 days old, or sooner if the group is
+  deleted or you delete your group profile.</p>
   <p><strong>Reports and blocks.</strong> You can report a member or a group with a fixed
   reason (there is no free text). A report stores the reason, what was reported and your
   profile, so each reader counts once; a member or group that several readers report is
@@ -285,7 +288,7 @@
   they are deleted when the book leaves the group&rsquo;s history. <em>Delete my group profile</em>,
   in Settings, deletes from the service your profile, your memberships and progress, your
   suggestions, the quotes you shared and the reactions on them, your own reactions, the moments
-  about you, your blocks and the reports you made. A group you run passes to its longest-standing member, or is deleted if
+  about you, any record of a Read or die removal, your blocks and the reports you made. A group you run passes to its longest-standing member, or is deleted if
   you are its only member. Your device then forgets the device key. The service uses IP
   addresses only to limit how fast requests can be made, and does not store them; Cloudflare
   handles connection information as described above.</p>
