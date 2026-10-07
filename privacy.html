@@ -49,7 +49,8 @@
   <p class="wb-policy-date">Effective 4 October 2026</p>
 
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
-  Community sync shares content fingerprints and word timings to help readers
+  On iPhone and iPad, your place in each book is also kept in your own iCloud, which
+  Witbound never sees. Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device unless you choose to
   share it. Groups, if you use it, shares your progress in a group&rsquo;s book with the
   people in that group; a quote you share there is a pointer to a place in the book, never
@@ -74,6 +75,20 @@
   <p>You can delete imported books in the app. Copies you exported, shared or
   backed up are separate. Your operating system's backup and device-transfer
   settings may also apply to local app data.</p>
+
+  <h2>Your place on your own devices (iCloud)</h2>
+  <p>On iPhone and iPad, Witbound keeps your place in each book in your own iCloud, using
+  Apple&rsquo;s iCloud key-value storage, so that your other devices signed in to the same Apple
+  Account can offer to continue from it. This is on by default. Each book&rsquo;s record holds a
+  content fingerprint of the book&rsquo;s text, which names the record; where you are in the audio
+  and how long the narration is; the fingerprint of your chapter and how far through it and
+  through the book you are; when your place last moved; the device&rsquo;s name in Witbound
+  (&ldquo;Witbound on iPhone&rdquo;, &ldquo;Witbound on iPad&rdquo; or the name you gave it for KOReader
+  sync); and a random identifier made on that device. It contains no book text, titles or audio.
+  Apple stores and syncs it with the rest of your iCloud data; Witbound has no access to it and
+  never receives it. Another device&rsquo;s place is only ever offered, never moved to on its own.
+  Turn off &ldquo;Sync my place across my devices&rdquo; in Settings to stop saving and reading places
+  there. Places already saved stay in your iCloud.</p>
 
   <h2>Community sync</h2>
   <p>Community sync is on by default. It connects to Witbound's service hosted
