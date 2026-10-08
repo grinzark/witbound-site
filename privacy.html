@@ -257,8 +257,9 @@
   library, Witbound compares chapter fingerprints on your device.</p>
   <p><strong>Your progress.</strong> While you read a group&rsquo;s current book, Witbound sends
   the service how far you have listened or read: the fingerprint of the chapter you have reached,
-  how far through it you are, your overall percentage, whether you are listening now, and your
-  time zone&rsquo;s offset from UTC (so a reading streak counts your own days). It is sent at
+  how far through it you are, your overall percentage, whether you are listening now, your
+  time zone&rsquo;s offset from UTC (so a reading streak counts your own days) and, for progress
+  sent late, when you reached that place. It is sent at
   most every two minutes while you listen, and when you pause, close the book or leave the
   app. It contains no book text and no position within your audio files. The other members of
   the group see your name, the picture you picked (if any), your chapter in the owner&rsquo;s
@@ -280,10 +281,14 @@
   moment says when you shared quotes.</p>
   <p><strong>Read or die.</strong> A group&rsquo;s owner can set its schedule to Read or die. Then a
   member who hasn&rsquo;t reached the end of a stage by its deadline is removed from the group. The
-  service notes which version of Witbound each member uses, so that it never removes a member whose
-  app doesn&rsquo;t show this rule. When a member leaves a group or is removed from it, the service
-  keeps when they first joined and how far they had read, for as long as the group is on the same
-  book, so that leaving and rejoining can&rsquo;t skip a deadline. The
+  service notes which version of Witbound each member uses, and since when, so that it never
+  removes a member whose app doesn&rsquo;t show this rule, or has shown it for less than a day
+  before a deadline. When a
+  member leaves any group or is removed from it, the service keeps their seat for as long as the
+  group is on the same book: when they first joined, how far they had read, the stages they had
+  cleared, when they finished, their badges and when they left and came back (and, for an owner a
+  deadline removed, who the group passed to). This is so that leaving and rejoining can&rsquo;t skip
+  a deadline, and so that coming back gives a member their place. The
   service keeps a record of the removal, with the group&rsquo;s name and the book&rsquo;s title as they
   were then, so that the group&rsquo;s code can&rsquo;t bring the member back until the group starts its
   next book (the group&rsquo;s owner can let them back in sooner), and so that the member&rsquo;s app can
@@ -303,8 +308,8 @@
   reminders such as an upcoming stage deadline as notifications created on your device. Turn
   off &ldquo;Group nudges&rdquo; in Settings to stop them.</p>
   <p><strong>Keeping and deleting.</strong> Group moments are kept for 90 days. The rest of your
-  Groups data is kept until you leave a group or are removed from it (except the record of when you
-  joined and how far you had read, described under Read or die), the group is deleted or
+  Groups data is kept until you leave a group or are removed from it (except the seat record
+  described under Read or die), the group is deleted or
   you delete your group profile. A quote is also deleted when you unshare it or the group&rsquo;s
   owner removes it. Once a group finishes a book, that book&rsquo;s quotes are no longer shown, and
   they are deleted when the book leaves the group&rsquo;s history. <em>Delete my group profile</em>,
