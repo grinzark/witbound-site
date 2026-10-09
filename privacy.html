@@ -46,7 +46,7 @@
   </header>
   <div class="wb-page-body">
     <article class="wb-prose">
-  <p class="wb-policy-date">Effective 8 October 2026</p>
+  <p class="wb-policy-date">Effective SUBMISSION-DATE</p>
 
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
   On iPhone and iPad, your place in each book is also kept in your own iCloud, which
@@ -145,10 +145,12 @@
   community service, Witbound may show a card under it on your shelf offering
   to share it. To decide, it downloads the public Synced list to see whether
   the book is already there. Nothing about your book is sent unless you tap
-  Share. Then Witbound looks up the
-  book&rsquo;s title and author in Open Library to name it, and sends the service
-  the Open Library id of the book (or, if Open Library has no clear match, its
-  title and author), the edition and narrator as named inside your files, and
+  Share. Then, to name the book, Witbound searches the public Wanted and Synced
+  lists for the book&rsquo;s main title (these searches carry no installation
+  identifier and are not stored) and, if neither list names it, looks up the
+  book&rsquo;s title and author in Open Library. It sends the service
+  the Open Library id of the book (or, if there is no clear match or Open Library
+  doesn&rsquo;t answer, its title and author), the edition and narrator as named inside your files, and
   the random installation identifier described above, of which the service keeps
   only a one-way hash. The book can then appear on the public Synced list, so
   readers with the same files can sync it almost instantly; the list never shows
@@ -237,8 +239,10 @@
   roadmap or a member suggests, are stored by the service and shown to the group&rsquo;s
   members. Books are chosen from Open Library: the words you type to find one are sent to
   Open Library from your device, as described above for Discover, and the service reads the
-  book&rsquo;s title, author and cover reference from Open Library. A book Open Library has no
-  match for can be started by the group&rsquo;s owner from their own copy instead: Witbound sends
+  book&rsquo;s title, author and cover reference from Open Library. Witbound also sends the title and
+  author Open Library gave for the book, which the service uses only when it can&rsquo;t reach Open
+  Library itself. A book Open Library has no match for, or doesn&rsquo;t answer for, can be started
+  by the group&rsquo;s owner from their own copy instead: Witbound sends
   the service that copy&rsquo;s title and author, after taking out the names of websites a file came
   from that it recognises; the service takes such names out again, and the group sees the book by
   the title that is left, with no cover. Your name, group names and
