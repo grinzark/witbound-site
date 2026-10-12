@@ -1,6 +1,7 @@
 /* Witbound: shared stylesheet.
    The page plays like the app does. Each part opens on a timestamp and a playback line,
-   the words that matter carry the reading highlight, and the stag marks the lists.
+   the words that matter carry the reading highlight, and the lit word's bar marks the lists.
+   The brand is the app icon's tile, The Leap on Oxblood, beside "Witbound" in IM Fell English.
    Literata is the text being read; the system's own sans is everything around it.
    Light sage paper for everyone, dark only when a visitor picks it with the button.
    Every file is served from this site. No third-party requests. */
@@ -10,6 +11,8 @@
 @font-face { font-family: "Literata"; src: url("../fonts/literata-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 /* Only the reading-options specimen sets a line in Atkinson Hyperlegible (one of the app's fonts). */
 @font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/atkinson-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+/* The wordmark only: IM Fell English (SIL OFL 1.1), cut to the letters of "Witbound". */
+@font-face { font-family: "IM Fell English"; src: url("../fonts/imfell-wordmark.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
 /* Metric-matched fallbacks, so the swap does not move the page. */
 @font-face { font-family: "Literata Fallback"; src: local("Georgia"); size-adjust: 107.66%; ascent-override: 109.32%; descent-override: 28.61%; line-gap-override: 0%; }
 @font-face { font-family: "Literata Fallback"; font-style: italic; src: local("Georgia Italic"), local("Georgia-Italic"); size-adjust: 99.36%; ascent-override: 118.45%; descent-override: 31%; line-gap-override: 0%; }
@@ -44,6 +47,8 @@
   --wb-shadow-k: 1;
   --wb-img-dim: none;
 
+  --wb-wordmark: "IM Fell English", "Literata", "Literata Fallback", Georgia, serif;
+  --wb-tile-edge: 0 0 0 0 transparent;  /* the tile needs no edge on the light page */
   --wb-serif: "Literata", "Literata Fallback", Georgia, "Times New Roman", serif;
   --wb-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
@@ -72,6 +77,7 @@
   --wb-play: #D2A75A; --wb-play-fg: #0F1511;
   --wb-shadow: 0 0 0; --wb-shadow-k: 1.7;
   --wb-img-dim: brightness(.9);
+  --wb-tile-edge: 0 0 0 .75px rgb(169 124 46 / .55);  /* the app's gold hairline on a dark ground */
   color-scheme: dark;
 }
 
@@ -128,16 +134,18 @@ strong, b { font-weight: 650; color: var(--wb-ink); }
 @keyframes wb-say { 0%, 100% { background-color: transparent; } 18%, 62% { background-color: var(--wb-say); } }
 @keyframes wb-draw { from { background-size: 0% .56em; } to { background-size: 100% .56em; } }
 
-/* ---------- The stag ---------- */
-.wb-stagmark { display: block; height: auto; }
-/* The stag as a list bullet: a one-tone silhouette, masked from the same drawing. */
+/* ---------- The brand tile ---------- */
+/* The app icon as a tile, rounded as iOS rounds it (LeapMark.cornerFraction 0.2237), decorative. */
+.wb-icon-tile { display: block; }
+.wb-icon-tile img, .wb-brand img { border-radius: 22.37%; box-shadow: var(--wb-tile-edge); }
+/* Pages built before the tile (the policy and the Terms keep their bytes) still carry the old drawing. */
+.wb-stagmark { display: none; }
+/* The list bullet: the lit word's short gilt bar from the icon's line of words. Never a bare stag. */
 .wb-stag-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .wb-stag-list > li, .wb-defs > div, .wb-items > li { position: relative; padding-left: 27px; }
 .wb-stag-list > li::before, .wb-defs > div::before, .wb-items > li::before, .wb-chips li::before {
-  content: ""; position: absolute; left: 0; top: .34em; width: 14px; height: 15.6px;
+  content: ""; position: absolute; left: 0; top: .62em; width: 14px; height: 5px; border-radius: 2px;
   background: var(--wb-gilt);
-  -webkit-mask: url("../img/wb-stag.svg") center / contain no-repeat;
-  mask: url("../img/wb-stag.svg") center / contain no-repeat;
 }
 
 /* ---------- Buttons ---------- */
@@ -166,7 +174,7 @@ strong, b { font-weight: 650; color: var(--wb-ink); }
 .wb-top-in { max-width: var(--wb-max); margin: 0 auto; padding: 10px var(--wb-gutter); min-height: 62px; display: flex; align-items: center; gap: 24px; }
 .wb-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--wb-ink); }
 .wb-brand img { width: 32px; height: 32px; }
-.wb-brand-name { font-family: var(--wb-serif); font-size: 22px; line-height: 1; }
+.wb-brand-name { font-family: var(--wb-wordmark); font-size: 25px; line-height: 1; }
 .wb-brand:hover { color: var(--wb-ink); }
 .wb-nav { display: flex; gap: 22px; margin-left: auto; }
 .wb-nav a { font-size: 15px; color: var(--wb-text); text-decoration: none; padding: 6px 2px; }
@@ -484,9 +492,9 @@ strong, b { font-weight: 650; color: var(--wb-ink); }
 .wb-note { position: relative; max-width: 46rem; margin-top: 26px; border: 1px solid var(--wb-line); border-radius: 22px; padding: 64px clamp(22px, 3.6vw, 42px) clamp(26px, 3.6vw, 42px); }
 .wb-note p { font-family: var(--wb-serif); font-size: clamp(17.5px, .3vw + 16px, 19px); line-height: 1.66; color: var(--wb-ink); max-width: 36em; }
 /* A small rubber stamp in the corner: the stag inside a gilt ring. */
-.wb-stamp { position: absolute; top: -26px; right: clamp(18px, 3vw, 36px); width: 74px; height: 74px; border-radius: 50%; background: var(--wb-ground); border: 1.5px solid var(--wb-gilt); display: grid; place-items: center; transform: rotate(-9deg); }
-.wb-stamp::before { content: ""; position: absolute; inset: 5px; border: 1px dashed var(--wb-gilt); border-radius: 50%; }
-.wb-stamp .wb-stagmark { width: 32px; }
+/* The corner mark: the icon's tile, set down at a slight angle like a stamp. */
+.wb-stamp { position: absolute; top: -26px; right: clamp(18px, 3vw, 36px); width: 58px; height: 58px; transform: rotate(-7deg); }
+.wb-stamp img { width: 58px; height: 58px; box-shadow: 0 6px 16px rgb(var(--wb-shadow) / calc(.16 * var(--wb-shadow-k))), var(--wb-tile-edge); }
 .wb-signoff { margin-top: 22px; font-family: var(--wb-sans) !important; font-size: 16.5px !important; font-weight: 650; }
 .wb-note .wb-note-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; font-family: var(--wb-sans); font-size: 14.5px; }
 .wb-note-links a { padding: 6px 13px; border: 1px solid var(--wb-line-strong); border-radius: 999px; text-decoration: none; color: var(--wb-ink); }
@@ -495,7 +503,8 @@ strong, b { font-weight: 650; color: var(--wb-ink); }
 /* ---------- The end of the page ---------- */
 .wb-end { max-width: var(--wb-max); margin: 0 auto; padding: clamp(72px, 9vw, 128px) var(--wb-gutter) clamp(56px, 7vw, 96px); text-align: center; }
 .wb-end .wb-cue { max-width: 620px; margin: 0 auto clamp(36px, 4.6vw, 56px); text-align: left; }
-.wb-end-stag { width: 42px; margin: 0 auto 20px; }
+.wb-end-stag { width: 64px; margin: 0 auto 20px; }
+.wb-end-stag img { width: 64px; height: 64px; }
 .wb-end h2 { font-size: clamp(30px, 2.2vw + 18px, 50px); line-height: 1.12; max-width: 20ch; margin: 0 auto; }
 .wb-end .wb-lede { margin: 16px auto 0; }
 .wb-end .wb-actions { justify-content: center; margin-top: 30px; }
@@ -503,8 +512,9 @@ strong, b { font-weight: 650; color: var(--wb-ink); }
 /* ---------- Footer ---------- */
 .wb-foot { border-top: 1px solid var(--wb-line); font-size: 15px; }
 .wb-foot-in { max-width: var(--wb-max); margin: 0 auto; padding: 40px var(--wb-gutter) 28px; display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 28px; }
-.wb-foot-brand .wb-stagmark { width: 30px; margin-bottom: 12px; }
-.wb-foot-name { margin: 0; font-family: var(--wb-serif); font-size: 23px; line-height: 1.1; color: var(--wb-ink); }
+.wb-foot-brand .wb-icon-tile { width: 44px; margin-bottom: 12px; }
+.wb-foot-brand .wb-icon-tile img { width: 44px; height: 44px; }
+.wb-foot-name { margin: 0; font-family: var(--wb-wordmark); font-size: 26px; line-height: 1.1; color: var(--wb-ink); }
 .wb-foot-brand p:not(.wb-foot-name) { margin: 8px 0 0; color: var(--wb-muted); max-width: 32ch; }
 .wb-foot h2 { font: 650 14.5px/1.3 var(--wb-sans); color: var(--wb-ink); margin: 2px 0 10px; }
 .wb-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
