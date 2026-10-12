@@ -46,17 +46,19 @@
   </header>
   <div class="wb-page-body">
     <article class="wb-prose">
-  <p class="wb-policy-date">Effective 9 October 2026</p>
+  <p class="wb-policy-date">Effective 12 October 2026</p>
 
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
-  On iPhone and iPad, your place in each book is also kept in your own iCloud, which
+  On Android, if you turn on Cloud sync, a book&rsquo;s audio is also sent to Witbound&rsquo;s
+  server to be turned into timed words, and is deleted straight after; your ebook never leaves
+  your device. On iPhone and iPad, your place in each book is also kept in your own iCloud, which
   Witbound never sees. Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device unless you choose to
   share it. Groups, if you use it, shares your progress in a group&rsquo;s book with the
   people in that group; a quote you share there is a pointer to a place in the book, never
   its words. Optional server connections, Discover, free classics, sharing, purchases,
-  the Mac app&rsquo;s update check and Android translation use the services
-  described below.</div>
+  the Mac app&rsquo;s update check, Android translation and Android&rsquo;s Cloud sync use the
+  services described below.</div>
 
   <h2>About Witbound</h2>
   <p>You do not need a Witbound account to read or sync books. Witbound has no
@@ -67,7 +69,10 @@
 
   <h2>Your books and audio</h2>
   <p>Imported books and audiobooks are stored on your device. Speech processing
-  and word alignment run locally. Witbound does not upload your book text or
+  and word alignment run locally, with one exception: on Android, if you turn on Cloud sync,
+  the phone sends a book&rsquo;s audio to Witbound&rsquo;s server for speech processing, as
+  described under Cloud sync below. Matching the words to your ebook still happens on your
+  device, and your ebook never leaves it. Witbound does not upload your book text or
   audio to its community-sync service. Android may download its speech model
   from Hugging Face before the first local sync; this downloads a model, not
   your books. Apple platforms may download speech or language resources through
@@ -111,9 +116,120 @@
   Cloudflare's own handling is described in its
   <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a>.</p>
   <p>Turn community sync off in Settings to stop new community lookups and
-  contributions; a request already in progress may finish. This setting does not disable purchases, model downloads,
+  contributions; a request already in progress may finish. On Android, a book that Cloud
+  sync helped with still shares its finished map, as described under Cloud sync. This setting does not disable purchases, model downloads,
   Discover, optional server connections or sharing. Turning it off or deleting a local
   book does not remove maps already contributed to the shared library.</p>
+
+  <h2>Cloud sync (Android)</h2>
+  <p>Cloud sync is an optional Android feature that helps a long English audiobook sync in
+  minutes instead of the hour or more a phone can take. It is off until you turn it on,
+  either for your books in Settings &rsaquo; Cloud sync (&ldquo;Long books only&rdquo; or
+  &ldquo;All books&rdquo;) or for one book with &ldquo;Sync in the cloud&rdquo;. Before anything
+  is sent, Witbound shows a note saying what Cloud sync does, and nothing is sent unless you
+  agree.</p>
+  <p>It works only:</p>
+  <ul>
+    <li>on Wi-Fi or another unmetered network;</li>
+    <li>for books in English;</li>
+    <li>while Witbound&rsquo;s server is taking work.</li>
+  </ul>
+  <p>At any other time, including when the server is busy, unreachable or at its limit, your
+  phone syncs the book on its own. If community sync is on and already has timings for your
+  book, Witbound uses them, and Cloud sync sends only the parts still missing, if any.</p>
+  <p><strong>What is sent.</strong> While a book syncs, your phone works through the audiobook
+  from the start and sends its audio from the end. The audio goes to Witbound&rsquo;s server in
+  pieces of about five minutes, over an encrypted connection. A piece holds only the recorded
+  sound, not the file&rsquo;s tags, so it carries no title, author or cover (though the narrator
+  may read the title aloud).</p>
+  <p>When a book starts, the app also sends:</p>
+  <ul>
+    <li>a random identifier it made for Cloud sync on your phone. It is not tied to an account,
+    and it is separate from the identifiers described elsewhere in this policy;</li>
+    <li>the audiobook&rsquo;s length and audio format, and how many pieces there are;</li>
+    <li>the fingerprint of the book&rsquo;s files that community sync uses;</li>
+    <li>Witbound&rsquo;s version;</li>
+    <li>a Google Play integrity token (see below).</li>
+  </ul>
+  <p>Cloud sync never sends your ebook, its text, your library, your notes or highlights, or
+  where you are in a book. Matching the words to your ebook happens on your phone, and your
+  ebook never leaves it.</p>
+  <p><strong>What the server does with it.</strong> Witbound&rsquo;s server runs on Cloudflare.
+  It turns each piece into words and their timings, using the same speech engine Witbound uses
+  on Android phones. It sends them back to your phone and then discards the piece. The audio
+  and the words exist only in the server&rsquo;s memory while that piece is processed. They are
+  never written to disk, logged or kept, and Witbound keeps no copy of them. Request logging is
+  off.</p>
+  <p><strong>Limits and misuse.</strong> To keep Cloud sync free and within its budget, the
+  server keeps only:</p>
+  <ul>
+    <li>a keyed one-way hash of your phone&rsquo;s Cloud sync identifier, with how much audio it
+    sent this month and last. These are deleted 35 days after the phone last used Cloud sync;</li>
+    <li>while a book is syncing, a record of that session (the same hash, the book&rsquo;s length
+    and format, and the number of pieces) for up to 3 hours, and a note of each piece in
+    progress until it is finished;</li>
+    <li>a one-way hash of each integrity token, for about 6 minutes, so that a token can&rsquo;t
+    be used twice;</li>
+    <li>request counts for rate limits, for no more than a day. They are keyed by the hashed
+    identifier, or by a keyed hash of your IP address made with a key that changes every
+    day.</li>
+  </ul>
+  <p>It does not store your IP address, the identifier itself, any audio or words, or the
+  book&rsquo;s title.</p>
+  <p>Each phone has a monthly safety limit, and the service has a monthly budget. When either
+  is used up, your phone syncs on its own, and Witbound tells you until when in a notification
+  and on the book&rsquo;s card. Both are created on your phone.</p>
+  <p>To know whether to offer Cloud sync, the app asks the server from time to time whether it
+  is taking work, even while Cloud sync is off. That request carries no identifier and nothing
+  about you or your books.</p>
+  <p><strong>Google Play Integrity.</strong> Before the server accepts a book, the app asks
+  Google Play for an integrity token, and the server asks Google to read it. The answer
+  says:</p>
+  <ul>
+    <li>whether the request comes from the genuine Witbound app from Google Play;</li>
+    <li>whether the device passes Google&rsquo;s integrity checks;</li>
+    <li>how many integrity checks Witbound has asked for on that device in the last hour.</li>
+  </ul>
+  <p>To make the token, Google Play services sends Google:</p>
+  <ul>
+    <li>details of the app (its package name, version and signing certificate);</li>
+    <li>its Google Play licence status;</li>
+    <li>device attestation data.</li>
+  </ul>
+  <p>The token is tied to a one-way hash of your Cloud sync identifier and the book&rsquo;s
+  length, so Google sees neither. Witbound uses the answer only to accept or refuse the
+  request. Google handles this data under its own terms: see
+  <a href="https://developer.android.com/google/play/integrity/terms#data-safety">how the Play Integrity API handles data</a>
+  and <a href="https://policies.google.com/privacy">Google&rsquo;s privacy policy</a>.</p>
+  <p><strong>The finished map.</strong> When a book that Cloud sync helped finishes syncing,
+  and its timing map passes Witbound&rsquo;s quality check, the app shares the map with community
+  sync, as described above, so the next reader with the same edition can sync it almost
+  instantly. This is part of what you agree to when you turn on Cloud sync, so it happens even
+  if community sync is off.</p>
+  <ul>
+    <li>It sends the same map and fingerprints that community sync sends, and nothing more.</li>
+    <li>A map is never shared before the whole book has synced.</li>
+    <li>Maps already shared stay in the shared library.</li>
+  </ul>
+  <p><strong>Who handles it, and where.</strong> Cloudflare runs the server for Witbound as its
+  processor, under Cloudflare&rsquo;s data processing addendum. Like any website, it handles
+  ordinary connection information such as your IP address and request headers, as described
+  under Community sync. Your phone connects to a Cloudflare data centre near you. The speech
+  engine runs in a Cloudflare data centre that Cloudflare chooses, which may be outside the UK,
+  including in the United States. Cloudflare&rsquo;s addendum protects those transfers with the
+  UK&rsquo;s approved safeguards.</p>
+  <p><strong>Your choice.</strong> Witbound relies on your consent for Cloud sync. You give it
+  on the note, and you can withdraw it at any time: set Settings &rsaquo; Cloud sync to Off, or
+  choose &ldquo;Sync on this phone instead&rdquo; for a book.</p>
+  <ul>
+    <li>Uploads stop at once. A piece already sent is still processed, and its words are
+    discarded.</li>
+    <li>Withdrawing doesn&rsquo;t undo syncs already finished, and it doesn&rsquo;t remove maps
+    already shared.</li>
+    <li>The server holds only a one-way hash of a random identifier, so Witbound can&rsquo;t tell
+    which counts are yours, and can&rsquo;t find or delete them on request. They are deleted
+    automatically 35 days after the phone last used Cloud sync.</li>
+  </ul>
 
   <h2>Discover: your to-read list, synced books and free classics</h2>
   <p>Your to-read list is stored on your device. While sharing is off, it is
@@ -393,7 +509,8 @@
   <p>If you contact support, we receive your email address and whatever you
   include in your message. We use it to respond, investigate problems and
   keep necessary support records. Please send only information relevant to
-  the issue. Groups data is kept as described in the Groups section above. Other community
+  the issue. Groups data is kept as described in the Groups section above. Cloud sync keeps
+  no audio or words; its usage counts are deleted 35 days after a phone last used it. Other community
   data has no expiry date: shared timing maps,
   to-read entries, Synced entries and reports are kept until they are removed.
   When a better timing map replaces one, the earlier version is kept beside it,
@@ -406,7 +523,8 @@
   enough information to locate the relevant data; a shared content
   fingerprint does not identify a Witbound user account. To withdraw your shared
   to-read list, turn off &ldquo;Share my to-read list with the community&rdquo; in
-  Discover. To delete your Groups data, use <em>Delete my group profile</em> in Settings.</p>
+  Discover. To delete your Groups data, use <em>Delete my group profile</em> in Settings. To
+  withdraw your consent to Cloud sync, set Settings &rsaquo; Cloud sync to Off.</p>
 
   <h2>Children</h2>
   <p>Witbound does not ask readers for their age or build advertising profiles.
