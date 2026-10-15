@@ -127,12 +127,18 @@ strong, b { font-weight: 650; color: var(--wb-ink); }
 /* The hero headline is read out once on load: each word lights in turn, as in the app, and the
    band settles on the key phrase. Static under reduced motion. */
 .wb-ln { display: block; }
-.wb-w { border-radius: .12em; }
+/* Each word's light hugs its letters, as in the app: from just above the capitals to just under the
+   descenders (Literata: capitals 0.70em, descenders 0.23em), not the font's whole box, which runs
+   1.18em above the baseline and would light the line above too (Moe, 15 Oct 2026). */
+.wb-say { position: relative; z-index: 0; }
+.wb-w { position: relative; }
+.wb-w::before { content: ""; position: absolute; z-index: -1; left: -.06em; right: -.06em; top: .41em; bottom: .05em;
+  border-radius: .12em; background: var(--wb-say); opacity: 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .wb-say .wb-w { animation: wb-say .62s ease both; animation-delay: calc(var(--i) * .2s + .3s); }
+  .wb-say .wb-w::before { animation: wb-say .62s ease both; animation-delay: calc(var(--i) * .2s + .3s); }
   .wb-say .wb-band { animation: wb-draw .75s cubic-bezier(.25, .7, .25, 1) both; animation-delay: calc(var(--i) * .2s + .3s); }
 }
-@keyframes wb-say { 0%, 100% { background-color: transparent; } 18%, 62% { background-color: var(--wb-say); } }
+@keyframes wb-say { 0%, 100% { opacity: 0; } 18%, 62% { opacity: 1; } }
 @keyframes wb-draw { from { background-size: 0% .56em; } to { background-size: 100% .56em; } }
 
 /* ---------- The brand tile ---------- */
