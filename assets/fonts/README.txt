@@ -10,8 +10,8 @@ imfell-wordmark.woff
   No page asks for it now; it stays for anything that still links it. Licence: OFL-IMFellEnglish.txt
 
 literata-regular.woff2, literata-italic.woff2
-  Literata 3.103 (Regular, Italic), subset to Latin. Body text where Georgia is missing, and the
-  privacy policy and terms. Licence: OFL-Literata.txt
+  Literata 3.103 (Regular, Italic), subset to Latin. Body text where Georgia is missing.
+  Licence: OFL-Literata.txt
 
 atkinson-regular.woff2, atkinson-bold.woff2, atkinson-italic.woff2
   Atkinson Hyperlegible 1.006 (Regular, Bold, Italic), subset to Latin.

@@ -1,8 +1,9 @@
 © 2007 Igino Marini (www.iginomarini.com) With Reserved Font Name IM FELL English Roman
 
-The file imfell-wordmark.woff on this site is a modified version: IM FELL English Roman cut to the
-letters of "Witbound" and renamed "Witbound Wordmark", as the licence requires of a
-modified font that carries a Reserved Font Name.
+Two files on this site are modified versions of IM FELL English Roman, each renamed, as the licence
+requires of a modified font that carries a Reserved Font Name:
+  witbound-display.woff   subset to Basic Latin and a few marks, renamed "Witbound Display";
+  imfell-wordmark.woff    cut to the letters of "Witbound", renamed "Witbound Wordmark".
 
 Copyright (c) 2010, Igino Marini (mail@iginomarini.com)
 

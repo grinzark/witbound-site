@@ -1,15 +1,18 @@
-/* Witbound: the small-screen menu. No tracking, no storage.
+/* Witbound: the small-screen menu, and a link to a question opens it. No tracking, no storage.
    The site is one book in Oxblood and cream, so the old light/dark choice is gone: a "wb-theme" key
    that an earlier visit stored is removed, and nothing else is ever written. */
 (function () {
   try { localStorage.removeItem('wb-theme'); } catch (e) { /* storage blocked: nothing was stored */ }
   var root = document.documentElement;
   if (root.getAttribute('data-theme')) { root.removeAttribute('data-theme'); }
-  // The policy pages keep their older head byte for byte: give the browser's bar the cloth's colour there too.
-  [['theme-color', '#461418'], ['color-scheme', 'light']].forEach(function (p) {
-    var m = document.querySelector('meta[name="' + p[0] + '"]');
-    if (m && m.getAttribute('content') !== p[1]) { m.setAttribute('content', p[1]); }
-  });
+  // A link to a question (index.html#languages) opens that question rather than landing on it shut.
+  function openTarget() {
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    var el = id && document.getElementById(id);
+    if (el && el.tagName === 'DETAILS') { el.open = true; }
+  }
+  openTarget();
+  window.addEventListener('hashchange', openTarget);
 
   // The menu closes once a place is chosen, on Escape, and on a tap outside it.
   var menus = document.querySelectorAll('details.wb-menu');

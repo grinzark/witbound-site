@@ -2,13 +2,12 @@
    The site as a bound book: Oxblood cloth with gilt rules, cream leaves, public-domain plates printed in
    Oxblood ink on the page or stamped in gilt on the cloth, and the reviews as endpapers.
    One theme on purpose: the book is Oxblood and cream on every device. Every class is wb- prefixed.
-   privacy.html and terms.html are kept byte for byte; this sheet styles their older markup too
-   (.wb-top, .wb-page-head, .wb-prose, .wb-foot), so every page wears the same binding. */
+   privacy.html and terms.html carry the live policy text byte for byte, in the same binding as every page. */
 
 /* ---------- Fonts: all served from this site ---------- */
 /* IM FELL English Roman (SIL OFL 1.1), subset and renamed, since a modified copy may not keep its Reserved Font Name. */
 @font-face { font-family: "Witbound Display"; src: url("../fonts/witbound-display.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
-/* Literata steps in where Georgia is missing (Android, Linux), and sets the policy pages, whose footers say so. */
+/* Literata steps in where Georgia is missing (Android, Linux), as the colophon says. */
 @font-face { font-family: "Literata"; src: url("../fonts/literata-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Literata"; src: url("../fonts/literata-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 
@@ -55,8 +54,6 @@
   --ease: cubic-bezier(.22, .61, .36, 1);
   --diamond: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 0 12 6 6 12 0 6Z' fill='%23B88D3E'/%3E%3C/svg%3E");
 }
-/* The policy pages are set in Literata, as their own footers say. */
-body:has(.wb-policy-date) { --serif: "Literata", Georgia, "Times New Roman", serif; }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -85,7 +82,7 @@ strong, b { font-weight: 700; }
 .wb-skip { position: absolute; left: 12px; top: -80px; z-index: 50; background: var(--cream); color: var(--ox); padding: 10px 14px; font-family: var(--serif); }
 .wb-skip:focus { top: 12px; }
 .wb-wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-/* The old light/dark button and the A2 stag still sit in the policy pages' markup: the book has one binding. */
+/* The old light/dark button and the A2 stag, in a policy page a browser may still hold from the old site. */
 .wb-theme, .wb-stagmark { display: none !important; }
 
 /* ---------- Gatherings: the page alternates Oxblood and cream ---------- */
@@ -173,8 +170,8 @@ strong, b { font-weight: 700; }
 .wb-btn:active { transform: translateY(1px); }
 .wb-btn-gold, .wb-sig-ox .wb-btn-main, .wb-page-head .wb-btn-main, .wb-menu-panel .wb-btn-main { background: var(--gold); color: #2A0A0D; box-shadow: 0 0 0 1px rgba(255,236,190,.25) inset, 0 10px 24px -12px rgba(0,0,0,.6); }
 .wb-btn-gold:hover, .wb-sig-ox .wb-btn-main:hover, .wb-page-head .wb-btn-main:hover, .wb-menu-panel .wb-btn-main:hover { background: #E2B65E; }
-.wb-btn-line, .wb-top .wb-btn-small, .wb-masthead .wb-btn-small, .wb-page-head .wb-btn-alt { background: transparent; color: var(--on-ox); box-shadow: inset 0 0 0 1px rgba(213,163,71,.7); }
-.wb-btn-line:hover, .wb-top .wb-btn-small:hover, .wb-masthead .wb-btn-small:hover, .wb-page-head .wb-btn-alt:hover { background: rgba(213,163,71,.12); }
+.wb-btn-line, .wb-top .wb-btn-small, .wb-page-head .wb-btn-alt { background: transparent; color: var(--on-ox); box-shadow: inset 0 0 0 1px rgba(213,163,71,.7); }
+.wb-btn-line:hover, .wb-top .wb-btn-small:hover, .wb-page-head .wb-btn-alt:hover { background: rgba(213,163,71,.12); }
 .wb-sig-cream .wb-btn-line, .wb-page-body .wb-btn-line, .wb-sheet .wb-btn-line { color: var(--ox); box-shadow: inset 0 0 0 1px var(--gilt); }
 .wb-sig-cream .wb-btn-line:hover, .wb-page-body .wb-btn-line:hover, .wb-sheet .wb-btn-line:hover { background: rgba(184,141,62,.12); }
 .wb-btn-small { font-size: .92rem; padding: .62em 1.05em; min-height: 40px; }
@@ -209,9 +206,9 @@ strong, b { font-weight: 700; }
   padding: clamp(18px, 2.4vw, 30px) clamp(16px, 4vw, 64px);
 }
 .wb-top-in::after { content: ""; position: absolute; left: clamp(16px, 4vw, 64px); right: clamp(16px, 4vw, 64px); bottom: 0; height: 1px; background: rgba(184,141,62,.45); }
-.wb-masthead { position: relative; z-index: 3; display: flex; align-items: center; gap: 24px; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid rgba(184,141,62,.45); max-width: none; }
-.wb-masthead::after { display: none; }
-.wb-brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: var(--on-ox); margin-right: auto; }
+.wb-brand { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: var(--on-ox); margin-right: auto; min-width: 0; }
+/* The Leap tile keeps its square on the narrowest phone: it never gives up width to the name or the menu. */
+.wb-brand picture, .wb-brand img { flex: none; }
 .wb-brand img { width: 46px; height: 46px; border-radius: 22.37%; box-shadow: 0 0 0 1px rgba(213,163,71,.7), 0 8px 18px -8px rgba(0,0,0,.65); }
 .wb-tile { border-radius: 22.37%; box-shadow: 0 0 0 1px rgba(213,163,71,.7), 0 8px 18px -8px rgba(0,0,0,.65); }
 .wb-tile img { border-radius: 22.37%; width: 100%; height: 100%; }
@@ -219,7 +216,7 @@ strong, b { font-weight: 700; }
 .wb-nav { display: flex; gap: clamp(18px, 2.2vw, 34px); font-size: .98rem; }
 .wb-nav a { text-decoration: none; color: var(--on-ox-soft); padding: 6px 0; border-bottom: 1px solid transparent; transition: color .2s var(--ease), border-color .2s var(--ease); }
 .wb-nav a:hover, .wb-nav a[aria-current="page"] { color: var(--on-ox); border-bottom-color: var(--gold); }
-.wb-tools { display: flex; align-items: center; gap: 14px; }
+.wb-tools { display: flex; align-items: center; gap: 14px; flex: none; }
 .wb-menu { display: none; position: relative; }
 .wb-menu summary { list-style: none; cursor: pointer; font-family: var(--display); text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; color: var(--gold); padding: 11px 13px; min-height: 44px; display: flex; align-items: center; border: 1px solid rgba(184,141,62,.6); border-radius: 2px; }
 .wb-menu summary::-webkit-details-marker { display: none; }
@@ -235,15 +232,20 @@ strong, b { font-weight: 700; }
   --focus: var(--gold);
   position: relative;
   color: var(--on-ox-soft);
+  padding: 0 var(--cover-x) calc(var(--fi) + clamp(56px, 6vw, 88px));
+  /* The bottom half of the double gilt frame that .wb-top starts, as on every page's title, with the glow behind the phone */
   background:
+    var(--diamond) left calc(var(--fi) - 6px) bottom calc(var(--fi) - 6px) / 12px 12px no-repeat,
+    var(--diamond) right calc(var(--fi) - 6px) bottom calc(var(--fi) - 6px) / 12px 12px no-repeat,
+    linear-gradient(rgba(184,141,62,.75), rgba(184,141,62,.75)) left var(--fi) bottom var(--fi) / calc(100% - 2 * var(--fi)) 1px no-repeat,
+    linear-gradient(rgba(184,141,62,.75), rgba(184,141,62,.75)) left var(--fi) top 0 / 1px calc(100% - var(--fi)) no-repeat,
+    linear-gradient(rgba(184,141,62,.75), rgba(184,141,62,.75)) right var(--fi) top 0 / 1px calc(100% - var(--fi)) no-repeat,
+    linear-gradient(rgba(184,141,62,.35), rgba(184,141,62,.35)) left calc(var(--fi) + 6px) bottom calc(var(--fi) + 6px) / calc(100% - 2 * var(--fi) - 12px) 1px no-repeat,
+    linear-gradient(rgba(184,141,62,.35), rgba(184,141,62,.35)) left calc(var(--fi) + 6px) top 0 / 1px calc(100% - var(--fi) - 6px) no-repeat,
+    linear-gradient(rgba(184,141,62,.35), rgba(184,141,62,.35)) right calc(var(--fi) + 6px) top 0 / 1px calc(100% - var(--fi) - 6px) no-repeat,
     radial-gradient(120% 70% at 78% 32%, rgba(120,36,40,.35), rgba(120,36,40,0) 60%),
     linear-gradient(180deg, var(--ox) 0%, var(--ox) 45%, var(--ox-deep) 100%);
-  padding: var(--fi);
 }
-.wb-cover-panel { position: relative; max-width: 1376px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 64px) clamp(56px, 6vw, 88px); border: 1px solid rgba(184,141,62,.75); }
-.wb-cover-panel::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(184,141,62,.35); pointer-events: none; }
-.wb-corner { position: absolute; width: 11px; height: 11px; background: var(--gilt); transform: rotate(45deg); }
-.wb-c1 { top: -6px; left: -6px; } .wb-c2 { top: -6px; right: -6px; } .wb-c3 { bottom: -6px; left: -6px; } .wb-c4 { bottom: -6px; right: -6px; }
 .wb-cover-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .75fr); gap: clamp(32px, 5vw, 88px); align-items: center; padding-top: clamp(44px, 6vw, 88px); }
 .wb-cover h1 { position: relative; z-index: 0; font-size: var(--fs-h1); line-height: 1.1; color: var(--on-ox); margin: 0; letter-spacing: -.012em; }
 .wb-ln { display: block; }
@@ -331,10 +333,10 @@ strong, b { font-weight: 700; }
 .wb-lib .wb-stage .wb-device { position: absolute; left: 2%; top: 14%; }
 .wb-lib .wb-stage .wb-phone { --w: 290px; }
 
-/* Groups: Rhead's portrait plate stands beside the chapter, like a frontispiece */
-.wb-grp .wb-grp-plate { grid-column: 1 / span 4; position: sticky; top: 40px; }
-.wb-grp .wb-grp-plate img { max-width: 400px; }
-.wb-grp .wb-text { grid-column: 6 / span 7; }
+/* Groups: as in A, the chapter on the left and the plate on the right, so the cream chapters alternate.
+   Rhead's plate is portrait, so it is mounted like How it works' and stands beside the whole chapter. */
+.wb-grp .wb-grp-plate { grid-column: 8 / span 5; grid-row: 1; position: sticky; top: 40px; }
+.wb-grp .wb-text { grid-column: 1 / span 6; grid-row: 1; }
 .wb-grp .wb-duo { margin-top: clamp(44px, 5vw, 64px); max-width: 620px; }
 .wb-grp .wb-duo .wb-device:nth-child(2) { margin-top: clamp(32px, 5vw, 72px); }
 
@@ -352,6 +354,9 @@ strong, b { font-weight: 700; }
 .wb-bookplate h3, .wb-bookplate h2 { font-size: clamp(1.7rem, 1.4rem + 1vw, 2.3rem); color: var(--on-ox); margin: 0 0 12px; line-height: 1.08; }
 .wb-bookplate p { color: var(--on-ox-soft); }
 .wb-bookplate .wb-actions { margin-top: 22px; gap: 12px 22px; }
+/* Mac and Android side by side: the shorter one's buttons drop to the foot, level with the other's. */
+.wb-companions .wb-bookplate { display: flex; flex-direction: column; }
+.wb-companions .wb-bookplate .wb-actions { margin-top: auto; padding-top: 6px; }
 .wb-sig-cream .wb-bookplate .wb-bookplate-label, .wb-page-body .wb-bookplate .wb-bookplate-label { color: var(--ox-ink); }
 .wb-sig-cream .wb-bookplate h2, .wb-sig-cream .wb-bookplate h3, .wb-page-body .wb-bookplate h2 { color: var(--ox); }
 .wb-sig-cream .wb-bookplate p, .wb-page-body .wb-bookplate p { color: var(--ink); }
@@ -445,8 +450,14 @@ strong, b { font-weight: 700; }
 .wb-ep-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 48px); align-items: start; }
 .wb-ep-side { grid-column: 1 / span 4; position: sticky; top: 40px; }
 .wb-rating { margin-top: 22px; font-size: var(--fs-small); color: var(--on-ox-quiet); max-width: 22em; }
-.wb-stars-lg { display: flex; gap: 6px; color: var(--gold); margin-top: 26px; }
-.wb-stars-lg svg { width: 26px; height: 26px; }
+/* The emblem is filled to the US rating (4.8: the fifth star four-fifths gold); the line beside it says it in words. */
+.wb-stars-lg { position: relative; display: inline-flex; color: var(--gold); margin-top: 26px; }
+.wb-stars-lg > span { display: flex; gap: 6px; }
+.wb-stars-base { opacity: .3; }
+.wb-stars-fill { position: absolute; left: 0; top: 0; overflow: hidden; }
+.wb-stars-lg svg { width: 26px; height: 26px; flex: none; }
+.wb-selection { margin-top: 8px; }
+.wb-rating a { color: var(--on-ox); text-decoration-color: var(--gold); }
 .wb-ep-side .wb-plate { margin-top: 34px; max-width: 300px; }
 .wb-ep-side .wb-plate img { opacity: .92; }
 .wb-ep-wall { grid-column: 6 / span 7; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 24px); }
@@ -492,6 +503,10 @@ strong, b { font-weight: 700; }
 .wb-page-head .wb-small { margin: 18px 0 0; max-width: 40em; }
 .wb-page-head .wb-small a { color: var(--on-ox); text-decoration-color: var(--gold); }
 .wb-page-head .wb-lede a { color: var(--on-ox); text-decoration-color: var(--gold); }
+.wb-head-centred { text-align: center; }
+.wb-head-centred .wb-kicker { justify-content: center; }
+.wb-head-centred .wb-kicker::before { content: ""; flex: 1 1 auto; height: 1px; background: currentColor; opacity: .45; }
+.wb-head-centred h1, .wb-head-centred .wb-lede, .wb-head-centred .wb-small { margin-left: auto; margin-right: auto; }
 .wb-head-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .wb-head-grid .wb-plate { max-width: 460px; justify-self: end; width: 100%; }
 .wb-head-grid .wb-plate img { opacity: .92; }
@@ -507,6 +522,7 @@ strong, b { font-weight: 700; }
 .wb-prose li::marker { color: var(--gold-ink); }
 .wb-prose strong { color: var(--ox); }
 .wb-sig-ox .wb-prose strong { color: var(--on-ox); }
+.wb-legal .wb-prose { max-width: 40em; margin: 0 auto; }
 .wb-policy-date { font-style: italic; color: var(--ox-ink); margin: 0 0 26px; }
 .wb-policy-summary { position: relative; margin: 0 0 48px; padding: clamp(22px, 3vw, 34px); background: var(--mount); border: 1px solid rgba(184,141,62,.7); font-style: italic; font-size: 1.06em; line-height: 1.62; color: var(--ink); }
 .wb-policy-summary::before { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(184,141,62,.3); pointer-events: none; }
@@ -555,7 +571,7 @@ strong, b { font-weight: 700; }
 .wb-sig-ox .wb-pair-links a:hover { background: rgba(213,163,71,.12); }
 
 /* The invite code */
-.wb-code { white-space: nowrap; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); letter-spacing: .08em; font-variant-numeric: tabular-nums; color: var(--ox); margin: 6px 0 14px; }
+.wb-code { white-space: nowrap; font-family: var(--serif); font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); letter-spacing: .14em; font-variant-numeric: lining-nums tabular-nums; color: var(--ox); margin: 6px 0 14px; }
 
 /* The end of an inner page: a call to the App Store on the cloth */
 .wb-coda { text-align: center; }
@@ -594,16 +610,17 @@ strong, b { font-weight: 700; }
   .wb-hero-phone .wb-phone { --w: 272px; }
   .wb-split, .wb-ep-grid, .wb-note, .wb-index, .wb-chapter, .wb-with-side, .wb-ledger, .wb-prv-after, .wb-bench { grid-template-columns: 1fr; }
   .wb-split > *, .wb-ep-grid > *, .wb-note > *, .wb-index > *, .wb-chapter > *, .wb-with-side > *, .wb-ledger > *, .wb-prv-after > *, .wb-bench > * { grid-column: 1 / -1 !important; grid-row: auto !important; }
-  .wb-how .wb-frontis { position: static; max-width: 420px; margin: 0 0 48px; }
-  .wb-ww .wb-duo, .wb-pg .wb-duo { margin-top: 52px; max-width: 560px; }
+  /* One column: plates and phone pairs stand centred in it, not pushed to the left. */
+  .wb-how .wb-frontis { position: static; width: 100%; max-width: 400px; margin: 0 auto 48px; }
+  .wb-ww .wb-duo, .wb-pg .wb-duo { margin-top: 52px; width: 100%; max-width: 560px; margin-left: auto; margin-right: auto; }
   .wb-pg .wb-duo { margin-top: 0; margin-bottom: 52px; }
   .wb-lib .wb-stage { min-height: 0; margin-top: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center; }
   .wb-lib .wb-map { width: 100%; grid-column: 2; grid-row: 1; }
   .wb-lib .wb-stage .wb-device { position: static; grid-column: 1; grid-row: 1; }
   .wb-lib .wb-stage .wb-phone { --w: 100%; }
-  .wb-grp .wb-grp-plate { position: static; max-width: 300px; margin: 0 0 44px; }
-  .wb-grp .wb-duo { max-width: 560px; }
-  .wb-prv .wb-plate { margin-bottom: 44px; max-width: 520px; }
+  .wb-grp .wb-grp-plate { position: static; width: 100%; max-width: 360px; margin: 0 auto 44px; }
+  .wb-grp .wb-duo { width: 100%; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .wb-prv .wb-plate { width: 100%; max-width: 520px; margin: 0 auto 44px; }
   .wb-ledger > section + section { margin-top: 36px; }
   .wb-prv-after > p + p { margin-top: 20px; }
   .wb-flow { grid-template-columns: 1fr; gap: 0; }
@@ -612,7 +629,7 @@ strong, b { font-weight: 700; }
   .wb-companions { grid-template-columns: 1fr; }
   .wb-dev .wb-cols { margin-top: 40px; }
   .wb-index > .wb-faq, .wb-index > .wb-index-body { margin-top: 36px; }
-  .wb-note > .wb-plate { max-width: 460px; margin-bottom: 36px; }
+  .wb-note > .wb-plate { width: 100%; max-width: 460px; margin: 0 auto 36px; }
   .wb-ep-side { position: static; }
   .wb-ep-side .wb-plate { max-width: 220px; }
   .wb-ep-wall { margin-top: 44px; }
@@ -626,10 +643,8 @@ strong, b { font-weight: 700; }
 }
 @media (max-width: 600px) {
   .wb-rh, .wb-kicker { letter-spacing: .2em; gap: 14px; }
-  .wb-cover-panel { padding-left: 16px; padding-right: 16px; }
   .wb-top-in { padding-left: 16px; padding-right: 16px; gap: 12px; }
   .wb-top-in::after { left: 16px; right: 16px; }
-  .wb-masthead { gap: 12px; }
   .wb-brand img { width: 40px; height: 40px; }
   .wb-brand-name { font-size: 1.6rem; }
   .wb-cover h1 { letter-spacing: -.016em; }
@@ -637,8 +652,7 @@ strong, b { font-weight: 700; }
   .wb-cover .wb-actions .wb-btn, .wb-page-head .wb-actions .wb-btn { width: 100%; }
   .wb-chips { font-size: .95rem; }
   .wb-chips li + li::before { margin: 0 11px; }
-  .wb-how .wb-frontis { max-width: 320px; }
-  .wb-grp .wb-grp-plate { max-width: 260px; }
+  .wb-how .wb-frontis, .wb-grp .wb-grp-plate { max-width: 320px; }
   .wb-ep-side .wb-plate { max-width: 170px; }
   .wb-figures { grid-template-columns: 1fr; }
   .wb-figures > div + div { border-left: 0; border-top: 1px solid rgba(184,141,62,.4); }
@@ -650,6 +664,12 @@ strong, b { font-weight: 700; }
   .wb-foot-in { grid-template-columns: 1fr; }
   .wb-steps li { grid-template-columns: 2.1rem 1fr; }
   .wb-head-grid .wb-plate { max-width: 300px; }
+}
+@media (max-width: 360px) {
+  .wb-top-in { gap: 8px; }
+  .wb-brand { gap: 10px; }
+  .wb-brand-name { font-size: 1.36rem; }
+  .wb-menu summary { padding: 11px 10px; letter-spacing: .16em; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; animation-delay: 0s !important; }

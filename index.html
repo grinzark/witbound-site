@@ -51,10 +51,8 @@
 </head>
 <body>
 <a class="wb-skip" href="#wb-main">Skip to the content</a>
-<header class="wb-cover">
-  <div class="wb-cover-panel">
-    <i class="wb-corner wb-c1" aria-hidden="true"></i><i class="wb-corner wb-c2" aria-hidden="true"></i><i class="wb-corner wb-c3" aria-hidden="true"></i><i class="wb-corner wb-c4" aria-hidden="true"></i>
-    <div class="wb-top-in wb-masthead">
+<header class="wb-top">
+    <div class="wb-top-in">
       <a class="wb-brand" href="./" aria-current="page">
         <picture><source type="image/avif" srcset="assets/icon/icon-rounded-128.avif?v=1811"><img src="assets/icon/icon-rounded-128.webp?v=1811" width="46" height="46" alt=""></picture>
         <span class="wb-brand-name">Witbound</span>
@@ -68,6 +66,9 @@
         </details>
       </div>
     </div>
+</header>
+<main id="wb-main">
+<section class="wb-cover" aria-labelledby="wb-hero-title">
     <div class="wb-cover-grid">
       <div class="wb-cover-copy">
         <p class="wb-rh">Read-along for books you own</p>
@@ -91,7 +92,7 @@
                    aria-describedby="wb-hero-said">
               <source src="assets/hero/reader.mp4?v=1811" type="video/mp4">
             </video>
-            <button class="wb-play-over" type="button" aria-label="Play the clip"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg></span></button>
+            <button class="wb-play-over" type="button" tabindex="-1" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12-7.5z"/></svg></span></button>
           </div>
         </div>
         <div class="wb-clip-ctl">
@@ -106,16 +107,13 @@
         </figcaption>
       </figure>
     </div>
-  </div>
-</header>
-
-<main id="wb-main">
+</section>
 
 <section class="wb-sig wb-sig-cream wb-how" id="how" aria-labelledby="wb-how-title">
   <div class="wb-wrap">
     <p class="wb-rh">How it works</p>
     <div class="wb-split">
-      <figure class="wb-plate wb-plate-mounted wb-frontis"><img src="assets/plates/paget-1892-newspaper-ink.webp" width="760" height="692" loading="lazy" decoding="async" alt="Sidney Paget&#x27;s engraving of Holmes and Watson at the breakfast table: one stands reading the morning paper, held open wide; the other sits with his back to us"><figcaption>Sidney Paget, <cite>The Adventures of Sherlock Holmes</cite>, 1892.</figcaption></figure>
+      <figure class="wb-plate wb-plate-mounted wb-frontis"><picture><source type="image/avif" srcset="assets/plates/rhead-1915-helm-ink.avif"><img src="assets/plates/rhead-1915-helm-ink.webp" width="640" height="973" loading="lazy" decoding="async" alt="Louis Rhead&#x27;s engraving of young Jim Hawkins on the deck of a ship at night, one hand on an apple barrel, with the helmsman at the stern under the moon, over the printed caption: The man at the helm was watching the luff of the sail"></picture><figcaption>Louis Rhead, <cite>Treasure Island</cite>, 1915.</figcaption></figure>
       <div class="wb-text">
         <h2 class="wb-h2" id="wb-how-title">Bring an ebook and its audiobook. Your phone does the rest.</h2>
         <p class="wb-lede">Two files you already own become one book you can hear and see. The matching happens on your iPhone or iPad, and your books are never uploaded.</p>
@@ -189,7 +187,7 @@
         </div>
       </div>
       <div class="wb-stage">
-        <figure class="wb-plate wb-map"><img src="assets/plates/rhead-1915-island-map-gilt.webp" width="760" height="1109" loading="lazy" decoding="async" alt="The map of Treasure Island inside an ornamental border, stamped in gold"><figcaption>The chart of Treasure Island, from Louis Rhead&rsquo;s edition of 1915.</figcaption></figure>
+        <figure class="wb-plate wb-map"><picture><source type="image/avif" srcset="assets/plates/rhead-1915-island-map-gilt.avif"><img src="assets/plates/rhead-1915-island-map-gilt.webp" width="760" height="1109" loading="lazy" decoding="async" alt="The map of Treasure Island inside an ornamental border, stamped in gold"></picture><figcaption>The chart of Treasure Island, from Louis Rhead&rsquo;s edition of 1915.</figcaption></figure>
         <figure class="wb-device" id="home"><div class="wb-phone"><div class="wb-phone-body"><picture><source type="image/avif" srcset="assets/img/home-1810-360w.avif 360w, assets/img/home-1810-720w.avif 720w" sizes="(min-width: 900px) 290px, 46vw"><img src="assets/img/home-1810-360w.webp" srcset="assets/img/home-1810-360w.webp 360w, assets/img/home-1810-720w.webp 720w" sizes="(min-width: 900px) 290px, 46vw" width="360" height="783" alt="The Witbound Library on iPhone: the Oxblood Leap tile and the name Witbound, Continue reading with Pride and Prejudice at 18 percent and 8 hours 32 minutes left, a search field, a grid of book covers and the tab bar with Library, Discover, Groups and Stats" loading="lazy" decoding="async"></picture></div></div><figcaption>The Library tab: the book you&rsquo;re in on top, then your books as covers. Library, Discover, Groups and Stats sit in the tab bar.</figcaption></figure>
       </div>
     </div>
@@ -200,7 +198,7 @@
   <div class="wb-wrap">
     <p class="wb-rh">Groups</p>
     <div class="wb-split">
-      <figure class="wb-plate wb-grp-plate"><img src="assets/plates/rhead-1915-seals-ink.webp" width="640" height="978" loading="lazy" decoding="async" alt="Louis Rhead&#x27;s engraving of the doctor, the squire and young Jim Hawkins gathered at a round table in a library, opening the captain&#x27;s papers, over the printed caption: The doctor opened the seals with great care, and there fell out the map of an island"><figcaption>Louis Rhead, <cite>Treasure Island</cite>, 1915.</figcaption></figure>
+      <figure class="wb-plate wb-plate-mounted wb-grp-plate"><picture><source type="image/avif" srcset="assets/plates/rhead-1915-seals-ink.avif"><img src="assets/plates/rhead-1915-seals-ink.webp" width="640" height="978" loading="lazy" decoding="async" alt="Louis Rhead&#x27;s engraving of the doctor, the squire and young Jim Hawkins gathered at a round table in a library, opening the captain&#x27;s papers, over the printed caption: The doctor opened the seals with great care, and there fell out the map of an island"></picture><figcaption>Louis Rhead, <cite>Treasure Island</cite>, 1915.</figcaption></figure>
       <div class="wb-text">
         <h2 class="wb-h2" id="wb-grp-title">Read a book with your friends.</h2>
         <p class="wb-lede">Start a group, pick a book you&rsquo;ve synced, and invite friends with a code. Everyone reads their own copy, in their own edition, and the group keeps pace together.</p>
@@ -264,7 +262,7 @@
   <div class="wb-wrap">
     <p class="wb-rh">What leaves your phone</p>
     <div class="wb-split">
-      <figure class="wb-plate wb-plate-mounted"><img src="assets/plates/rhead-1915-captains-papers-ink.webp" width="820" height="562" loading="lazy" decoding="async" alt="An engraving of two men by candlelight at a table before a fireplace, one with a pipe, over the caption VI The Captain&#x27;s Papers"><figcaption>Louis Rhead&rsquo;s headpiece for <cite>Treasure Island</cite>, 1915.</figcaption></figure>
+      <figure class="wb-plate wb-plate-mounted"><picture><source type="image/avif" srcset="assets/plates/rhead-1915-coracle-ink.avif"><img src="assets/plates/rhead-1915-coracle-ink.webp" width="820" height="595" loading="lazy" decoding="async" alt="Louis Rhead&#x27;s headpiece of young Jim Hawkins alone in a small round coracle on a choppy sea, holding a paddle and watching a three-masted ship under sail, over the caption XXIV The Cruise of the Coracle"></picture><figcaption>Louis Rhead&rsquo;s headpiece for <cite>Treasure Island</cite>, 1915.</figcaption></figure>
       <div class="wb-text">
         <h2 class="wb-h2" id="wb-prv-title">What leaves your phone, and what never does.</h2>
         <p class="wb-lede">There&rsquo;s no account, no ads and no analytics of Witbound&rsquo;s own. One feature talks to Witbound by default, community sync, and it shares timings, not books.</p>
@@ -347,13 +345,13 @@
         <details><summary>How long does the first sync take?</summary><div class="wb-faq-a"><p>You can start reading once chapter one is done, and the rest finishes in the background, overnight if you like. Popular editions are ready in seconds through community sync. The free Mac app syncs a long book in minutes.</p></div></details>
         <details><summary>What if my ebook and audiobook are different editions?</summary><div class="wb-faq-a"><p>Witbound matches what it can and leaves the rest as ordinary text. It won&rsquo;t force a bad match.</p></div></details>
         <details><summary>Do I need the internet?</summary><div class="wb-faq-a"><p>Not to read or listen. Witbound goes online for community sync, which you can switch off, for Discover when you use it, for servers you connect, for purchases, and on Android for Cloud sync if you turn it on.</p></div></details>
-        <details id="languages"><summary>Which languages?</summary><div class="wb-faq-a"><p>English, French, Spanish, German, Italian, Portuguese, Japanese, Korean and Chinese, worked out from the book. Polish and more through Apple&rsquo;s dictation, where the highlight can land a beat off more often.</p></div></details>
+        <details id="languages"><summary>Which languages?</summary><div class="wb-faq-a"><p>English, French, Spanish, German, Italian, Portuguese, Japanese, Korean and Chinese, worked out from the book. Polish and more through Apple&rsquo;s dictation, where the highlight can land a beat off more often. English is measured across 32 books. Of the languages added in 1.8.0 I&rsquo;ve measured one, Polish, on one book.</p></div></details>
         <details><summary>Where are my books stored?</summary><div class="wb-faq-a"><p>On your device. Your ebooks are never uploaded, apart from a short passage you choose to share. On Android, if you turn on Cloud sync, an audiobook&rsquo;s audio goes to Witbound&rsquo;s server to be turned into timed words, and is deleted straight after. The <a href="privacy.html">privacy policy</a> has the details.</p></div></details>
       </div>
     </div>
     <div class="wb-fleuron" aria-hidden="true"><svg viewBox="0 0 26 12" fill="currentColor"><path d="M13 0l4 6-4 6-4-6z"/><circle cx="3" cy="6" r="1.6"/><circle cx="23" cy="6" r="1.6"/></svg></div>
     <div class="wb-note" id="maker">
-      <figure class="wb-plate"><img src="assets/plates/thomson-1894-preface-ink.webp" width="1000" height="393" loading="lazy" decoding="async" alt="A small engraving of three figures sitting on a grassy hill, looking out over the countryside"><figcaption>Hugh Thomson&rsquo;s headpiece to the preface, <cite>Pride and Prejudice</cite>, 1894.</figcaption></figure>
+      <figure class="wb-plate"><picture><source type="image/avif" srcset="assets/plates/thomson-1894-preface-ink.avif"><img src="assets/plates/thomson-1894-preface-ink.webp" width="1000" height="393" loading="lazy" decoding="async" alt="A small engraving of three figures sitting on a grassy hill, looking out over the countryside"></picture><figcaption>Hugh Thomson&rsquo;s headpiece to the preface, <cite>Pride and Prejudice</cite>, 1894.</figcaption></figure>
       <div class="wb-letter wb-prose">
         <h2>A note from Moe</h2>
         <p>I read the same books twice: ears on the commute, eyes at night. Every switch meant scanning pages for my place. Witbound is the app I wanted for that, and it&rsquo;s just me making it, in the UK.</p>
@@ -373,9 +371,10 @@
       <div class="wb-ep-side">
         <h2 class="wb-h2" id="wb-rv-title">App Store reviews</h2>
         <p class="wb-lede">word for word, as readers wrote them</p>
-        <div class="wb-stars-lg" role="img" aria-label="Five stars"><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg></div>
+        <div class="wb-stars-lg" aria-hidden="true"><span class="wb-stars-base"><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg></span><span class="wb-stars-fill" style="width:148.8px"><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg><svg aria-hidden="true" focusable="false"><use href="#wb-star"/></svg></span></div>
         <p class="wb-rating">Ratings on 12 October 2026: 4.8 from 6 ratings in the US store, 5.0 from 2 in the UK.</p>
-        <figure class="wb-plate"><img src="assets/plates/thomson-1894-peacock-gilt.webp" width="816" height="1200" loading="lazy" decoding="async" alt="Hugh Thomson&#x27;s peacock, its long tail trailing down the page beneath the hand-lettered words Pride and Prejudice, Chapter I, stamped in gold"><figcaption>Thomson&rsquo;s peacock, from the 1894 &ldquo;Peacock edition&rdquo;.</figcaption></figure>
+        <p class="wb-rating wb-selection">A selection. Every review is on the <a href="https://apps.apple.com/app/id6795587495">App Store</a>.</p>
+        <figure class="wb-plate"><picture><source type="image/avif" srcset="assets/plates/thomson-1894-peacock-gilt.avif"><img src="assets/plates/thomson-1894-peacock-gilt.webp" width="816" height="1200" loading="lazy" decoding="async" alt="Hugh Thomson&#x27;s peacock, its long tail trailing down the page beneath the hand-lettered words Pride and Prejudice, Chapter I, stamped in gold"></picture><figcaption>Thomson&rsquo;s peacock, from the 1894 &ldquo;Peacock edition&rdquo;.</figcaption></figure>
       </div>
       <div class="wb-ep-wall">
         <figure class="wb-review wb-review-lead">
@@ -450,7 +449,7 @@
     </nav>
   </div>
   <div class="wb-foot-small">
-    <p>&copy; 2026 Witbound. Set in IM Fell English and Georgia. Plates by Sidney Paget (1892), Hugh Thomson (1894) and Louis Rhead (1915), from Project Gutenberg, in the public domain.</p>
+    <p>&copy; 2026 Witbound. Set in IM Fell English and Georgia (Literata where Georgia is missing). Plates by Hugh Thomson (1894) and Louis Rhead (1915), from Project Gutenberg, in the public domain.</p>
     <p>No cookies, no analytics, and nothing on this site loads from anyone else&rsquo;s server.</p>
   </div>
 </footer>
