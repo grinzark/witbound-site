@@ -1,0 +1,14 @@
+Plates on witbound.co.uk (direction A, 16 Oct 2026). All are in the public domain in the UK and the US.
+Each is the engraving from a Project Gutenberg edition, with its paper made clear and its lines printed in
+one ink (Oxblood on the cream page, "-ink") or stamped in gold on the Oxblood cloth ("-gilt"), by
+make_assets_redesign_a.py.
+
+paget-1892-newspaper-ink.webp        Sidney Paget (1860-1908), The Adventures of Sherlock Holmes, 1892 (PG #48320)
+rhead-1915-seals-ink.webp            Louis Rhead (1857-1926), Treasure Island, 1915 (PG #120): "The doctor opened the seals"
+rhead-1915-captains-papers-ink.webp  Louis Rhead, Treasure Island, 1915: headpiece to VI, The Captain's Papers
+rhead-1915-island-map-gilt.webp      Louis Rhead, Treasure Island, 1915: the chart of the island
+rhead-1915-jolly-boat-gilt.webp      Louis Rhead, Treasure Island, 1915: headpiece to XVII, The Jolly-boat's Last Trip
+rhead-1915-admiral-benbow-gilt.webp  Louis Rhead, Treasure Island, 1915: headpiece to I, The Old Sea-dog at the Admiral Benbow
+rhead-1915-bristol-gilt.webp         Louis Rhead, Treasure Island, 1915: headpiece to VII, I Go to Bristol
+thomson-1894-preface-ink.webp        Hugh Thomson (1860-1920), Pride and Prejudice, George Allen 1894 (PG #1342): preface headpiece
+thomson-1894-peacock-gilt.webp       Hugh Thomson, Pride and Prejudice, 1894: the peacock of Chapter I
