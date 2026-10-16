@@ -1,110 +1,93 @@
-/* Witbound: the hero iPhone.
-   A real screen recording of the app plays, muted and looping, while it is on screen. It never
-   starts by itself under reduced motion or Save-Data: those visitors get the poster and a play
-   button. "Play with sound" unmutes the same file from the top, so the voice and the highlight
-   cannot drift apart. The playback line under the phone follows the clip. No tracking, no storage. */
+/* Witbound: the cover of the home page.
+   The headline lights word by word, once, as the app does, then rests on "light up.". Beside it a real
+   screen recording of the app plays, muted and looping, while it is on screen. Under reduced motion
+   both stay still: the headline rests on "light up." and the clip waits behind its play button, as it
+   does under Save-Data. "Play with sound" restarts the same file from the top with the voice, so the
+   voice and the highlight cannot drift apart; scrolling away turns the sound off again. The clip only
+   starts downloading after the page has loaded. No tracking, no storage. */
 (function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = !!(navigator.connection && navigator.connection.saveData);
+
+  var words = document.querySelectorAll('#wb-hero-title .wb-w');
+  if (!reduce && words.length) {
+    words[words.length - 1].classList.remove('wb-lit');
+    var i = 0;
+    var step = function () {
+      for (var k = 0; k < words.length; k++) { words[k].classList.toggle('wb-lit', k === i); }
+      if (i < words.length - 1) { i++; setTimeout(step, i === 3 ? 520 : 360); }
+    };
+    setTimeout(step, 700);
+  }
+
   var fig = document.getElementById('wb-hero-phone');
   if (!fig) { return; }
   var video = fig.querySelector('video');
-  var playBtn = fig.querySelector('.wb-hero-play');
-  var pauseBtn = fig.querySelector('.wb-hero-pause');
-  var soundBtn = fig.querySelector('.wb-hero-sound');
-  var soundLabel = fig.querySelector('.wb-hero-sound-label');
-  var clip = fig.querySelector('.wb-clip');
-  var clipAt = fig.querySelector('.wb-clip-at');
-  if (!video || !playBtn || !pauseBtn || !soundBtn) { return; }
-
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var saveData = !!(navigator.connection && navigator.connection.saveData);
-  // wantPlay is the reader's intent: true means "play whenever the phone is on screen".
-  // Paused because it scrolled away is not the same as paused by the reader.
+  var over = fig.querySelector('.wb-play-over');
+  var pauseBtn = fig.querySelector('.wb-clip-pause');
+  var soundBtn = fig.querySelector('.wb-clip-sound');
+  if (!video || !over || !pauseBtn || !soundBtn) { return; }
+  var PAUSE = 'M7 5h3.5v14H7zM13.5 5H17v14h-3.5z';
+  var PLAY = 'M7 4.5v15l12-7.5z';
+  // wantPlay is the reader's intent: play whenever the phone is on screen. Paused because it
+  // scrolled away is not the same as paused by the reader.
   var wantPlay = !reduce && !saveData;
   var inView = false;
-  var watching = false;
-
-  function clock(s) {
-    s = Math.max(0, Math.floor(s || 0));
-    return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
-  }
-
-  function tick() {
-    if (!clip) { return; }
-    var d = video.duration;
-    var p = d && isFinite(d) ? Math.min(1, video.currentTime / d) : 0;
-    clip.style.setProperty('--wb-clip', p.toFixed(4));
-    if (clipAt) { clipAt.textContent = clock(video.currentTime); }
-  }
+  var started = false;
 
   function render() {
     var playing = !video.paused;
-    fig.classList.toggle('wb-is-playing', playing);
-    fig.classList.toggle('wb-is-stopped', !wantPlay);
-    fig.classList.toggle('wb-has-sound', !video.muted);
+    fig.classList.toggle('wb-is-stopped', !playing && !wantPlay);
+    pauseBtn.querySelector('span').textContent = wantPlay ? 'Pause' : 'Play';
     pauseBtn.setAttribute('aria-label', wantPlay ? 'Pause the clip' : 'Play the clip');
-    soundLabel.textContent = video.muted ? 'Play with sound' : 'Mute';
+    pauseBtn.querySelector('path').setAttribute('d', wantPlay ? PAUSE : PLAY);
+    soundBtn.querySelector('span').textContent = video.muted ? 'Play with sound' : 'Mute';
   }
-
   function play() {
+    if (video.preload !== 'auto') { video.preload = 'auto'; }
     var p = video.play();
     if (p && p.catch) {
       p.catch(function (err) {
         // A pause() that lands before the start resolves rejects with AbortError: not a refusal.
         if (err && err.name === 'AbortError') { return; }
-        // Refused (Low Power Mode on iPhone, or a browser that blocks muted autoplay):
-        // fall back to the poster and the play button, without sound.
-        wantPlay = false;
-        video.muted = true;
-        render();
+        // Refused (Low Power Mode, or a browser that blocks muted autoplay): the poster and the play button.
+        wantPlay = false; video.muted = true; render();
       });
     }
   }
-
   function sync() {
-    if (wantPlay && (inView || !watching)) { play(); }
-    else if (!video.paused) { video.pause(); }
+    if (wantPlay && inView && started) { play(); } else if (!video.paused) { video.pause(); }
     render();
   }
-
-  playBtn.addEventListener('click', function () { wantPlay = true; play(); render(); });
-
-  pauseBtn.addEventListener('click', function () {
-    wantPlay = !wantPlay;
-    sync();
-  });
-
+  over.addEventListener('click', function () { wantPlay = true; started = true; inView = true; sync(); });
+  pauseBtn.addEventListener('click', function () { wantPlay = !wantPlay; started = true; sync(); });
   soundBtn.addEventListener('click', function () {
     if (video.muted) {
       video.muted = false;
       try { video.currentTime = 0; } catch (e) { /* not seekable yet: it starts from 0 anyway */ }
       wantPlay = true;
-      play();
+      started = true;
     } else {
       video.muted = true;
     }
-    render();
+    sync();
   });
-
   ['play', 'pause', 'volumechange'].forEach(function (t) { video.addEventListener(t, render); });
-  ['timeupdate', 'seeked', 'loadedmetadata'].forEach(function (t) { video.addEventListener(t, tick); });
   video.addEventListener('error', function () { wantPlay = false; render(); }, true);
 
-  // Wait for the page to finish loading before the clip starts downloading, so the first
-  // view (text, fonts, poster) never queues behind the video.
   function start() {
+    started = true;
     if ('IntersectionObserver' in window) {
-      watching = true;
       new IntersectionObserver(function (entries) {
         inView = entries[entries.length - 1].isIntersecting;
-        // Scrolling away ends a listen: the sound goes off, and it comes back muted.
         if (!inView && !video.muted) { video.muted = true; }
         sync();
-      }).observe(video);
+      }, { threshold: 0.25 }).observe(fig);
     } else {
+      inView = true;
       sync();
     }
   }
   render();
-  if (document.readyState === 'complete') { start(); }
-  else { window.addEventListener('load', start); }
+  if (document.readyState === 'complete') { start(); } else { window.addEventListener('load', start); }
 })();
