@@ -40,18 +40,18 @@
 <section class="wb-sig wb-sig-cream wb-legal">
   <div class="wb-wrap">
     <article class="wb-prose">
-  <p class="wb-policy-date">Effective 16 October 2026</p>
+  <p class="wb-policy-date">Effective &lt;submission day&gt; October 2026</p>
 
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
-  On Android, if you turn on Cloud sync, a book&rsquo;s audio is also sent to Witbound&rsquo;s
-  server to be turned into timed words, and is deleted straight after; your ebook never leaves
-  your device. On iPhone and iPad, your place in each book is also kept in your own iCloud, which
+  On Android, iPhone and iPad, if you turn on Cloud sync, a book&rsquo;s audio is also sent to
+  Witbound&rsquo;s server to be turned into timed words, and is deleted straight after; your ebook
+  never leaves your device. On iPhone and iPad, your place in each book is also kept in your own iCloud, which
   Witbound never sees. Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device unless you choose to
   share it. Groups, if you use it, shares your progress in a group&rsquo;s book with the
   people in that group; a quote you share there is a pointer to a place in the book, never
   its words. Optional server connections, Discover, free classics, sharing, purchases,
-  the Mac app&rsquo;s update check, Android translation and Android&rsquo;s Cloud sync use the
+  the Mac app&rsquo;s update check, Android translation and Cloud sync use the
   services described below.</div>
 
   <h2>About Witbound</h2>
@@ -63,9 +63,9 @@
 
   <h2>Your books and audio</h2>
   <p>Imported books and audiobooks are stored on your device. Speech processing
-  and word alignment run locally, with one exception: on Android, if you turn on Cloud sync,
-  the phone sends a book&rsquo;s audio to Witbound&rsquo;s server for speech processing, as
-  described under Cloud sync below. Matching the words to your ebook still happens on your
+  and word alignment run locally, with one exception: if you turn on Cloud sync (on Android,
+  iPhone and iPad), the device sends a book&rsquo;s audio to Witbound&rsquo;s server for speech
+  processing, as described under Cloud sync below. Matching the words to your ebook still happens on your
   device, and your ebook never leaves it. Witbound does not upload your book text or
   audio to its community-sync service. Android may download its speech model
   from Hugging Face before the first local sync; this downloads a model, not
@@ -226,6 +226,95 @@
     which counts are yours, and can&rsquo;t find or delete them on request. They are deleted
     automatically 35 days after the phone last used Cloud sync.</li>
   </ul>
+
+  <h2>Cloud sync on iPhone and iPad</h2>
+  <p>Cloud sync is optional. It helps a long English audiobook sync in minutes on an iPhone or
+  iPad. It is off until you turn it on with the Cloud button at the top of your library or in
+  Settings &rsaquo; Cloud sync, or choose &ldquo;Sync in the cloud&rdquo; for one book, and Witbound
+  shows a note saying what it does before anything is sent. It works only on Wi-Fi (not on a
+  personal hotspot or in Low Data Mode), only for books in English, and only while
+  Witbound&rsquo;s server is taking work; at any other time your iPhone or iPad syncs the book on
+  its own. It is not available in the iPhone and iPad app on a Mac.</p>
+  <p><strong>What is sent.</strong> While a book syncs, your device works through the audiobook
+  from the start and sends its audio from the end, in pieces of about five minutes, over an
+  encrypted connection. Each piece is re-encoded on your device from the recorded sound alone, so
+  it carries no title, author, cover or other tags (though the narrator may read the title
+  aloud). Cloud sync never sends your ebook, its text, your library, your notes or highlights, or
+  where you are in a book.</p>
+  <p>When it starts a book, the app also sends:</p>
+  <ul>
+    <li>a random identifier made for Cloud sync on this device, not tied to an account or to any
+    other identifier in this policy;</li>
+    <li>an Apple App Attest key and signature, which let the server check that the request comes
+    from the genuine Witbound app on a genuine Apple device;</li>
+    <li>an Apple DeviceCheck token (see below);</li>
+    <li>the App Store&rsquo;s signed record of your copy of Witbound and, if you have Witbound Plus,
+    the App Store&rsquo;s signed record of that purchase;</li>
+    <li>the audiobook&rsquo;s length and audio format, the number of pieces, and Witbound&rsquo;s
+    version.</li>
+  </ul>
+  <p>While Cloud sync is on, the app also asks the server from time to time how much Cloud sync
+  you have left (when Settings opens, and while a book syncs). That request carries the first two
+  items above; the first time, and after a purchase or restore, it carries the first four.</p>
+  <p>To know whether to offer Cloud sync, the app asks Witbound&rsquo;s server from time to time
+  whether it is taking work, even while Cloud sync is off. That request carries no
+  identifier.</p>
+  <p><strong>What the server does with it.</strong> Witbound&rsquo;s server runs on Cloudflare. It
+  turns each piece into words and their timings with a speech engine Witbound runs, sends them back
+  to your device and discards the piece. The audio and the words exist only in the server&rsquo;s
+  memory while that piece is processed. They are never written to disk, logged or kept. Matching
+  the words to your ebook happens on your device.</p>
+  <p><strong>What the server keeps, and for how long.</strong> To keep Cloud sync free and within
+  its budget, the server keeps only:</p>
+  <ul>
+    <li>a keyed one-way hash of your device&rsquo;s Cloud sync identifier, with how much audio it
+    sent this month and last;</li>
+    <li>the public half of the App Attest key and a counter, so the same signature can&rsquo;t be
+    used twice;</li>
+    <li>for your free first book, a keyed one-way hash of its length and how many hours it has
+    used;</li>
+    <li>if you have Plus, a keyed one-way hash of your purchase&rsquo;s identifier and the hours
+    used this month and last;</li>
+    <li>while a book syncs, a record of that session for up to 3 hours, and one-time codes for 5
+    minutes;</li>
+    <li>request counts for rate limits, for no more than a day, keyed by the hashed identifier or
+    by a keyed hash of your IP address made with a key that changes every day.</li>
+  </ul>
+  <p>All of these are deleted 35 days after your device last used Cloud sync. The server does not
+  store your IP address, the identifiers themselves, your Apple Account, any audio or words, or the
+  book&rsquo;s title.</p>
+  <p><strong>Your free first book and Apple DeviceCheck.</strong> Each iPhone or iPad gets one book
+  synced in the cloud for free. So that reinstalling the app doesn&rsquo;t start that over, the
+  server asks Apple&rsquo;s DeviceCheck service to remember one yes-or-no fact for your device:
+  whether its free cloud book has been used. Apple keeps that fact, with the month it was set, for
+  Witbound; Witbound can read it only when your device sends a fresh token, and it can&rsquo;t tell
+  which device or person it belongs to. If you leave your free book unfinished for more than 35
+  days, its remaining cloud hours lapse and your device finishes it.</p>
+  <p><strong>Your allowance.</strong> Settings shows how much Cloud sync you have left. Witbound
+  Plus includes up to 100 hours of cloud audio each month. When your hours or the service&rsquo;s
+  monthly budget run out, your device syncs on its own, and Witbound tells you until when.</p>
+  <p><strong>Apple&rsquo;s services.</strong> App Attest, DeviceCheck and the App Store&rsquo;s
+  signed records are Apple services that Apple runs under its own
+  <a href="https://www.apple.com/legal/privacy/">privacy policy</a>.</p>
+  <p><strong>The finished map.</strong> When a book that Cloud sync helped finishes syncing and its
+  timing map passes Witbound&rsquo;s quality check, the app shares the map with community sync, as
+  described above, so the next reader with the same edition can sync it almost instantly. If
+  community sync is off, nothing is shared. It sends the same map and fingerprints community sync
+  sends, and nothing more, and never before the whole book has synced.</p>
+  <p><strong>Who handles it, and where.</strong> Cloudflare runs the server for Witbound as its
+  processor, under Cloudflare&rsquo;s data processing addendum. Your device connects to a Cloudflare
+  data centre near you; the speech engine runs in a Cloudflare data centre that Cloudflare chooses,
+  which may be outside the UK, including in the United States. Cloudflare&rsquo;s addendum protects
+  those transfers with the UK&rsquo;s approved safeguards.</p>
+  <p><strong>Your choice.</strong> Witbound relies on your consent for Cloud sync. You can withdraw
+  it at any time: turn Cloud sync off (the Cloud button at the top of your library, or Settings
+  &rsaquo; Cloud sync), which also withdraws a yes you gave a single book, or choose &ldquo;Sync on
+  this iPhone instead&rdquo; for a book. Uploads stop at once, and the app sends none of the
+  identifiers above until you turn Cloud sync on again or choose &ldquo;Sync in the cloud&rdquo; for
+  a book; a piece already sent is still processed and its words discarded. Withdrawing doesn&rsquo;t
+  undo syncs already finished or remove maps already shared. Because the server holds only one-way
+  hashes of random identifiers, Witbound can&rsquo;t tell which counts are yours or delete them on
+  request; they are deleted automatically after 35 days.</p>
 
   <h2>Discover: your to-read list, synced books and free classics</h2>
   <p>Your to-read list is stored on your device. While sharing is off, it is
@@ -507,7 +596,9 @@
   include in your message. We use it to respond, investigate problems and
   keep necessary support records. Please send only information relevant to
   the issue. Groups data is kept as described in the Groups section above. Cloud sync keeps
-  no audio or words; its usage counts are deleted 35 days after a phone last used it. Other community
+  no audio or words; its usage counts are deleted 35 days after a phone last used it. On iPhone
+  and iPad, one fact (whether a device has had its free cloud book) is kept by Apple&rsquo;s
+  DeviceCheck for Witbound. Other community
   data has no expiry date: shared timing maps,
   to-read entries, Synced entries and reports are kept until they are removed.
   When a better timing map replaces one, the earlier version is kept beside it,
