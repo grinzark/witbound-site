@@ -71,6 +71,9 @@
   from Hugging Face before the first local sync; this downloads a model, not
   your books. Apple platforms may download speech or language resources through
   Apple's system services.</p>
+  <p>On Android, Read aloud speaks a book with a text-to-speech voice already installed on
+  your phone. Witbound offers only voices that work offline, so the book&rsquo;s text is spoken
+  on your device and is not sent to Witbound or anyone else.</p>
   <p>You can delete imported books in the app. Copies you exported, shared or
   backed up are separate. Your operating system's backup and device-transfer
   settings may also apply to local app data.</p>
@@ -328,7 +331,9 @@
   and whether you want it illustrated (yes, no or either), to its service hosted
   on Cloudflare, together with a random installation identifier created on your
   device. On iPhone and iPad that identifier is kept in the keychain, so it stays
-  the same if you delete and reinstall Witbound. The service stores only a
+  the same if you delete and reinstall Witbound. On Android it is kept in the app&rsquo;s own
+  storage and left out of backups, so reinstalling Witbound or moving to a new phone makes a
+  new one. The service stores only a
   one-way hash of it, so it can count each installation once; it has no
   account, name or email address to attach it to. Other readers see how many
   people want a book, and how many of them want it illustrated, never who.
@@ -426,10 +431,12 @@
   <h2>Groups: reading with friends</h2>
   <p>Groups lets friends read the same book on a shared schedule. It is optional, and nothing
   is sent until you open Groups and create a group profile. Groups is part of Witbound for
-  iPhone and iPad.</p>
+  iPhone, iPad and Android.</p>
   <p><strong>Your group profile.</strong> When you create one, Witbound makes a random device
   key on your device and keeps it in the keychain. It is not synced through iCloud Keychain,
-  and it moves to a new device only inside an encrypted backup. The key is sent in a request
+  and it moves to a new device only inside an encrypted backup. On Android, the key is
+  protected by the phone&rsquo;s Android Keystore and left out of backups, so it never leaves that
+  phone and a new Android phone starts a new group profile. The key is sent in a request
   header with every Groups request, never in a web address, to Witbound&rsquo;s service hosted
   on Cloudflare, which stores only a one-way hash of it. It is separate from the Discover
   installation identifier described above. Your profile is the name you choose plus a random
@@ -525,6 +532,12 @@
   you are its only member. Your device then forgets the device key. The service uses IP
   addresses only to limit how fast requests can be made, and does not store them; Cloudflare
   handles connection information as described above.</p>
+  <p id="delete-group-profile"><strong>Deleting your group profile without the app.</strong> If
+  you no longer have Witbound installed, email
+  <a href="mailto:zarksided@gmail.com">zarksided@gmail.com</a> with your profile name and tag
+  (for example &ldquo;Sam#4821&rdquo;) and the name of a group you were in, and ask for your
+  group profile to be deleted. We delete it, with everything <em>Delete my group profile</em>
+  deletes, within 30 days and reply to confirm.</p>
 
   <h2>Update checks in Witbound for Mac</h2>
   <p>Once a day, when its window opens, Witbound for Mac asks GitHub
@@ -611,7 +624,8 @@
   enough information to locate the relevant data; a shared content
   fingerprint does not identify a Witbound user account. To withdraw your shared
   to-read list, turn off &ldquo;Share my to-read list with the community&rdquo; in
-  Discover. To delete your Groups data, use <em>Delete my group profile</em> in Settings. To
+  Discover. To delete your Groups data, use <em>Delete my group profile</em> in Settings, or, without
+  the app, email us as described under Groups. To
   withdraw your consent to Cloud sync, set Settings &rsaquo; Cloud sync to Off.</p>
 
   <h2>Children</h2>
