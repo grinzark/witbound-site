@@ -36,13 +36,30 @@
     "@type": "Person",
     "name": "Moe"
   },
-  "offers": {
-    "@type": "Offer",
-    "category": "one-time purchase",
-    "price": "14.99",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  }
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Witbound Plus, lifetime",
+      "category": "one-time purchase",
+      "price": "24.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "Witbound Plus, yearly",
+      "category": "subscription",
+      "price": "14.99",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "14.99",
+        "priceCurrency": "USD",
+        "billingDuration": "P1Y"
+      },
+      "availability": "https://schema.org/InStock"
+    }
+  ]
 }
 </script>
 <script defer src="assets/js/site.js?v=redesign-a"></script>
@@ -62,7 +79,7 @@
         <a class="wb-btn wb-btn-main wb-btn-small" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>App Store</a>
         <details class="wb-menu">
           <summary>Menu</summary>
-          <nav class="wb-menu-panel" aria-label="Site menu"><a href="#how">How it works</a><a href="#read-along">Word by word</a><a href="#groups">Groups</a><a href="#price">The price</a><a href="mac.html">Mac</a><a href="pairs.html">Free pairs</a><a href="support.html">Support</a><a class="wb-btn wb-btn-main" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Get it on the App Store</a></nav>
+          <nav class="wb-menu-panel" aria-label="Site menu"><a href="#how">How it works</a><a href="#read-along">Word by word</a><a href="#groups">Clubs</a><a href="#price">The price</a><a href="mac.html">Mac</a><a href="pairs.html">Free pairs</a><a href="support.html">Support</a><a class="wb-btn wb-btn-main" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Get it on the App Store</a></nav>
         </details>
       </div>
     </div>
@@ -79,7 +96,7 @@
           <a class="wb-textlink" href="mac.html">Witbound for Mac, free</a>
           <a class="wb-textlink" href="https://play.google.com/store/apps/details?id=app.witbound.android">Get it on Google Play</a>
         </div>
-        <ul class="wb-chips" aria-label="In short"><li>$14.99 once</li><li>Free classics</li><li>First book free</li></ul>
+        <ul class="wb-chips" aria-label="In short"><li>Lifetime or yearly</li><li>Free classics</li><li>First book free</li></ul>
         <p class="wb-fine">For iPhone and iPad on iOS 26 or later, and Android 8 or later.</p>
         <p class="wb-fine">Rated 4.8 from 6 ratings in the US App Store. <a href="#readers">Read the reviews</a></p>
       </div>
@@ -188,7 +205,7 @@
       </div>
       <div class="wb-stage">
         <figure class="wb-plate wb-map"><picture><source type="image/avif" srcset="assets/plates/rhead-1915-island-map-gilt.avif"><img src="assets/plates/rhead-1915-island-map-gilt.webp" width="760" height="1109" loading="lazy" decoding="async" alt="The map of Treasure Island inside an ornamental border, stamped in gold"></picture><figcaption>The chart of Treasure Island, from Louis Rhead&rsquo;s edition of 1915.</figcaption></figure>
-        <figure class="wb-device" id="home"><div class="wb-phone"><div class="wb-phone-body"><picture><source type="image/avif" srcset="assets/img/home-1810-360w.avif 360w, assets/img/home-1810-720w.avif 720w" sizes="(min-width: 900px) 290px, 46vw"><img src="assets/img/home-1810-360w.webp" srcset="assets/img/home-1810-360w.webp 360w, assets/img/home-1810-720w.webp 720w" sizes="(min-width: 900px) 290px, 46vw" width="360" height="783" alt="The Witbound Library on iPhone: the Oxblood Leap tile and the name Witbound, Continue reading with Pride and Prejudice at 18 percent and 8 hours 32 minutes left, a search field, a grid of book covers and the tab bar with Library, Discover, Groups and Stats" loading="lazy" decoding="async"></picture></div></div><figcaption>The Library tab: the book you&rsquo;re in on top, then your books as covers. Library, Discover, Groups and Stats sit in the tab bar.</figcaption></figure>
+        <figure class="wb-device" id="home"><div class="wb-phone"><div class="wb-phone-body"><picture><source type="image/avif" srcset="assets/img/home-1810-360w.avif 360w, assets/img/home-1810-720w.avif 720w" sizes="(min-width: 900px) 290px, 46vw"><img src="assets/img/home-1810-360w.webp" srcset="assets/img/home-1810-360w.webp 360w, assets/img/home-1810-720w.webp 720w" sizes="(min-width: 900px) 290px, 46vw" width="360" height="783" alt="The Witbound Library on iPhone: the Oxblood Leap tile and the name Witbound, Continue reading with Pride and Prejudice at 18 percent and 8 hours 32 minutes left, a search field, a grid of book covers and the tab bar" loading="lazy" decoding="async"></picture></div></div><figcaption>The Library tab: the book you&rsquo;re in on top, then your books as covers.</figcaption></figure>
       </div>
     </div>
   </div>
@@ -196,21 +213,21 @@
 
 <section class="wb-sig wb-sig-cream wb-grp" id="groups" aria-labelledby="wb-grp-title">
   <div class="wb-wrap">
-    <p class="wb-rh">Groups</p>
+    <p class="wb-rh">Clubs</p>
     <div class="wb-split">
       <figure class="wb-plate wb-plate-mounted wb-grp-plate"><picture><source type="image/avif" srcset="assets/plates/rhead-1915-seals-ink.avif"><img src="assets/plates/rhead-1915-seals-ink.webp" width="640" height="978" loading="lazy" decoding="async" alt="Louis Rhead&#x27;s engraving of the doctor, the squire and young Jim Hawkins gathered at a round table in a library, opening the captain&#x27;s papers, over the printed caption: The doctor opened the seals with great care, and there fell out the map of an island"></picture><figcaption>Louis Rhead, <cite>Treasure Island</cite>, 1915.</figcaption></figure>
       <div class="wb-text">
         <h2 class="wb-h2" id="wb-grp-title">Read a book with your friends.</h2>
-        <p class="wb-lede">Start a group, pick a book you&rsquo;ve synced, and invite friends with a code. Everyone reads their own copy, in their own edition, and the group keeps pace together.</p>
+        <p class="wb-lede">Start a club, pick a book you&rsquo;ve synced, and invite friends with a code. Everyone reads their own copy, in their own edition, and the club keeps pace together.</p>
         <div class="wb-prose wb-gap">
-          <p>The owner splits the book into stages that end at chapters, each with a date to reach it by. When a reader clears a stage, the group sees it. The track shows where every reader is, from the start to the end, and who&rsquo;s reading right now. A different edition is matched to the owner&rsquo;s chapters.</p>
-          <p>Highlight a passage and share it with the group. Friends see it in their own copy once they reach that chapter, so nothing is spoiled, and can play it in their own narrator&rsquo;s voice or react with one of four emoji. Only where the passage is goes to the group, never its words or your notes.</p>
-          <p>If the group turns on Read or die, missing a stage&rsquo;s date puts you out of the group until it starts its next book, unless the owner lets you back in. The owner plays by the same rule. No money, ever: just pride.</p>
-          <p>Send friends the 8-letter code or the link. They type the code, or paste the link, in the Groups tab.</p>
+          <p>The owner splits the book into stages that end at chapters, each with a date to reach it by. When a reader clears a stage, the club sees it. The track shows where every reader is, from the start to the end, and who&rsquo;s reading right now. A different edition is matched to the owner&rsquo;s chapters.</p>
+          <p>Highlight a passage and share it with the club. Friends see it in their own copy once they reach that chapter, so nothing is spoiled, and can play it in their own narrator&rsquo;s voice or react with one of four emoji. Only where the passage is goes to the club, never its words or your notes.</p>
+          <p>If the club turns on Read or die, missing a stage&rsquo;s date puts you out of the club until it starts its next book, unless the owner lets you back in. The owner plays by the same rule. No money, ever: just pride.</p>
+          <p>Send friends the 8-letter code or the link. They type the code, or paste the link, in the Clubs tab (called Groups on Android until its next update).</p>
         </div>
         <div class="wb-duo">
           <figure class="wb-device"><div class="wb-phone"><div class="wb-phone-body"><picture><source type="image/avif" srcset="assets/img/group-1810-360w.avif 360w, assets/img/group-1810-720w.avif 720w" sizes="(min-width: 900px) 290px, 46vw"><img src="assets/img/group-1810-360w.webp" srcset="assets/img/group-1810-360w.webp 360w, assets/img/group-1810-720w.webp 720w" sizes="(min-width: 900px) 290px, 46vw" width="360" height="783" alt="A book club reading A Princess of Mars: Now reading with a Read button, the Stage 2 flag dated Thursday 29 October, the stage strip, and the readers Sam, Ana, You and Maya, each with their chapter and how far they are" loading="lazy" decoding="async"></picture></div></div><figcaption>Stages, dates, and everyone&rsquo;s place.</figcaption></figure>
-          <figure class="wb-device"><div class="wb-phone"><div class="wb-phone-body"><picture><source type="image/avif" srcset="assets/img/quote-1810-360w.avif 360w, assets/img/quote-1810-720w.avif 720w" sizes="(min-width: 900px) 290px, 46vw"><img src="assets/img/quote-1810-360w.webp" srcset="assets/img/quote-1810-360w.webp 360w, assets/img/quote-1810-720w.webp 720w" sizes="(min-width: 900px) 290px, 46vw" width="360" height="783" alt="A quote shared in the book club from A Princess of Mars, with a Play button and friends&#x27; reactions, under the group&#x27;s list of recent moments" loading="lazy" decoding="async"></picture></div></div><figcaption>A shared quote, with Play and reactions.</figcaption></figure>
+          <figure class="wb-device"><div class="wb-phone"><div class="wb-phone-body"><picture><source type="image/avif" srcset="assets/img/quote-1810-360w.avif 360w, assets/img/quote-1810-720w.avif 720w" sizes="(min-width: 900px) 290px, 46vw"><img src="assets/img/quote-1810-360w.webp" srcset="assets/img/quote-1810-360w.webp 360w, assets/img/quote-1810-720w.webp 720w" sizes="(min-width: 900px) 290px, 46vw" width="360" height="783" alt="A quote shared in the book club from A Princess of Mars, with a Play button and friends&#x27; reactions, under the club&#x27;s list of recent moments" loading="lazy" decoding="async"></picture></div></div><figcaption>A shared quote, with Play and reactions.</figcaption></figure>
         </div>
       </div>
     </div>
@@ -287,8 +304,8 @@
             <li>Servers you connect yourself: your own audiobook server, ebook catalogue or media server, or a KOReader sync server (<a href="support.html#servers">which ones</a>).</li>
             <li>Your purchase, through Apple or Google Play.</li>
             <li>Anything you choose to share: a quote, a note, a progress card.</li>
-            <li>Discover, when you use it: the public Wanted and Synced lists and your searches in them, book covers and short descriptions, a book you add (looked up in Open Library or Google Books) and the free classics you get, from Project Gutenberg and the Internet Archive.</li>
-            <li>Your to-read list, and a book you&rsquo;ve synced, only if you choose to share them.</li>
+            <li>Discover, when you use it: the public Synced list and your searches in it, the Roadmap on iPhone and iPad and your votes and ideas on it, book covers and short descriptions, a book you add (looked up in Open Library or Google Books) and the free classics you get, from Project Gutenberg and the Internet Archive.</li>
+            <li>A book you&rsquo;ve synced, only if you choose to share it. On iPhone and iPad, your to-read list never leaves your device. On Android, it goes only if you choose to share it.</li>
         </ul>
       </section>
     </div>
@@ -301,7 +318,7 @@
     </ol>
     <div class="wb-prv-after">
       <p>If someone has already synced your edition, your copy is ready in seconds. Since version 1.8.2 Witbound also recognises the same book when the files aren&rsquo;t identical: a friend&rsquo;s copy, a different epub edition, or audio that was re-encoded. When your iPhone checks a shared sync against your own audio, it goes chapter by chapter, shows how far it has got, and lets you read the chapters it has checked. When you tap Share on a book you&rsquo;ve synced, it&rsquo;s sent straight away, without waiting on the online catalogue, and once it&rsquo;s listed, the next reader with that edition sees it on Discover&rsquo;s Synced list.</p>
-      <p>On the App Store, Witbound&rsquo;s privacy label lists Identifiers, Usage Data, User Content and Other Data as <q>Data Linked to You</q>, and Search History as not linked. What&rsquo;s linked is Groups, and only if you join one: your group name and picture, a device key in place of an account, your place in the group&rsquo;s book, the quotes you share there (where they are in the book, never its words), and the groups and books you add. Community sync&rsquo;s timing maps and Discover&rsquo;s lists still don&rsquo;t say who you are. The <a href="privacy.html">privacy policy</a> says exactly what is sent, and where.</p>
+      <p>On the App Store, Witbound&rsquo;s privacy label lists Identifiers, Usage Data, User Content and Other Data as <q>Data Linked to You</q>, and Search History as not linked. What&rsquo;s linked is Clubs, and only if you join one: your club name and picture, a device key in place of an account, your place in the club&rsquo;s book, the quotes you share there (where they are in the book, never its words), the clubs and books you add, and the Roadmap ideas you post. Community sync&rsquo;s timing maps and Discover&rsquo;s lists still don&rsquo;t say who you are. The <a href="privacy.html">privacy policy</a> says exactly what is sent, and where.</p>
     </div>
   </div>
 </section>
@@ -311,8 +328,8 @@
     <p class="wb-rh">The price</p>
     <div class="wb-sheet">
       <picture class="wb-tile"><source type="image/avif" srcset="assets/icon/icon-rounded-128.avif?v=1811"><img src="assets/icon/icon-rounded-128.webp?v=1811" width="64" height="64" alt="" loading="lazy" decoding="async"></picture>
-      <h2 class="wb-h2" id="wb-price-title"><span class="wb-ln">$14.99, once.</span> Your first book is free.</h2>
-      <p class="wb-lede">No subscription, and nothing that renews. Your first book syncs free, start to finish, before you pay anything. After that, one payment covers every book.</p>
+      <h2 class="wb-h2" id="wb-price-title"><span class="wb-ln">$24.99 once, or $14.99 a year.</span> Your first book is free.</h2>
+      <p class="wb-lede">Pay once and keep it, or go yearly. Your first book syncs free, start to finish, before you pay anything. After that, either plan covers every book.</p>
       <div class="wb-tiers">
         <section aria-labelledby="wb-plan-free">
           <h3 id="wb-plan-free">Free</h3>
@@ -321,10 +338,13 @@
         </section>
         <section aria-labelledby="wb-plan-plus">
           <h3 id="wb-plan-plus">Witbound Plus</h3>
-          <p class="wb-amount">$14.99<small>once</small></p>
-          <p>One payment, kept for good: every book you add, synced word by word, with every feature on iPhone and iPad. Nothing renews, and there&rsquo;s no account to make. Restore purchases brings it back on a new iPhone or iPad.</p>
+          <p class="wb-amount">$24.99<small>once</small></p>
+          <p>Lifetime: one payment, kept for good.</p>
+          <p class="wb-amount">$14.99<small>a year</small></p>
+          <p>Yearly: it renews each year until you cancel it in Settings &rarr; your name &rarr; Subscriptions.</p>
+          <p>Either plan unlocks every book you add, synced word by word, with every feature on iPhone and iPad. There&rsquo;s no account to make. Restore purchases brings Plus back on a new iPhone or iPad.</p>
           <a class="wb-btn wb-btn-main" href="https://apps.apple.com/app/id6795587495"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.5 1.4c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .3-2 1-2.7.7-.8 1.9-1.4 2.8-1.4zM19.9 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.1-3.7 3.1-1.4 0-1.7-.9-3.6-.9s-2.3.9-3.6.9c-1.6 0-2.8-1.6-3.7-3C1.2 16.4.9 12 2.5 9.7c1.1-1.6 2.9-2.6 4.5-2.6 1.7 0 2.7 1 4.1 1 1.3 0 2.1-1 4.1-1 1.4 0 2.9.8 4 2.1-3.5 1.9-3 6.9.6 7.8z"/></svg>Download on the App Store</a>
-          <p class="wb-small" style="margin-top:16px">Elsewhere it&rsquo;s &pound;14.99, &euro;17.99, C$19.99 or A$22.99, set by the App Store for your country.</p>
+          <p class="wb-small" style="margin-top:16px">Elsewhere the lifetime unlock is &pound;24.99, &euro;29.99, C$34.99 or A$39.99, and the yearly plan &pound;14.99, &euro;17.99, C$19.99 or A$22.99 a year, set by the App Store for your country.</p>
         </section>
       </div>
     </div>
