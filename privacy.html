@@ -40,7 +40,7 @@
 <section class="wb-sig wb-sig-cream wb-legal">
   <div class="wb-wrap">
     <article class="wb-prose">
-  <p class="wb-policy-date">Effective 26 October 2026</p>
+  <p class="wb-policy-date">Effective 28 October 2026</p>
 
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
   On Android, iPhone and iPad, if you turn on Cloud sync, a book&rsquo;s audio is also sent to
@@ -264,6 +264,15 @@
   <p>To know whether to offer Cloud sync, the app asks Witbound&rsquo;s server from time to time
   whether it is taking work, even while Cloud sync is off. That request carries no
   identifier.</p>
+  <p>When a book&rsquo;s cloud session ends, the app tells the server how it ended (finished,
+  stopped, or the app was closed) and a few timing numbers about that sync: how long it ran at
+  full speed, while the device was warm, paused, off Wi-Fi or in the background; how long
+  preparing the pieces took; the upload speed; how many pieces were out at once; the warmest the
+  device got; how many pieces were sent again; and whether it picked up again after a break.
+  They say nothing about you, and nothing about the book beyond the length the app already sends.
+  The server does not store them: it turns them into one line of a private report that
+  Witbound&rsquo;s developer reads in Discord, with no identifier, no title and nothing else about
+  who or what the sync was for.</p>
   <p><strong>What the server does with it.</strong> Witbound&rsquo;s server runs on Cloudflare. It
   turns each piece into words and their timings with a speech engine Witbound runs, sends them back
   to your device and discards the piece. The audio and the words exist only in the server&rsquo;s
