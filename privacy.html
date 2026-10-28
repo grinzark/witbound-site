@@ -40,7 +40,8 @@
 <section class="wb-sig wb-sig-cream wb-legal">
   <div class="wb-wrap">
     <article class="wb-prose">
-  <p class="wb-policy-date">Effective 30 October 2026</p>
+  <!-- Effective date: on the day iOS 1.9.4 is submitted, replace [submission day] with that date (for example "5 November 2026") and publish. -->
+  <p class="wb-policy-date">Effective [submission day]</p>
 
   <div class="wb-policy-summary">Witbound processes your books and audio on your device.
   On Android, iPhone and iPad, if you turn on Cloud sync, a book&rsquo;s audio is also sent to
@@ -48,7 +49,9 @@
   never leaves your device. On iPhone and iPad, your place in each book is also kept in your own iCloud, which
   Witbound never sees. Community sync shares content fingerprints and word timings to help readers
   sync faster. Your to-read list stays on your device. Clubs, if you use them, share your progress in a club&rsquo;s book with the people in that
-  club; a quote you share there is a pointer to a place in the book, never its words. Votes on
+  club; a quote you share there is a pointer to a place in the book, never its words. A club its
+  owner lists in Find a club can be seen by anyone in Clubs until it starts, and readers who join
+  it see what its members see. Votes on
   Discover&rsquo;s Roadmap are anonymous, and ideas you post there appear under your Clubs name.
   Optional server connections, Discover, free classics, sharing, purchases,
   the Mac app&rsquo;s update check, Android translation and Cloud sync use the
@@ -442,8 +445,10 @@
   Internet Archive (archive.org), directly from those sites. Like any website,
   they receive ordinary connection information such as your IP address.
   Witbound hosts none of these files.</p>
-  <h2>Clubs: reading with friends</h2>
-  <p>Clubs let friends read the same book on a shared schedule. They are optional, and nothing
+  <h2>Clubs: reading together</h2>
+  <p>Clubs let people read the same book on a shared schedule: friends join a club with its code
+  or a link, and readers can also join a club its owner lists in Find a club (below). They are
+  optional, and nothing
   is sent until you open Clubs and create a club profile. Clubs are part of Witbound for
   iPhone, iPad and Android.</p>
   <p><strong>Your club profile.</strong> When you create one, Witbound makes a random device
@@ -515,7 +520,7 @@
   club is on the same book: when they first joined, how far they had read, the stages they had
   cleared, when they finished, their badges and when they left and came back (and, for an owner a
   deadline removed, who the club passed to). This is so that leaving and rejoining can&rsquo;t skip
-  a deadline, and so that coming back gives a member their place. The
+  a deadline once a club has started, and so that coming back gives a member their place. The
   service keeps a record of the removal, with the club&rsquo;s name and the book&rsquo;s title as they
   were then, so that the club&rsquo;s code can&rsquo;t bring the member back until the club starts its
   next book (the club&rsquo;s owner can let them back in sooner), and so that the member&rsquo;s app can
@@ -524,27 +529,68 @@
   deleted or you delete your club profile.</p>
   <p><strong>Reports and blocks.</strong> You can report a member or a club with a fixed
   reason (there is no free text). A report stores the reason, what was reported and your
-  profile, so each reader counts once; a member or club that several readers report is
+  profile, so each reader counts once; a member or club that several readers report can be
   hidden until a person reviews it. Blocking a reader stores the block on the service, so
   their content stays hidden from you, they are removed from the clubs you run and they cannot
   join a club you run. If a profile is
   removed for breaking the <a href="terms.html">terms</a>, the hash of its device key is kept
   so it cannot simply return.</p>
+  <p><strong>Find a club.</strong> On iPhone and iPad, a club&rsquo;s owner can list the club in Find
+  a club, in Clubs, so that readers they don&rsquo;t know can find it and join before it starts.
+  Until the club starts, and while it has a spot left, anyone with a club profile can see its
+  listing, unless either of you has blocked the other: the club&rsquo;s name; its book&rsquo;s title,
+  author and cover; when the club starts; its schedule (how many stages, how far into the book they
+  go, when the last one falls and, where the owner&rsquo;s copy has it, the listening time); how many
+  readers it has and how many spots; whether the owner approves each reader; whether it is Read or
+  die; when it was listed; and the owner&rsquo;s Clubs name and picture. A listing says how many
+  readers a club has and nothing else about them, but a reader who joins from it is a member like
+  any other and sees what members see (above). So if you are in a club its owner lists, on any
+  device, readers you don&rsquo;t know can see your name, your picture and your progress there.
+  Members whose app shows Find a club are told when their club is listed: a club moment says so,
+  and the club&rsquo;s screen says so while it is listed. The service stores the listing itself
+  (which club and book, who listed it, the choices made and when) and builds what it shows from
+  the club, keeping a copy of the whole list for a few minutes at most, so a change to the club shows
+  within minutes. Your app asks for the listings only when you open Find a club, and opening it
+  stores nothing about you.</p>
+  <p>If the owner approves each reader, asking to join sends a request. The service stores it with
+  your club profile, when you asked and the app and version you asked from (so that, if you are
+  accepted, your seat records your app as a join does), and the club&rsquo;s owner sees your Clubs
+  name and picture and when you asked. A waiting request is deleted when the owner accepts it,
+  when you take it back, or when the owner takes the listing down or lets anyone join. A declined
+  request is kept, so that you can&rsquo;t ask the same club again while it is listed. A listing is
+  deleted, with its requests, when its owner takes it down, within a day once the club moves on to
+  another book or owner, and otherwise about a week after the club starts; a listing under review,
+  or one we took down, stays while its club does. Day counts of what each
+  profile does in Find a club, used for its limits, are deleted after a week.</p>
+  <p>You can report a listing with a fixed reason (there is no free text). The service keeps which
+  club, the reason, your club profile and when, so each reader counts once. You don&rsquo;t see that
+  listing until we have reviewed it, and we are told of each report at once, with only its reason.
+  A listing reported by two
+  readers, or by one whose club profile is a week old or more, can be hidden from everyone until we
+  review it. Reports are about the club, not one listing: they stay when the club is listed again or
+  moves on to another book, and a new listing of the club is hidden until we have reviewed them. A
+  report is deleted with its club, or 30 days after it was made once we have reviewed it and the
+  club is no longer listed. If you delete your club profile, the reports you made on listings are
+  kept for review without your profile, and a listing of yours under review, or one we took down,
+  stays with its club, without its owner.</p>
   <p><strong>Nudges.</strong> If you allow notifications and leave club nudges on, Witbound
   checks your clubs from time to time in the background, using your device key, and shows
   reminders such as an upcoming stage deadline as notifications created on your device. Turn
   off &ldquo;Club nudges&rdquo; in Settings to stop them.</p>
   <p><strong>Keeping and deleting.</strong> Club moments are kept for 90 days. The rest of your
   Clubs data is kept until you leave a club or are removed from it (except the seat record
-  described under Read or die), the club is deleted or
+  described under Read or die, and Find a club&rsquo;s listings, requests and reports, described
+  above), the club is deleted or
   you delete your club profile. A quote is also deleted when you unshare it or the club&rsquo;s
   owner removes it. Once a club finishes a book, that book&rsquo;s quotes are no longer shown, and
   they are deleted when the book leaves the club&rsquo;s history. <em>Delete my club profile</em>,
   in Settings, deletes from the service your profile, your memberships and progress, your
   suggestions, the quotes you shared and the reactions on them, your own reactions, the moments
-  about you, any record of a Read or die removal, your blocks and the reports you made, and your
-  Roadmap ideas, the votes and reports on them and your Roadmap blocks. A club you run passes to its longest-standing member, or is deleted if
-  you are its only member. Your device then forgets the device key. The service uses IP
+  about you, any record of a Read or die removal, your blocks and the reports you made on members
+  and clubs, your Find a club listings and your requests to join (reports you made on listings
+  are kept without your profile, as described above), and your
+  Roadmap ideas, the votes and reports on them and your Roadmap blocks. A club you run passes to its longest-standing member (and any listing
+  of it ends), or is deleted if you are its only member. Your device then forgets the device key. The service uses IP
   addresses only to limit how fast requests can be made, and does not store them; Cloudflare
   handles connection information as described above.</p>
   <p id="delete-group-profile"><span id="delete-club-profile"></span><strong>Deleting your club profile without the app.</strong> If
