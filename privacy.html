@@ -512,15 +512,27 @@
   profile. It also stores whether &ldquo;Share my highlights with this club&rdquo; is on, and a club
   moment says when you shared quotes.</p>
   <p><strong>Read or die.</strong> A club&rsquo;s owner can set its schedule to Read or die. Then a
-  member who hasn&rsquo;t reached the end of a stage by its deadline is removed from the club. The
+  member who hasn&rsquo;t reached the end of a stage by its deadline can be removed from the club,
+  but only if someone in the club reached the stage at a believable pace, as the
+  <a href="terms.html">terms</a> explain. The
   service notes which version of Witbound each member uses, and since when, so that it never
   removes a member whose app doesn&rsquo;t show this rule, or has shown it for less than a day
-  before a deadline. When a
+  before a deadline. For the pace, the service keeps, for each member of any club, when their
+  first report on the club&rsquo;s current book arrived, and which part of the book, if any, their
+  place got through faster than listening to it from its start at double speed, plus 15 minutes,
+  could have taken them since then. In a Read or die club it also keeps the stage, if any, at which
+  the simpler rule (anyone reaching a stage in time puts out everyone behind) would have removed
+  them, and when, so that the believable pace can only ever keep members in. These pace facts start
+  again when the club starts another book. The service also notes how each member came into the
+  club (with its code or link, from a Find a club listing without asking first, or by a request the
+  owner accepted), which decides who the club passes to if a deadline removes its owner. None of
+  this is shown to anyone. When a
   member leaves any club or is removed from it, the service keeps their seat for as long as the
-  club is on the same book: when they first joined, how far they had read, the stages they had
-  cleared, when they finished, their badges and when they left and came back (and, for an owner a
-  deadline removed, who the club passed to). This is so that leaving and rejoining can&rsquo;t skip
-  a deadline once a club has started, and so that coming back gives a member their place. The
+  club is on the same book: when and how they first joined, how far they had read, the stages they
+  had cleared, when they finished, their badges, when they left and came back, and the version and
+  pace facts above (and, for an owner a deadline removed, who the club passed to). This is so that
+  leaving and rejoining can&rsquo;t skip a deadline once a club has started, and so that coming back
+  gives a member their place. The
   service keeps a record of the removal, with the club&rsquo;s name and the book&rsquo;s title as they
   were then, so that the club&rsquo;s code can&rsquo;t bring the member back until the club starts its
   next book (the club&rsquo;s owner can let them back in sooner), and so that the member&rsquo;s app can
@@ -528,9 +540,11 @@
   the club has moved on to another book and the removal is 30 days old, or sooner if the club is
   deleted or you delete your club profile.</p>
   <p><strong>Reports and blocks.</strong> You can report a member or a club with a fixed
-  reason (there is no free text). A report stores the reason, what was reported and your
-  profile, so each reader counts once; a member or club that several readers report can be
-  hidden until a person reviews it. Blocking a reader stores the block on the service, so
+  reason (there is no free text). A report stores the reason, what was reported, the club you
+  reported it from and your profile (so each reader counts once), and whether, when you made it,
+  your profile was at least a week old and you had been in that club for at least a day. Only
+  reports from readers who had both can hide anyone: a member or club that several such readers
+  report can be hidden until a person reviews it. Blocking a reader stores the block on the service, so
   their content stays hidden from you, they are removed from the clubs you run and they cannot
   join a club you run. If a profile is
   removed for breaking the <a href="terms.html">terms</a>, the hash of its device key is kept
@@ -543,15 +557,17 @@
   go, when the last one falls and, where the owner&rsquo;s copy has it, the listening time); how many
   readers it has and how many spots; whether the owner approves each reader; whether it is Read or
   die; when it was listed; and the owner&rsquo;s Clubs name and picture. A listing says how many
-  readers a club has and nothing else about them, but a reader who joins from it is a member like
-  any other and sees what members see (above). So if you are in a club its owner lists, on any
+  readers a club has and nothing else about them, but a reader who joins from it is a member of
+  the club and sees what members see (above). So if you are in a club its owner lists, on any
   device, readers you don&rsquo;t know can see your name, your picture and your progress there.
   Members whose app shows Find a club are told when their club is listed: a club moment says so,
   and the club&rsquo;s screen says so while it is listed. The service stores the listing itself
   (which club and book, who listed it, the choices made and when) and builds what it shows from
-  the club, keeping a copy of the whole list for a few minutes at most, so a change to the club shows
-  within minutes. Your app asks for the listings only when you open Find a club, and opening it
-  stores nothing about you.</p>
+  the club. To save work it keeps one copy of the whole list, which it shows for two minutes at
+  most and builds again the next time someone opens Find a club after that, or after a change, so
+  a change to the club shows within minutes. Your app asks for the listings only when you open
+  Find a club, and opening it stores nothing about you. Which listings are for books on your shelf
+  is worked out on your device, so the service never learns what is on your shelf.</p>
   <p>If the owner approves each reader, asking to join sends a request. The service stores it with
   your club profile, when you asked and the app and version you asked from (so that, if you are
   accepted, your seat records your app as a join does), and the club&rsquo;s owner sees your Clubs
@@ -559,8 +575,9 @@
   when you take it back, or when the owner takes the listing down or lets anyone join. A declined
   request is kept, so that you can&rsquo;t ask the same club again while it is listed. A listing is
   deleted, with its requests, when its owner takes it down, within a day once the club moves on to
-  another book or owner, and otherwise about a week after the club starts; a listing under review,
-  or one we took down, stays while its club does. Day counts of what each
+  another book or owner, about a week after the club starts, or with its club. A listing we took
+  down stays while its club does, and so does one under review, unless its owner takes it down.
+  Day counts of what each
   profile does in Find a club, used for its limits, are deleted after a week.</p>
   <p>You can report a listing with a fixed reason (there is no free text). The service keeps which
   club, the reason, your club profile and when, so each reader counts once. You don&rsquo;t see that
@@ -569,10 +586,10 @@
   readers, or by one whose club profile is a week old or more, can be hidden from everyone until we
   review it. Reports are about the club, not one listing: they stay when the club is listed again or
   moves on to another book, and a new listing of the club is hidden until we have reviewed them. A
-  report is deleted with its club, or 30 days after it was made once we have reviewed it and the
-  club is no longer listed. If you delete your club profile, the reports you made on listings are
-  kept for review without your profile, and a listing of yours under review, or one we took down,
-  stays with its club, without its owner.</p>
+  report is deleted with its club, or once it is 30 days old, we have reviewed it and the
+  club&rsquo;s listing has been deleted. If you delete your club profile, the reports you made on
+  listings are kept for review without your profile, and a listing of yours under review, or one
+  we took down, stays with its club, without its owner.</p>
   <p><strong>Nudges.</strong> If you allow notifications and leave club nudges on, Witbound
   checks your clubs from time to time in the background, using your device key, and shows
   reminders such as an upcoming stage deadline as notifications created on your device. Turn
@@ -587,8 +604,9 @@
   in Settings, deletes from the service your profile, your memberships and progress, your
   suggestions, the quotes you shared and the reactions on them, your own reactions, the moments
   about you, any record of a Read or die removal, your blocks and the reports you made on members
-  and clubs, your Find a club listings and your requests to join (reports you made on listings
-  are kept without your profile, as described above), and your
+  and clubs, your Find a club listings and your requests to join (reports you made on listings,
+  and a listing of yours under review or taken down by us, are kept without your profile, as
+  described above), and your
   Roadmap ideas, the votes and reports on them and your Roadmap blocks. A club you run passes to its longest-standing member (and any listing
   of it ends), or is deleted if you are its only member. Your device then forgets the device key. The service uses IP
   addresses only to limit how fast requests can be made, and does not store them; Cloudflare
@@ -609,7 +627,7 @@
   never stores it. Posting an idea needs a Clubs profile: ideas you post appear publicly under
   your Clubs name (name#tag), with what you wrote. Before anyone sees an idea, an automatic
   filter checks it: a word list, then an AI safety model run by Cloudflare. If you report an
-  idea, it is hidden until we review it; a report stores only the reason you chose, with the
+  idea, it can be hidden until we review it; a report stores only the reason you chose, with the
   hashed identifier. The people you block are kept with your Clubs profile. You can delete your
   own ideas at any time, and deleting your Clubs profile deletes your ideas, the votes and
   reports on them, and your blocks.</p>
